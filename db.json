@@ -1,140 +1,606 @@
 {
   "products": [
     {
-      "id": "1",
-      "name": "iPhone 12 Pro Max 128GB",
-      "image": "https://salt.tikicdn.com/cache/280x280/ts/product/86/dd/0c/116f1383ebab5e5af8e71301a80d1b17.jpg",
-      "price": "32.990.000",
-      "brand": "Apple",
-      "status": false,
-      "description": "iPhone 11 chính hãng VN/A – Chiếc điện thoại nhiều màu sắc, camera nâng cấp iPhone 11 là model có nhiều màu sắc nhất và có giá rẻ nhất trong bộ 3 iPhone 11 series được Apple ra mắt trong năm 2019. Bên cạnh đó, cấu hình iPhone 11 cũng được nâng cấp đặc biệt về cụm camera sau và Face ID, viên pin dung lượng lớn hơn.",
-      "quantity": 82644
+      "id": 2,
+      "name": "Tai nghe Bluetooth LG HBS-SL6S",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2426_02_2.jpg?alt=media&token=08814015-b258-4809-8fb0-19fc7c6567f9",
+      "price": 10.999,
+      "salePrice": 1.111,
+      "status": "chưa bán",
+      "quantity": 122,
+      "cateID": 1,
+      "description": "Đặc điểm nổi bật của Tai nghe Bluetooth LG HBS-SL5Tai nghe Bluetooth LG HBS-SL5 chính hãngTai nghe bluetooth LG HBS-SL5 là một trong những model mới nhất của LG được ra mắt cuối năm 2019  LG HBS-SL5 được trang bị Bluetooth 5.0  mới nhất hiện nay. Trang bị 2 micro MEMS hỗ trợ đàm thoại cực tốt. Thời lượng pin 8 tiếng, hỗ trợ sạc nhanh. Đặc biệt sản phẩm được trang bị vi xử lý âm thanh công nghệ của hãng Meridian, mang lại chất lượng âm thanh tốt nhất cho người sử dụng. "
     },
     {
-      "id": "2",
-      "name": "iPad 10.2 Inch WiFi 32GB (Gen 8) New 2020",
-      "image": "https://salt.tikicdn.com/cache/280x280/ts/product/2e/c7/85/1f62f17c11d1e475143ee8e6c23fd555.jpg",
-      "price": "8.499.000",
-      "brand": "Apple",
-      "status": true,
-      "description": "iPhone 11 chính hãng VN/A – Chiếc điện thoại nhiều màu sắc, camera nâng cấp iPhone 11 là model có nhiều màu sắc nhất và có giá rẻ nhất trong bộ 3 iPhone 11 series được Apple ra mắt trong năm 2019. Bên cạnh đó, cấu hình iPhone 11 cũng được nâng cấp đặc biệt về cụm camera sau và Face ID, viên pin dung lượng lớn hơn.",
-      "quantity": 325
+      "id": 3,
+      "name": "Tai nghe không dây Apple Airpods Pro VN/A",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2164_mv7n2_av1.jpg?alt=media&token=cb7a0f6e-26ac-4a74-867d-2ea3520c256a",
+      "price": 5.599,
+      "salePrice": 1.111,
+      "status": "đã bán",
+      "quantity": 12,
+      "cateID": 2,
+      "description": "Đặc điểm nổi bật của Tai nghe Bluetooth LG HBS-SL5Tai nghe Bluetooth LG HBS-SL5 chính hãngTai nghe bluetooth LG HBS-SL5 là một trong những model mới nhất của LG được ra mắt cuối năm 2019  LG HBS-SL5 được trang bị Bluetooth 5.0  mới nhất hiện nay. Trang bị 2 micro MEMS hỗ trợ đàm thoại cực tốt. Thời lượng pin 8 tiếng, hỗ trợ sạc nhanh. Đặc biệt sản phẩm được trang bị vi xử lý âm thanh công nghệ của hãng Meridian, mang lại chất lượng âm thanh tốt nhất cho người sử dụng. "
     },
     {
-      "id": "3",
-      "name": "Samsung Galaxy A71 (8GB/128GB) ",
-      "image": "https://salt.tikicdn.com/cache/280x280/ts/product/94/2f/ae/e29efe4d87c4dc35a0b6af6b98950bea.jpg",
-      "price": "7.990.000",
-      "brand": "Samsung",
-      "status": true,
-      "description": "iPhone 11 chính hãng VN/A – Chiếc điện thoại nhiều màu sắc, camera nâng cấp iPhone 11 là model có nhiều màu sắc nhất và có giá rẻ nhất trong bộ 3 iPhone 11 series được Apple ra mắt trong năm 2019. Bên cạnh đó, cấu hình iPhone 11 cũng được nâng cấp đặc biệt về cụm camera sau và Face ID, viên pin dung lượng lớn hơn.",
-      "quantity": 825
+      "id": 7,
+      "name": "Tai nghe Campfire Andromeda 2020",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2460_sony_wi_c310_5.jpg?alt=media&token=19aae68c-b649-42b0-b9b9-5ec06207efcd",
+      "price": 26.45,
+      "salePrice": 1.111,
+      "status": "chưa bán",
+      "quantity": 50,
+      "cateID": 2,
+      "description": "tai nghe",
+      "createdAt": 1614259039823
     },
     {
-      "id": "4",
-      "name": "Máy Tính Bảng Samsung Galaxy Tab A8 8 T295",
-      "image": "https://salt.tikicdn.com/cache/280x280/ts/product/d9/7a/32/0996fcf1395e3120d6dba80583ff6cd9.jpg",
-      "price": "2.990.000",
-      "brand": "Samsung",
-      "status": false,
-      "description": "iPhone 11 chính hãng VN/A – Chiếc điện thoại nhiều màu sắc, camera nâng cấp iPhone 11 là model có nhiều màu sắc nhất và có giá rẻ nhất trong bộ 3 iPhone 11 series được Apple ra mắt trong năm 2019. Bên cạnh đó, cấu hình iPhone 11 cũng được nâng cấp đặc biệt về cụm camera sau và Face ID, viên pin dung lượng lớn hơn.",
-      "quantity": 25
+      "id": 8,
+      "name": "Tai nghe Campfire Solaris 2020",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2227_tfz_x1_1.jpg?alt=media&token=3fc9358c-232a-4a77-9f8e-7f881b21e9e7",
+      "price": 36.99,
+      "salePrice": 1.111,
+      "status": "đã bán",
+      "quantity": 90,
+      "cateID": 1,
+      "description": "tai nghe"
     },
     {
-      "id": "5",
-      "name": "Samsung Galaxy Note 20 Ultra (8GB/256GB)",
-      "image": "https://salt.tikicdn.com/cache/280x280/ts/product/a2/0e/21/8370177bf6874a6a3f219a825980c3c2.jpg",
-      "price": "27.990.000",
-      "brand": "Samsung",
-      "status": true,
-      "description": "iPhone 11 chính hãng VN/A – Chiếc điện thoại nhiều màu sắc, camera nâng cấp iPhone 11 là model có nhiều màu sắc nhất và có giá rẻ nhất trong bộ 3 iPhone 11 series được Apple ra mắt trong năm 2019. Bên cạnh đó, cấu hình iPhone 11 cũng được nâng cấp đặc biệt về cụm camera sau và Face ID, viên pin dung lượng lớn hơn.",
-      "quantity": 555
+      "id": 9,
+      "name": "Tai nghe Campfire Dorado 20202",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2164_mv7n2_av1.jpg?alt=media&token=8f6f9be4-531c-4270-bd75-ed57634f129d",
+      "price": 26.45,
+      "salePrice": 1.111,
+      "status": "đang xử lý",
+      "quantity": 12,
+      "cateID": 1,
+      "description": "tai nghe"
     },
     {
-      "id": "6",
-      "name": "iPhone 12 64GB",
-      "image": "https://salt.tikicdn.com/cache/280x280/ts/product/ea/2b/1a/213365920de2a1867909f9810d8465b0.jpg",
-      "price": "22.450.000",
-      "brand": "Apple",
-      "status": true,
-      "description": "iPhone 11 chính hãng VN/A – Chiếc điện thoại nhiều màu sắc, camera nâng cấp iPhone 11 là model có nhiều màu sắc nhất và có giá rẻ nhất trong bộ 3 iPhone 11 series được Apple ra mắt trong năm 2019. Bên cạnh đó, cấu hình iPhone 11 cũng được nâng cấp đặc biệt về cụm camera sau và Face ID, viên pin dung lượng lớn hơn.",
-      "quantity": 1280
+      "id": 10,
+      "name": "Tai nghe Tribit QuietPlus 50 ANC",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2440_xuanvua_audio_sony_wf_1000xm3_2.jpg?alt=media&token=214901b0-41c1-4d72-a60f-e11a809d0f06",
+      "price": 65,
+      "salePrice": 1.111,
+      "status": "chưa bán",
+      "quantity": "30",
+      "cateID": 2,
+      "description": "ytygh",
+      "createdAt": 1614259660913
     },
     {
-      "id": "7",
-      "name": "iPhone 12 Mini 128GB",
-      "image": "https://salt.tikicdn.com/cache/280x280/ts/product/81/73/6c/4ccc8f968ae0029142282a50f8a724a0.jpg",
-      "price": "20.250.000",
-      "brand": "Apple",
-      "status": true,
-      "description": "iPhone 11 chính hãng VN/A – Chiếc điện thoại nhiều màu sắc, camera nâng cấp iPhone 11 là model có nhiều màu sắc nhất và có giá rẻ nhất trong bộ 3 iPhone 11 series được Apple ra mắt trong năm 2019. Bên cạnh đó, cấu hình iPhone 11 cũng được nâng cấp đặc biệt về cụm camera sau và Face ID, viên pin dung lượng lớn hơn.",
-      "quantity": 280
+      "id": 11,
+      "name": "Tai nghe Tribit QuietPlus 50 ANC",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2440_xuanvua_audio_sony_wf_1000xm3_2.jpg?alt=media&token=57890867-7325-462e-99e0-de13f4a7301d",
+      "price": 65,
+      "salePrice": 1.111,
+      "status": "đã bán",
+      "quantity": "90",
+      "cateID": 3,
+      "description": "tai nghe",
+      "createdAt": 1614307808396
     },
     {
-      "id": "8",
-      "name": "Xiaomi Mi 10T Pro 5G",
-      "image": "https://salt.tikicdn.com/cache/280x280/ts/product/81/73/6c/4ccc8f968ae0029142282a50f8a724a0.jpg",
-      "price": "10.990.000",
-      "brand": "Xiaomi",
-      "status": true,
-      "description": "iPhone 11 chính hãng VN/A – Chiếc điện thoại nhiều màu sắc, camera nâng cấp iPhone 11 là model có nhiều màu sắc nhất và có giá rẻ nhất trong bộ 3 iPhone 11 series được Apple ra mắt trong năm 2019. Bên cạnh đó, cấu hình iPhone 11 cũng được nâng cấp đặc biệt về cụm camera sau và Face ID, viên pin dung lượng lớn hơn.",
-      "quantity": 5580
+      "id": 12,
+      "name": "Tai nghe Tribit QuietPlus 50 ANC",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2164_mv7n2_av1.jpg?alt=media&token=9c735661-0467-498b-ab59-5fd1143fcc2a",
+      "price": 65,
+      "salePrice": 1.111,
+      "status": "đã bán",
+      "quantity": 30,
+      "cateID": 1,
+      "description": "tai nghe"
     },
     {
-      "id": "9",
-      "name": "Xiaomi Redmi Note 9S",
-      "image": "https://salt.tikicdn.com/cache/280x280/ts/product/c2/9d/c2/40e1f21bef91d798bfcfe9fa7a9be95a.jpg",
-      "price": "4.380.000",
-      "brand": "Xiaomi",
-      "status": false,
-      "description": "iPhone 11 chính hãng VN/A – Chiếc điện thoại nhiều màu sắc, camera nâng cấp iPhone 11 là model có nhiều màu sắc nhất và có giá rẻ nhất trong bộ 3 iPhone 11 series được Apple ra mắt trong năm 2019. Bên cạnh đó, cấu hình iPhone 11 cũng được nâng cấp đặc biệt về cụm camera sau và Face ID, viên pin dung lượng lớn hơn.",
-      "quantity": 880
+      "id": 13,
+      "name": "Tai nghe Tribit QuietPlus 50 ANC",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2426_02_2.jpg?alt=media&token=72137561-4ce6-4ddc-98fc-1be507418d73",
+      "price": 65,
+      "salePrice": 1.111,
+      "status": "đã bán",
+      "quantity": "100",
+      "cateID": 2,
+      "description": "tai nghe",
+      "createdAt": 1614308081391
     },
     {
-      "id": "10",
-      "name": "Huawei P30 Lite ",
-      "image": "https://salt.tikicdn.com/cache/280x280/ts/product/73/b7/30/3c99ffe7b0debc22f87f3025082021f6.jpg",
-      "price": "5.490.000",
-      "brand": "Huawei",
-      "status": false,
-      "description": "iPhone 11 chính hãng VN/A – Chiếc điện thoại nhiều màu sắc, camera nâng cấp iPhone 11 là model có nhiều màu sắc nhất và có giá rẻ nhất trong bộ 3 iPhone 11 series được Apple ra mắt trong năm 2019. Bên cạnh đó, cấu hình iPhone 11 cũng được nâng cấp đặc biệt về cụm camera sau và Face ID, viên pin dung lượng lớn hơn.",
-      "quantity": 8280
+      "id": 14,
+      "name": "Tai nghe Tribit QuietPlus 50 ANC",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2487_new_sabbat_x12_hd_sound_bluetooth_wireless.jpg?alt=media&token=75356d03-0ba0-41e1-9703-ece372e4f7d7",
+      "price": 5.35,
+      "salePrice": 1.111,
+      "status": "chưa bán",
+      "quantity": 70,
+      "cateID": 1,
+      "description": "tai nghe"
     },
     {
-      "id": "11",
-      "name": "Máy TÍnh Bảng HUAWEI Matepad T8 2G/32G- Thẻ nhớ ngoài 512GB ",
-      "image": "https://salt.tikicdn.com/cache/280x280/ts/product/e5/1a/48/58f83e7df165b5d53563d1dc4e9fe4ee.jpg",
-      "price": "2.990.000",
-      "brand": "Huawei",
-      "status": true,
-      "description": "iPhone 11 chính hãng VN/A – Chiếc điện thoại nhiều màu sắc, camera nâng cấp iPhone 11 là model có nhiều màu sắc nhất và có giá rẻ nhất trong bộ 3 iPhone 11 series được Apple ra mắt trong năm 2019. Bên cạnh đó, cấu hình iPhone 11 cũng được nâng cấp đặc biệt về cụm camera sau và Face ID, viên pin dung lượng lớn hơn.",
-      "quantity": 3270
+      "id": 15,
+      "name": "Tai nghe Tribit QuietPlus 50 ANC",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2426_02_2.jpg?alt=media&token=8d01df26-b2e6-48c0-8588-de70c251a255",
+      "price": 1.19,
+      "salePrice": 1.111,
+      "status": "đang xử lý",
+      "quantity": "30",
+      "cateID": 2,
+      "description": "tỳhg",
+      "createdAt": 1614308474848
     },
     {
-      "id": "12",
-      "name": "Điện Thoại Realme 6I (4GB/128GB)",
-      "image": "https://salt.tikicdn.com/cache/280x280/ts/product/06/d4/f1/5084634b07e9670de72ef4d812360db9.jpg",
-      "price": "3.850.000",
-      "brand": "Realme",
-      "status": true,
-      "description": "iPhone 11 chính hãng VN/A – Chiếc điện thoại nhiều màu sắc, camera nâng cấp iPhone 11 là model có nhiều màu sắc nhất và có giá rẻ nhất trong bộ 3 iPhone 11 series được Apple ra mắt trong năm 2019. Bên cạnh đó, cấu hình iPhone 11 cũng được nâng cấp đặc biệt về cụm camera sau và Face ID, viên pin dung lượng lớn hơn.",
-      "quantity": 2270
+      "id": 16,
+      "name": "Tai nghe Tribit QuietPlus 50 ANC",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2460_sony_wi_c310_5.jpg?alt=media&token=96071ec2-8ab2-46fa-a3b9-25921892a138",
+      "price": 5.999,
+      "salePrice": 1.111,
+      "status": "đang xử lý",
+      "quantity": "12",
+      "cateID": 3,
+      "description": "bgsh",
+      "createdAt": 1614308752219
     },
     {
-      "id": "13",
-      "name": "Blackberry KEY2 (6GB/64GB)",
-      "image": "https://salt.tikicdn.com/cache/280x280/ts/product/d3/e7/d3/287c2113d6a86a9ed06e636e54dc7aea.jpg",
-      "price": "15.990.000 ",
-      "brand": "Blackberry",
-      "status": true,
-      "description": "iPhone 11 chính hãng VN/A – Chiếc điện thoại nhiều màu sắc, camera nâng cấp iPhone 11 là model có nhiều màu sắc nhất và có giá rẻ nhất trong bộ 3 iPhone 11 series được Apple ra mắt trong năm 2019. Bên cạnh đó, cấu hình iPhone 11 cũng được nâng cấp đặc biệt về cụm camera sau và Face ID, viên pin dung lượng lớn hơn.",
-      "quantity": 23370
+      "id": 17,
+      "name": "Tai nghe Tribit QuietPlus 50 ANC",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2460_sony_wi_c310_5.jpg?alt=media&token=41f3e71f-1dd3-4fac-b2f1-3bbe450d8868",
+      "price": 5.999,
+      "salePrice": 1.111,
+      "status": "đang xử lý",
+      "quantity": "80",
+      "cateID": 2,
+      "description": "TAI NGHE",
+      "createdAt": 1614308972764
     },
     {
-      "id": "14",
-      "name": "tid",
-      "image": "https://xiaomiworld.vn/wp-content/uploads/2018/11/banner-1-08.png",
-      "price": "54.890"
+      "id": 18,
+      "name": "Tai nghe Tribit QuietPlus 50 ANC",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2690_3JPG.jpg?alt=media&token=436d3741-060c-445c-beeb-0fc916c85b0d",
+      "price": 5.999,
+      "salePrice": 1.111,
+      "status": "chưa bán",
+      "quantity": "30",
+      "cateID": 3,
+      "description": "HDFDG",
+      "createdAt": 1614309184948
+    },
+    {
+      "id": 20,
+      "name": "Tai nghe Tribit QuietPlus 50 ANC",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_1920-tai-nghe-pamu--1-.jpg?alt=media&token=86c0e0bc-3cb3-47fe-8c60-bbf123522994",
+      "price": 5.999,
+      "salePrice": 1.111,
+      "status": "chưa bán",
+      "quantity": "12",
+      "cateID": 2,
+      "description": "gsdggsd",
+      "createdAt": 1614309480579
+    },
+    {
+      "id": 21,
+      "name": "Tai nghe Tribit QuietPlus 50 ANC",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_1626-xuanvu-audio-bose-soundsport-free-wireless-blue.jpg?alt=media&token=ee1de01f-eca1-45f7-910b-c8e5803b2740",
+      "price": 1.456,
+      "salePrice": 1.111,
+      "status": "đang xử lý",
+      "quantity": 100,
+      "cateID": 1,
+      "description": "ffgfg"
+    },
+    {
+      "id": 23,
+      "name": "Tai nghe True Wireless SoundMAGIC TWS50",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2426_02_2.jpg?alt=media&token=a5653a2d-baf4-4d08-864e-2f07ca8a71d1",
+      "price": 1.45,
+      "salePrice": 1.111,
+      "status": "đã bán",
+      "quantity": "20",
+      "cateID": 3,
+      "description": "tai nghe",
+      "createdAt": 1614309857426
+    },
+    {
+      "id": 24,
+      "name": "Tai nghe SoundMAGIC E10C",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2380_tai_nghe_true_wireless_whizzer_tws_tp1_2JPG.jpg?alt=media&token=b1840d3c-805d-4b3b-a288-90344adfe092",
+      "price": 890,
+      "salePrice": 1.111,
+      "status": "đang xử lý",
+      "quantity": "100",
+      "cateID": 1,
+      "description": "tai nghe",
+      "createdAt": 1614309889183
+    },
+    {
+      "id": 26,
+      "name": "Tai nghe bluetooth SoundMAGIC ES20BT",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_3273_klipsch_t5_ii_6.jpg?alt=media&token=1783d9ee-56d5-4a1d-be6d-9f93e829e432",
+      "price": 265,
+      "salePrice": 1.111,
+      "status": "đã bán",
+      "quantity": "189",
+      "cateID": 2,
+      "description": "tai nghe",
+      "createdAt": 1614309947347
+    },
+    {
+      "id": 28,
+      "name": "Tai nghe SoundMAGIC E50C",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2352_tfz_x1_06_1160x1160.jpg?alt=media&token=20051eea-c7c4-47f7-aacd-76e97640cdbe",
+      "price": 760,
+      "salePrice": 1.111,
+      "status": "chưa bán",
+      "quantity": "30",
+      "cateID": 3,
+      "description": "tai nghe",
+      "createdAt": 1614310002806
+    },
+    {
+      "id": 29,
+      "name": "Tai nghe bluetooth SoundMAGIC ES20BT",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2590_2.jpeg?alt=media&token=49b4dc60-288e-491c-8a0c-721e550a8bac",
+      "price": 265,
+      "salePrice": 1.111,
+      "status": "đã bán",
+      "quantity": "12",
+      "cateID": 2,
+      "description": "tai nghe",
+      "createdAt": 1614310028562
+    },
+    {
+      "id": 30,
+      "name": "Tai nghe Gaming JBL Quantum 50",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_3397_tai_nghe_khong_day_chong_on_b_o_beoplay_h95_1.jpg?alt=media&token=a2d2d60e-b4be-4b9c-b46d-cd7a9fc90934",
+      "price": 890,
+      "salePrice": 1.111,
+      "status": "chưa bán",
+      "quantity": "60",
+      "cateID": 3,
+      "description": "tai nghe",
+      "createdAt": 1614325694165
+    },
+    {
+      "id": 31,
+      "name": "quyet",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2487_new_sabbat_x12_hd_sound_bluetooth_wireless.jpg?alt=media&token=584a9329-59e9-4c8f-80bc-c6c39d757ca0",
+      "price": 65,
+      "salePrice": 1.111,
+      "status": "đã bán",
+      "quantity": "30",
+      "cateID": 3,
+      "description": "fgfdgf",
+      "createdAt": 1614661805865
+    },
+    {
+      "id": 32,
+      "name": "Tai nghe Tribit QuietPlus 50 ANC2",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2460_sony_wi_c310_5.jpg?alt=media&token=e0957351-95ac-4b78-bb93-aeaefbe2717c",
+      "price": 2,
+      "salePrice": 1.111,
+      "status": "chưa bán",
+      "quantity": 12,
+      "cateID": 1,
+      "description": "fgfgdf"
+    },
+    {
+      "id": 33,
+      "name": "Tai nghe Tribit QuietPlus 50 ANC",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2309_106faa31_cfac_41ac_8faa_1ed26ea36401_2048x2048.jpg?alt=media&token=df0f7017-9686-48c6-88fd-f58a6b5b9c72",
+      "price": 65,
+      "salePrice": 1.111,
+      "status": "đang xử lý",
+      "quantity": "12",
+      "cateID": 2,
+      "description": "dfhsdhsdhjsdfhsdfh",
+      "createdAt": 1614702630414
+    },
+    {
+      "id": 34,
+      "name": "Tai nghe không dây Apple Airpods Pro VN/A",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_2380_tai_nghe_true_wireless_whizzer_tws_tp1_2JPG.jpg?alt=media&token=34bd710a-6388-4241-bb2f-1b8a7308bfd1",
+      "price": "5.230",
+      "salePrice": 1.111,
+      "status": "chưa bán",
+      "quantity": "30",
+      "cateID": 1,
+      "description": "cdffgdfdfccvb",
+      "createdAt": 1614702710263
+    },
+    {
+      "id": 35,
+      "name": "Tai nghe Shozy Form 1.1200",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/images%2F250_1636-1.png?alt=media&token=93883067-32e8-4ecf-8f3b-0d78dcea16b1",
+      "price": 2,
+      "salePrice": 1.111,
+      "status": "đã bán",
+      "quantity": 30,
+      "cateID": 1,
+      "description": "Tai nghe Shozy Form1.1 chính hãng\nShozy là một công ty âm thanh chuyên sản xuất IEM và DAP. Tiếp nối thành công từ những người đàn anh như Shozy BG, Shozy CP, Shozy Pola từng được rất nhiều người chơi âm thanh đánh giá cao. Mới đây hãng đã ra mắt mẫu tai nghe Shozy Form 1.1 đánh vào phân khúc người dùng phổ thông.\n\nShozy Form 1.1 là mẫu tai nghe IEM mới ra mắt của Shozy được trang bị 1 driver dynamic phủ beryllium và 1 driver BA. Dây dẫn được làm bằng chất liệu đồng nguyên chất chuẩn 2pin – 3.5mm được được bọc vải dù rất chắc chắn"
+    }
+  ],
+  "category": [
+    {
+      "id": 1,
+      "name": "Tai nghe bluetooth"
+    },
+    {
+      "id": 2,
+      "name": "Tai nghe chống ồn"
+    },
+    {
+      "id": 3,
+      "name": "Tai nghe phòng thu"
+    },
+    {
+      "id": 4,
+      "name": "Tai nghe Apple"
+    }
+  ],
+  "status": [
+    {
+      "id": 1,
+      "name": "Chưa bán"
+    },
+    {
+      "id": 2,
+      "name": "Đã bán"
+    },
+    {
+      "id": 3,
+      "name": "Đang xử lý"
+    }
+  ],
+  "news": [
+    {
+      "id": 2,
+      "title": "Đánh giá tai nghe FIIL CC2 : Bluetooth 5.2, chất hơn Airpods 2, giá bằng 1 nửa",
+      "image": "https://tainghe.com.vn/media/lib/3344_IMG_6475.jpg",
+      "content": "Một điểm thay đổi mà ít người có thể nhận ra trên thân tai nghe FIIL CC2 so với phiên bản cũ là 2 cực chân sạc đã được thay đổi vị trí. Do đó bạn sẽ không thể sử dụng FIIL CC2 với hộp sạc phiên bản trước. Lỗ mic trên thân tai nghe cũng được thay đổi lại từ dạng chữ nhật sang chấm tròn.Mặc dù không có nắp đậy như hầu hết các mẫu True Wireless trên thị trường nhưng FIIL CC2 sẽ không bao giờ có thể rơi ra ngoài hộp sạc một cách vô tình được. Thiết kế thông minh của FIIL cho phép bạn có thể lấy 2 tai nghe với chỉ một tay cực kỳ thời thượng."
+    },
+    {
+      "id": 3,
+      "title": "Đánh giá Hiby R2 : Máy nghe nhạc có Wifi Streaming nhỏ nhất thế giới",
+      "image": "https://tainghe.com.vn/media/lib/3344_IMG_6485.jpg",
+      "content": "Đánh giá Hiby R2 : Máy nghe nhạc có Wifi Streaming nhỏ nhất thế giới"
+    },
+    {
+      "id": 4,
+      "title": "Đánh giá tai nghe Kinera BD005 Pro : Đẹp, hoàn thiện tốt, âm thanh cực hay trong tầm giá",
+      "image": "https://tainghe.com.vn/media/news/2901_142691506_3608877979166866_6489250020388590929_o.jpg",
+      "content": "Kinera BD005 Pro hiện là chiếc IEM mới nhất của Kinera và là bản nâng cấp so với phiên bản BD005 trước đó của họ. Phong cách đặt tên lấy cảm hứng từ thần thoại Bắc Âu tuy không xuất hiện ở dòng sản phẩm này, nhưng điều đó không có nghĩa rằng chiếc tai nghe này kém đi phần hứa hẹn, và với một mức giá tăng nhẹ so với phiên bản tiền nhiệm của mình, chúng ta hãy cùng xem liệu Kinera đã làm được gì để đảm bảo cho sự thay đổi về mức giá đó."
+    },
+    {
+      "id": 5,
+      "title": "Đánh giá tai nghe FIIL CC2 : Bluetooth 5.2, chất hơn Airpods 2, giá bằng 1 nửa",
+      "image": "https://tainghe.com.vn/media/lib/3377_IMG_6391.jpg",
+      "content": "FIIL CC2 - phiên bản nâng cấp của mẫu tai nghe True Wireless đang gây sốt cộng động chơi tai nghe ở Việt Nam một thời nay đã chính thức lên kệ. Nếu bạn cũng đang tò mò giống tôi muốn biết phiên bản tai nghe mới này sẽ làm được những gì thì hãy cùng tìm hiểu qua bài đánh giá và so sánh này"
+    },
+    {
+      "id": 6,
+      "title": "Đánh giá tai nghe FIIL CC2 : Bluetooth 5.2, chất hơn Airpods 2, giá bằng 1 nửa",
+      "image": "https://tainghe.com.vn/media/lib/3377_IMG_6391.jpg",
+      "content": "FIIL CC2 - phiên bản nâng cấp của mẫu tai nghe True Wireless đang gây sốt cộng động chơi tai nghe ở Việt Nam một thời nay đã chính thức lên kệ. Nếu bạn cũng đang tò mò giống tôi muốn biết phiên bản tai nghe mới này sẽ làm được những gì thì hãy cùng tìm hiểu qua bài đánh giá và so sánh này"
+    },
+    {
+      "id": 7,
+      "title": "Top 10 tai nghe giá rẻ bán chạy nhất 2020",
+      "image": "https://tainghe.com.vn/media/news/1512_tai-nghe-kz-zsn-pro-tran-du-audio-2.jpg",
+      "content": "10. Moondrop SSR\nLà một trong những hiện tượng tai nghe giá rẻ sáng nhất nửa cuối năm nay. Moondrop SSR gây ấn tượng mạnh bởi thiết kế độc đáo không đụng hàng. Hoàn thiện từ kim loại nguyên khối và có chất lượng gia công tốt nhất trong tầm giá.\n\n\n\nChất âm của Moondrop SSR trong sáng, long lanh, khác biệt so với số đông trong tầm giá này. Nếu bạn là một người yêu J-Pop, J-Rock thì Moondrop SSR là chiếc tai nghe nhất định phải sở hữu.\n\nNgoài SSR, Moondrop cũng vừa cho ra phiên bản kế nhiệm Moondrop SSP dành cho những người thích âm bass đậm đà hơn.\n\n\n\nGiá bán của cả 2 phiên bản là bằng nhau.\n\n\nTai nghe Moondrop SSPTai nghe Moondrop SSP\n990.000đ\n \nTai nghe Moondrop SSRTai nghe Moondrop SSR\n990.000đ\n9.Moxpad X9\nPhiên bản nâng cấp của huyền thoại giá rẻ Moxpad X3.\n\n\n\nVẫn sở hữu thiết kế đặc trưng cùng chất bass còn mạnh mẽ và ấn tượng hơn rất nhiều. Moxpad X9 là mẫu tai nghe có bass mạnh nhất trong tầm giá dưới 1 triệu đồng mà bạn có thể tìm thấy. \n\n\nTai nghe Moxpad X9Tai nghe Moxpad X9\n549.000đ\n8.SoundMAGIC E11C\nPhiên bản kế nhiệm của huyền thoại E10. SoundMAGIC E11C được trau chuốt lại thiết kế và hoàn thiện. Chất âm của SoundMAGIC E11C giữ nguyên những tinh túy của huyền thoại E10 nhưng được làm mượt mà, chi tiết và dễ nghe hơn. \n\n\n\nNếu bạn đang tìm kiếm một chiếc tai nghe truyền thống, bền bỉ và đáng tin cậy, SoundMAGIC E11C là một lựa chọn không thể bỏ qua trong tầm giá này.\n\n\nTai nghe SoundMAGIC E11CTai nghe SoundMAGIC E11C\n890.000đ\n\n\n7. KZ ZSN Pro\nLà mẫu tai nghe có chất lượng hoàn thiện ấn tượng như một chiếc tai nghe Custom cao cấp. KZ ZSN Pro trang bị 1 driver dynamic và 1 driver BA đem tới chất âm V-Shape vui tươi đặc trưng của nhà KZ. \n\n\n\nKZ ZSN PRO vẫn luôn là lựa chọn đáng tin cậy cho những fan của KZ trong tầm giá chỉ 500 nghìn đồng.\n\n\nTai nghe KZ ZSN Pro X có micTai nghe KZ ZSN Pro X có mic\n500.000đ\n \nTai nghe KZ ZSN Pro có MicTai nghe KZ ZSN Pro có Mic\n399.000đ\n6. Blon BL-03\nCơn sốt mang tên Blon BL-03 mà đi tới bất cứ diễn đàn tai nghe nào của Việt Nam cũng được nhắc tới. Blon BL-03 gây ấn tượng mạnh bởi chất âm vượt tầm giá khi được “độ thêm” dây dẫn. Có rất nhiều người đã sử dụng và “mod” lại chiếc tai nghe đặc biệt này."
+    }
+  ],
+  "contact": [
+    {
+      "id": 1,
+      "name": "lê văn quyết",
+      "email": "lequyet840500@gmail.com",
+      "phone": "0869840500",
+      "content": "sản phẩm rất tốt"
+    }
+  ],
+  "account": [
+    {
+      "id": 1,
+      "username": "levanquyet789",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/users%2F250_2426_02_2.jpg?alt=media&token=6ece9459-86f7-4579-99da-9a0587df3c0f",
+      "password": "12345678",
+      "numberphone": "0869840500"
+    },
+    {
+      "id": 2,
+      "username": "lequyet12",
+      "password": "12345",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/users%2F250_2104_2104_20180827174808jpg_1535363296126_800x800.jpg?alt=media&token=68401fdb-ec02-4cdb-952b-67e1a34b4597",
+      "email": "lequyet840500@gmail.com",
+      "role": 1
+    },
+    {
+      "id": 12,
+      "username": "quyet64646",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/users%2F250_2590_2.jpeg?alt=media&token=1464e497-4668-4453-9ad9-ddf134d94f8b",
+      "password": "12345",
+      "email": "lequyet840500@gmail.com",
+      "numberphone": "0869840500",
+      "role": 1
+    },
+    {
+      "id": 14,
+      "username": "levanquyet122",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/users%2F250_2426_02_2.jpg?alt=media&token=6ece9459-86f7-4579-99da-9a0587df3c0f",
+      "password": "12345678",
+      "email": "lequyet840500@gmail.com",
+      "numberphone": "0869840500",
+      "role": 1
+    },
+    {
+      "id": 16,
+      "username": "quyet2001",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/users%2F250_2493_sabbat_e12_camo_orange_5.png?alt=media&token=13551661-4896-46f6-8662-b8e9ea0111eb",
+      "password": "12345",
+      "email": "lequyet840500@gmail.com",
+      "numberphone": "0869840500",
+      "role": 1
+    },
+    {
+      "id": 17,
+      "username": "lequyet122001",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/users%2F250_2493_sabbat_e12_camo_orange_5.png?alt=media&token=19c859f7-2ac4-409b-bbce-af896042fb61",
+      "password": "12345678",
+      "email": "lequyet840500@gmail.com",
+      "numberphone": "0869840500",
+      "role": 1
+    },
+    {
+      "id": 18,
+      "username": "admin",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/users%2Fjs_800x800.jpg?alt=media&token=82ee3150-4825-4f6b-a3c3-67d88467493d",
+      "password": "12345678",
+      "email": "lequyet840500@gmail.com",
+      "numberphone": "0869840500",
+      "role": 0
+    },
+    {
+      "id": 19,
+      "username": "levanquyet1233",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/users%2F250_2487_new_sabbat_x12_hd_sound_bluetooth_wireless.jpg?alt=media&token=2073e3cc-247b-4ba1-8f6c-54e0fd9b643c",
+      "password": "ỷty tfghg",
+      "email": "lequyet8gjkhjg",
+      "numberphone": "0869840500",
+      "role": 1
+    },
+    {
+      "id": 20,
+      "username": "rererr",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/users%2F250_2460_sony_wi_c310_5.jpg?alt=media&token=3f59bcce-ae89-4c8f-95f6-36dc47c51e02",
+      "password": "thfghfghgfgh",
+      "email": "lequyet840500@gmail.com",
+      "numberphone": "0869840500",
+      "role": 1
+    },
+    {
+      "id": 21,
+      "username": "rererr655",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/users%2F250_2460_sony_wi_c310_5.jpg?alt=media&token=daaedc7e-ed82-489b-9efe-9c38cc64112b",
+      "password": "thfghfghgfgh",
+      "email": "lequyet840500@gmail.com",
+      "numberphone": "08698405001",
+      "role": 1
+    },
+    {
+      "id": 22,
+      "username": "levanquyet1243e",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/users%2F250_2440_xuanvua_audio_sony_wf_1000xm3_2.jpg?alt=media&token=3ca837ed-f610-4664-99eb-b2d0c110bf19",
+      "password": "10200393",
+      "email": "lequyet840500@gmail.com",
+      "numberphone": "08698405004",
+      "role": 1
+    },
+    {
+      "id": 23,
+      "username": "rererr12345",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/users%2F250_2555_kinera_yh623_bluetooth_kh_ng_d_y_q50.jpg?alt=media&token=6c26ed41-ee2f-4024-9e39-7e41306a7c5a",
+      "password": "12345",
+      "email": "lequyet840500@gmail.com",
+      "numberphone": "08698405001",
+      "role": 1
+    },
+    {
+      "id": 24,
+      "username": "levanquyet1234567",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/users%2F250_2487_new_sabbat_x12_hd_sound_bluetooth_wireless.jpg?alt=media&token=dba842f0-95d7-4849-8f80-f5c42a2c40fb",
+      "password": "12345",
+      "email": "lequyet840500@gmail.com",
+      "numberphone": "0869840500",
+      "role": 1
+    }
+  ],
+  "cart": [
+    {
+      "customerName": "levanquyet12",
+      "customerID": "1",
+      "email": "lequyet840500@gmail.com",
+      "numberPhone": "0869840500",
+      "product": "Tai nghe không dây Apple Airpods Pro VN/ATai nghe Bluetooth LG HBS-SL6STai nghe Campfire Andromeda 2020",
+      "price": 5.5991,
+      "quantity": 151,
+      "id": 1
+    },
+    {
+      "customerName": "admin",
+      "customerID": "18",
+      "email": "lequyet840500@gmail.com",
+      "numberPhone": "0869840500",
+      "product": "Tai nghe không dây Apple Airpods Pro VN/ATai nghe Bluetooth LG HBS-SL6STai nghe Campfire Andromeda 2020Tai nghe Tribit QuietPlus 50 ANC",
+      "price": 5.5991,
+      "quantity": 1511,
+      "id": 2
+    },
+    {
+      "customerName": "levanquyet12",
+      "customerID": "1",
+      "email": "lequyet840500@gmail.com",
+      "numberPhone": "0869840500",
+      "product": "",
+      "price": null,
+      "quantity": null,
+      "id": 3
+    },
+    {
+      "customerName": "levanquyet12",
+      "customerID": "1",
+      "email": "lequyet840500@gmail.com",
+      "numberPhone": "0869840500",
+      "product": "",
+      "price": null,
+      "quantity": null,
+      "id": 4
+    },
+    {
+      "customerName": "levanquyet12",
+      "customerID": "1",
+      "email": "lequyet840500@gmail.com",
+      "numberPhone": "0869840500",
+      "product": "",
+      "price": null,
+      "quantity": null,
+      "id": 5
+    },
+    {
+      "customerName": "levanquyet12",
+      "customerID": "1",
+      "email": "lequyet840500@gmail.com",
+      "numberPhone": "0869840500",
+      "product": "",
+      "price": null,
+      "quantity": null,
+      "id": 6
+    },
+    {
+      "customerName": "levanquyet12",
+      "customerID": "1",
+      "email": "lequyet840500@gmail.com",
+      "numberPhone": "0869840500",
+      "product": "Tai nghe Campfire Andromeda 2020",
+      "price": 26.45,
+      "quantity": 1,
+      "id": 7
+    },
+    {
+      "customerName": "levanquyet12",
+      "customerID": "1",
+      "email": "lequyet840500@gmail.com",
+      "numberPhone": "0869840500",
+      "product": "",
+      "price": null,
+      "quantity": null,
+      "id": 8
+    },
+    {
+      "customerName": "levanquyet12",
+      "customerID": "1",
+      "email": "lequyet840500@gmail.com",
+      "numberPhone": "0869840500",
+      "product": "",
+      "price": null,
+      "quantity": null,
+      "id": 9
     }
   ]
 }
