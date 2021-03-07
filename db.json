@@ -397,11 +397,11 @@
   ],
   "account": [
     {
-      "id": 1,
-      "username": "levanquyet789",
-      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/users%2F250_2426_02_2.jpg?alt=media&token=6ece9459-86f7-4579-99da-9a0587df3c0f",
+      "username": "levanquyet18",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/users%2Fcomp_1.gif?alt=media&token=db0979ec-224c-4f4c-928c-535d005c03bc",
       "password": "12345678",
-      "numberphone": "0869840500"
+      "numberphone": "0869840500",
+      "id": 1
     },
     {
       "id": 2,
@@ -448,13 +448,11 @@
       "role": 1
     },
     {
-      "id": 18,
       "username": "admin",
-      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/users%2Fjs_800x800.jpg?alt=media&token=82ee3150-4825-4f6b-a3c3-67d88467493d",
+      "image": "https://firebasestorage.googleapis.com/v0/b/headphone-899cc.appspot.com/o/users%2Fcomp_1.gif?alt=media&token=aa58169b-5e35-4bf7-a66b-c7dbb90db9e6",
       "password": "12345678",
-      "email": "lequyet840500@gmail.com",
       "numberphone": "0869840500",
-      "role": 0
+      "id": 18
     },
     {
       "id": 19,
