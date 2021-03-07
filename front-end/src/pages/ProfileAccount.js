@@ -22,7 +22,7 @@ const ProfileAccount = {
         
          <input type="text" id="account-image-old" value="${account.image}" class=d-none>
          </div>
-         <div class="d-flex justify-content-center mb-2 mt-2"><input type="file" id="account-image-update"></div>
+         <div class="d-flex justify-content-center mb-2 mt-2"><input type="file" id="account-image-update" disabled></div>
          <input type="text" id="account-name" class="form-control" disabled value="${account.username}">
          <input type="password" id="account-password" class="form-control mt-2" disabled value="${account.password}">
          <input type="text" id="account-numberphone" class="form-control mt-2" disabled value="${account.numberphone}">
@@ -44,6 +44,7 @@ const ProfileAccount = {
       const usernameForm = $("#account-name");
       const passwordForm = $("#account-password");
       const numberphoneForm = $("#account-numberphone");
+      const imageForm = $("#account-image-update");
       const username = localStorage.getItem("username");
       const password = localStorage.getItem("password");
       const id = localStorage.getItem('id');
@@ -51,12 +52,14 @@ const ProfileAccount = {
         usernameForm.disabled = false;
         passwordForm.disabled = false;
         numberphoneForm.disabled = false;
+        imageForm.disabled = false;
         $("#btn-update-account").innerHTML = `Save`;
         return false
       }else{
         usernameForm.disabled = true;
         passwordForm.disabled = true;
         numberphoneForm.disabled = true;
+        imageForm.disabled = true;
         $("#btn-update-account").innerHTML = `Update`;
          if ($("#account-image-update").value == "") {
           const data = {
@@ -73,6 +76,7 @@ const ProfileAccount = {
           localStorage.setItem("numberphone" , numberphoneForm.value);
           axios.put(data_URL + id, data);
           alert("Update thành công");
+          location.reload();
         }
         else{
           const productImage = $("#account-image-update").files[0];
@@ -87,7 +91,12 @@ const ProfileAccount = {
               };
               const data_URL = "http://localhost:3000/account/";
               axios.put(data_URL + id, data);
+              localStorage.setItem("username" , usernameForm.value);
+              localStorage.setItem("password" , passwordForm.value);
+              localStorage.setItem("image" , url);
+              localStorage.setItem("numberphone" , numberphoneForm.value);
               alert("Update thành công");
+              location.reload();
              
             });
           });

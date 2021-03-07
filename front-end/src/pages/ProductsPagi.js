@@ -7,6 +7,18 @@ const ProductsPagi = {
     let _page = request.id;
     let _limit = 8;
     const { data: product } = await ProductApi.Paginate(_page, _limit);
+    const { data: cate } = await ProductApi.getAllCate();
+    const resultCate = cate.map((cate) => {
+      return /*html*/ `
+      <div class="form-check">
+          <input class="form-check-input" type="radio" value="${cate.id}" name="flexRadioDefault" id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1">
+            ${cate.name}
+          </label>
+        </div>
+       
+      `;
+    }).join("");
     const cateResult_Product = product
       .map((item) => {
         return /*html*/ `
@@ -21,7 +33,7 @@ const ProductsPagi = {
         }
         <img src="${item.image}" height="200" class="card-img-top" alt="...">
   <div class="card-body">
-    <h4 class="card-title">${item.name}</h4>
+    <h5 class="card-title">${item.name}</h5>
     <h3 class="card-text text-danger mt-2">${item.price} <small><del>${
           item.salePrice
         }</del></del></small></h3>
@@ -41,6 +53,12 @@ const ProductsPagi = {
         <div>
         
         <form action="" name="myForm">
+        <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault" value="5.0" checked>
+              <label class="form-check-label" for="flexRadioDefault1">
+                Tất cả 
+              </label>
+            </div>
           <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault" value="5.0">
               <label class="form-check-label" for="flexRadioDefault1">
@@ -69,6 +87,14 @@ const ProductsPagi = {
             </div>
         </form>
         </div>
+        <div><h5>Danh mục</h5>
+        <div>
+        <form action="">
+        ${resultCate}
+        
+        </form>
+        
+        </div></div>
         </div>
         <div class="col-10">
         <div class="products-container" id="product-pagi">
@@ -153,34 +179,46 @@ const ProductsPagi = {
         const filter_price = products.filter((products) => {
           return btn_filter[i].value <= products.price;
         });
-        const cateResult_Product = filter_price
-        .map((item) => {
-          return /*html*/ `
-          <div class="card col-3 mt-2" >
-          <a href="#/products/${item.id}">
-          ${
-            parseInt((item.salePrice / item.price) * 100) == 0
-              ? ""
-              : ` <div class="sale text-width">${parseInt(
-                  (item.salePrice / item.price) * 100
-                )}%</div>`
-          }
-          <img src="${item.image}" height="200" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h4 class="card-title">${item.name}</h4>
-      <h3 class="card-text text-danger mt-2">${item.price} <small><del>${
-            item.salePrice
-          }</del></del></small></h3>
-      <a href="/#/products/${item.id}" class="btn btn-primary">Xem chi tiết</a>
-          </a>
-    </div>
-  </div>  
-          `;
-        })
-        .join("");
-        console.log(filter_price);
-        document.querySelector("#product-pagi").style.display = "none";
-        $('#show-filer').innerHTML = cateResult_Product;
+        if (btn_filter[i] != btn_filter[0]) {
+          const cateResult_Product = filter_price
+            .map((item) => {
+              return /*html*/ `
+                <div class="card col-3 mt-2" >
+                <a href="#/products/${item.id}">
+                ${
+                  parseInt((item.salePrice / item.price) * 100) == 0
+                    ? ""
+                    : ` <div class="sale text-width">${parseInt(
+                        (item.salePrice / item.price) * 100
+                      )}%</div>`
+                }
+                <img src="${
+                  item.image
+                }" height="200" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">${item.name}</h5>
+            <h3 class="card-text text-danger mt-2">${item.price} <small><del>${
+                item.salePrice
+              }</del></del></small></h3>
+            <a href="/#/products/${
+              item.id
+            }" class="btn btn-primary">Xem chi tiết</a>
+                </a>
+          </div>
+        </div>  
+                `;
+            })
+            .join("");
+          console.log(filter_price);
+          document.querySelector("#product-pagi").style.display = "none";
+          document.querySelector("#show-filer").style.display = "";
+          $("#show-filer").innerHTML = cateResult_Product;
+          return false;
+        } else {
+          document.querySelector("#product-pagi").style.display = "block";
+          document.querySelector("#show-filer").style.display = "none";
+          return false;
+        }
       });
     }
     return `${await Header.afterRender()}`;
