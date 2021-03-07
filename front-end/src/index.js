@@ -2,7 +2,6 @@ import HomePages from './pages/HomePage.js';
 import ProductDetailPage from './pages/ProductsDetail.js';
 import Error404Page from './pages/Error404Page.js';
 import { parseRequestUrl,$} from './utils.js'
-import ProductsPage from './pages/ProductsPage.js';
 import Dashboard from './pages/Dashboard.js';
 import DashboardUser from './pages/DashboardUser.js';
 import DashboardContact from './pages/DashboardContact.js';
@@ -27,7 +26,6 @@ import CartProduct from './pages/component/CartProduct.js';
 
 const routes = {
     '/': HomePages,
-    '/products': ProductsPage,
     '/products/:id': ProductDetailPage,
     '/dashboard' : Dashboard,
     '/dashboardnew' : DashboardNews,

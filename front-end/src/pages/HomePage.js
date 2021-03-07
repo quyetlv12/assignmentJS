@@ -52,7 +52,7 @@ const HomePages = {
                        
                          <div class="card-product col-3 mt-2 p-3">
                          <a href="/#/products/${item.id}" class="text-decoration-none">
-                         <div class="sale text-width">${parseInt(item.salePrice/item.price * 100 )}%</div>
+                         ${parseInt(item.salePrice/item.price * 100 )== 0 ? "" : ` <div class="sale text-width">${parseInt(item.salePrice/item.price * 100 )}%</div>`}
                              <img class="card-img-top" src="${item.image}" height="250" alt="Card image cap">
                              </a>
                              <div class="card-body">

@@ -10,13 +10,21 @@ const ProductsPagi = {
     const cateResult_Product = product
       .map((item) => {
         return /*html*/ `
-        <div class="card col-3 mt-2">
+        <div class="card col-3 mt-2" >
         <a href="#/products/${item.id}">
-        <div class="sale">${parseInt(item.salePrice/item.price * 100 )}%</div>
-        <img src="${item.image}" height="250" class="card-img-top" alt="...">
+        ${
+          parseInt((item.salePrice / item.price) * 100) == 0
+            ? ""
+            : ` <div class="sale text-width">${parseInt(
+                (item.salePrice / item.price) * 100
+              )}%</div>`
+        }
+        <img src="${item.image}" height="200" class="card-img-top" alt="...">
   <div class="card-body">
     <h4 class="card-title">${item.name}</h4>
-    <h3 class="card-text text-danger mt-2">${item.price} <small><del>${item.salePrice}</del></del></small></h3>
+    <h3 class="card-text text-danger mt-2">${item.price} <small><del>${
+          item.salePrice
+        }</del></del></small></h3>
     <a href="/#/products/${item.id}" class="btn btn-primary">Xem chi tiết</a>
         </a>
   </div>
@@ -28,20 +36,62 @@ const ProductsPagi = {
     <title>Sảm phẩm</title>
         <div class="container">
         <div class="row">
+        <div class="col-2">
+        <h5>Bộ lọc sản phẩm </h5>
+        <div>
         
-        <div class="col-12">
-        <div class="row">
-        ${cateResult_Product}
+        <form action="" name="myForm">
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault" value="5.0">
+              <label class="form-check-label" for="flexRadioDefault1">
+                < 5 Triệu
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" class="filter-price" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="10.0">
+              <label class="form-check-label" for="flexRadioDefault2">
+              > 10 Triệu  </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" class="filter-price" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="15.0">
+              <label class="form-check-label" for="flexRadioDefault2">
+              < 15 Triệu  </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" class="filter-price" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="20.0">
+              <label class="form-check-label" for="flexRadioDefault2">
+              > 20 Triệu  </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" class="filter-price" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="25.0">
+              <label class="form-check-label" for="flexRadioDefault2">
+              < 25 Triệu  </label>
+            </div>
+        </form>
+        </div>
+        </div>
+        <div class="col-10">
+        <div class="products-container" id="product-pagi">
+        
+            <div class="row">
+            ${cateResult_Product}
+            </div>
+            
+            <div class="d-flex justify-content-center mb-5 product-pagi">
+            <nav aria-label="Page navigation example mt-2" style="margin-top:60px">
+            <input type="button" class="btn btn-primary" id="prev-page" value="Prev"/>
+            <span id="pagination" style="margin-top:10px"></span>
+            <input type="button" class="btn btn-primary" id="next-page" value="Next"/>
+                          </nav>
+                  </div>
+        </div>
+        <div id="show-filer" class="row"></div>
         </div>
         
-        <div class="d-flex justify-content-center mb-5">
-        <nav aria-label="Page navigation example mt-2" style="margin-top:60px">
-        <input type="button" class="btn btn-primary" id="prev-page" value="Prev"/>
-        <span id="pagination" style="margin-top:10px"></span>
-        <input type="button" class="btn btn-primary" id="next-page" value="Next"/>
-                       </nav>
-              </div>
-        </div>
+
+
+
+       
         </div>
          
         </div>
@@ -51,28 +101,36 @@ const ProductsPagi = {
     const request = parseRequestUrl();
     let id = request.id;
     const btn_prev = $("#prev-page");
-    if(id == 1){
+    if (id == 1) {
       btn_prev.style.display = "none";
     }
-    
+
+    //start prev page
     $("#prev-page").addEventListener("click", () => {
       let id = request.id;
       id--;
       window.location.hash = `/product/${id}`;
     });
+
+    //start next page
+
     $("#next-page").addEventListener("click", () => {
       let id = request.id;
       id++;
       window.location.hash = `/product/${id}`;
     });
+
+    // start phân trang
     const _limit = 8;
     const { data: productsPage } = await ProductApi.getAll();
     let pagess = Math.ceil(productsPage.length / _limit);
     const pagination = $("#pagination");
     pagination.innerHTML = "";
-    let pageNum = '';
+    let pageNum = "";
+
+    // start đếm tổng số trang trong cơ sở dữ liệu
     for (let page = 1; page <= pagess; page++) {
-      pageNum += page
+      pageNum += page;
       pagination.innerHTML += /*html*/ ` <input type="button" class="page-item btn btn-primary align-center" value="${page}"/>`;
     }
     console.log(parseInt(pageNum));
@@ -85,6 +143,46 @@ const ProductsPagi = {
       });
     });
 
+    //start filter price
+
+    const btn_filter = document.myForm.flexRadioDefault;
+    console.log(btn_filter);
+    for (let i = 0; i < btn_filter.length; i++) {
+      btn_filter[i].addEventListener("click", async (e) => {
+        const { data: products } = await ProductApi.getAll();
+        const filter_price = products.filter((products) => {
+          return btn_filter[i].value <= products.price;
+        });
+        const cateResult_Product = filter_price
+        .map((item) => {
+          return /*html*/ `
+          <div class="card col-3 mt-2" >
+          <a href="#/products/${item.id}">
+          ${
+            parseInt((item.salePrice / item.price) * 100) == 0
+              ? ""
+              : ` <div class="sale text-width">${parseInt(
+                  (item.salePrice / item.price) * 100
+                )}%</div>`
+          }
+          <img src="${item.image}" height="200" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h4 class="card-title">${item.name}</h4>
+      <h3 class="card-text text-danger mt-2">${item.price} <small><del>${
+            item.salePrice
+          }</del></del></small></h3>
+      <a href="/#/products/${item.id}" class="btn btn-primary">Xem chi tiết</a>
+          </a>
+    </div>
+  </div>  
+          `;
+        })
+        .join("");
+        console.log(filter_price);
+        document.querySelector("#product-pagi").style.display = "none";
+        $('#show-filer').innerHTML = cateResult_Product;
+      });
+    }
     return `${await Header.afterRender()}`;
   },
 };
