@@ -88,6 +88,7 @@ const ProfileAccount = {
                 image :url,
                 password : passwordForm.value,
                 numberphone : numberphoneForm.value,
+                role : $('#account-role').value
               };
               const data_URL = "http://localhost:3000/account/";
               axios.put(data_URL + id, data);

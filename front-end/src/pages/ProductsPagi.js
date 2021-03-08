@@ -11,7 +11,8 @@ const ProductsPagi = {
     const resultCate = cate.map((cate) => {
       return /*html*/ `
       <div class="form-check">
-          <input class="form-check-input" type="radio" value="${cate.id}" name="flexRadioDefault" id="flexRadioDefault1">
+      
+          <input class="form-check-input" type="radio" value="${cate.id}" name="flexRadioDefault1" id="flexRadioDefault1">
           <label class="form-check-label" for="flexRadioDefault1">
             ${cate.name}
           </label>
@@ -89,9 +90,14 @@ const ProductsPagi = {
         </div>
         <div><h5>Danh mục</h5>
         <div>
-        <form action="">
+        <form action="" name="filterCate">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="" name="flexRadioDefault1" id="flexRadioDefault1" checked>
+          <label class="form-check-label" for="flexRadioDefault1">
+            Tất cả danh mục
+          </label>
+        </div>
         ${resultCate}
-        
         </form>
         
         </div></div>
@@ -193,17 +199,17 @@ const ProductsPagi = {
                       )}%</div>`
                 }
                 <img src="${
-                  item.image
-                }" height="200" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">${item.name}</h5>
-            <h3 class="card-text text-danger mt-2">${item.price} <small><del>${
-                item.salePrice
-              }</del></del></small></h3>
-            <a href="/#/products/${
-              item.id
-            }" class="btn btn-primary">Xem chi tiết</a>
-                </a>
+                      item.image
+                    }" height="200" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">${item.name}</h5>
+                <h3 class="card-text text-danger mt-2">${item.price} <small><del>${
+                    item.salePrice
+                  }</del></del></small></h3>
+                <a href="/#/products/${
+                  item.id
+                }" class="btn btn-primary">Xem chi tiết</a>
+                    </a>
           </div>
         </div>  
                 `;
@@ -220,6 +226,60 @@ const ProductsPagi = {
           return false;
         }
       });
+    }
+
+
+    //start filter cate 
+
+    const btn_filterCate = document.filterCate.flexRadioDefault1;
+    for (let i = 0; i < btn_filterCate.length; i++) {
+      btn_filterCate[i].addEventListener('click',async(e)=>{
+        const {data : products } =await ProductApi.getAll();
+       const filterCate = products.filter(products =>{
+         return products.cateID == btn_filterCate[i].value;
+       })
+       if (btn_filterCate[i] != btn_filterCate[0]) {
+        const cateResult_Product = filterCate
+          .map((item) => {
+            return /*html*/ `
+              <div class="card col-3 mt-2" >
+              <a href="#/products/${item.id}">
+              ${
+                parseInt((item.salePrice / item.price) * 100) == 0
+                  ? ""
+                  : ` <div class="sale text-width">${parseInt(
+                      (item.salePrice / item.price) * 100
+                    )}%</div>`
+              }
+              <img src="${
+                    item.image
+                  }" height="200" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">${item.name}</h5>
+              <h3 class="card-text text-danger mt-2">${item.price} <small><del>${
+                  item.salePrice
+                }</del></del></small></h3>
+              <a href="/#/products/${
+                item.id
+              }" class="btn btn-primary">Xem chi tiết</a>
+                  </a>
+        </div>
+      </div>  
+              `;
+          })
+          .join("");
+        document.querySelector("#product-pagi").style.display = "none";
+        document.querySelector("#show-filer").style.display = "";
+        $("#show-filer").innerHTML = cateResult_Product;
+        return false;
+      } else {
+        document.querySelector("#product-pagi").style.display = "block";
+        document.querySelector("#show-filer").style.display = "none";
+        return false;
+      }
+
+      })
+      
     }
     return `${await Header.afterRender()}`;
   },
