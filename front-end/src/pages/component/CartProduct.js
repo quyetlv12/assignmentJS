@@ -1,3 +1,4 @@
+import { $ } from "../../utils";
 import CheckOut from "./CheckOut";
 import ListItemCart from "./ListItemCart";
 

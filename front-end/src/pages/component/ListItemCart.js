@@ -248,7 +248,7 @@ const ListItemCart = {
                 <input type="text" class="form-control" placeholder="1234 Main St"value="${localStorage.getItem('numberphone')}">
               </div>
               <div class="col-12">
-                <button type="submit" class="btn btn-primary">THANH TOÁN</button>
+                <button class="btn btn-primary" id="bcheckout-cart">THANH TOÁN</button>
               </div>
             </form>
               </div>
@@ -263,6 +263,12 @@ const ListItemCart = {
         </div>`
       }
     })
+   
+
+
+
+
+    
     return `${await SearchBox.afterRender()}${await Header.afterRender()}`;
   },
 };
