@@ -1,9 +1,9 @@
 import { showListUser } from '../controller/userController';
 import express from 'express'
 
-const router = express.Router();
+const UsersRouter = express.Router();
 
 
-router.get('/users' , showListUser);
+UsersRouter.get('/users' , showListUser);
 
-module.exports = router;
+module.exports = UsersRouter;
