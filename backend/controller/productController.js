@@ -7,9 +7,7 @@ mongodb.connect();
 
 //start tạo phương thức thêm sửa xoá hiển thị sản phẩm
 export const addProducts = (req,res,next)=>{
-   res.json({
-       name:"thêm sản phẩm",
-   })
+  console.log("request",req.body);
 }
 
 //start edit
@@ -35,4 +33,20 @@ export const showList = (req,res,next)=>{
     }
     )
     .catch(next)
+}
+
+//start show detail products
+export const showDetailProduct = (req,res,next) =>{
+    const id = req.params.id
+    Products.findById(id , (err,product) =>{
+        if(err){
+            res.json({
+                message : "error"
+            })
+        }
+        else{
+            res.json({product})
+        }
+    })
+        
 }
