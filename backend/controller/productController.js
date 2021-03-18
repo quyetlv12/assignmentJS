@@ -21,12 +21,11 @@ export const addProducts = (req,res,next)=>{
 
 //start edit
 export const editProducts = (req,res,next)=>{
-    const data =  req.body
-   Products.updateOne(data , (err,db)=>{
-       if(err) throw err
-       else res.json(db);
-       console.log("update thành công");
-   })
+    Products.updateOne(req.body , (err,db)=>{
+        if(err) throw err;
+        else res.json(req.body)
+        console.log(req.body);
+    })
 }
 
 //start delete
