@@ -17,6 +17,9 @@ export const addUser = (req,res,next) =>{
 
 //end add user
 
+//start show detail userr
+
+
 
 
 //start delete user 
