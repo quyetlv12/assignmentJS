@@ -7,10 +7,16 @@ import {showList,addProducts,editProducts,deleteProducts,showDetailProduct} from
 
  //start thiết lập các phương thức cho api 
  router.get('/products', showList)
+ //start chi tiết sản phẩm
  router.get('/products/:id' , showDetailProduct);
+ //start thêm sản phẩm
  router.post('/products', addProducts)
- router.delete('/products' , deleteProducts);
+ //start xoá sản phẩm theo id
+ router.delete('/products/:id' , deleteProducts);
+ //start sửa sản phẩm
  router.put('/products' , editProducts);
 
+
+ 
  //start xuất router
  module.exports = router;

@@ -6,8 +6,17 @@ import Products from '../model/productModel';
 mongodb.connect();
 
 //start tạo phương thức thêm sửa xoá hiển thị sản phẩm
+
+
+//start add
 export const addProducts = (req,res,next)=>{
-  console.log("request",req.body);
+    const data = req.body
+   Products.create(data , (err,db) =>{
+        if(err) throw err
+        else console.log("thêm thành công", db.name) 
+        res.json({message :"thêm thành công"})
+    })
+   
 }
 
 //start edit
@@ -18,10 +27,15 @@ export const editProducts = (req,res,next)=>{
 }
 
 //start delete
-export const deleteProducts = (req,res,next)=>{
-    res.json({
-        name : "xoá sản phẩm ở đây",
-    })
+export const deleteProducts = async (req,res,next)=>{
+    const id = req.params.id
+    try {
+        const result = await Products.findByIdAndDelete(id);
+        res.send(result)
+    } catch (error) {
+        console.log(error.message);
+    }
+    
 }
 
 //start hiển thị danh sách 
@@ -41,11 +55,11 @@ export const showDetailProduct = (req,res,next) =>{
     Products.findById(id , (err,product) =>{
         if(err){
             res.json({
-                message : "error"
+                message : "sản phẩm không tồn tại"
             })
         }
         else{
-            res.json({product})
+            res.json(product == null ?"sản phẩm không tồn tại" : {product})
         }
     })
         
