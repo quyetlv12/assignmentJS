@@ -21,9 +21,12 @@ export const addProducts = (req,res,next)=>{
 
 //start edit
 export const editProducts = (req,res,next)=>{
-    res.json({
-        name : "sửa sản phẩm",
-    })
+    const data =  req.body
+   Products.updateOne(data , (err,db)=>{
+       if(err) throw err
+       else res.json(db);
+       console.log("update thành công");
+   })
 }
 
 //start delete

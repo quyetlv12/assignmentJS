@@ -1,3 +1,4 @@
+//start import fw express
 import express from 'express';
 //start lấy phương thức trong products controller
 import {showList,addProducts,editProducts,deleteProducts,showDetailProduct} from '../controller/productController'
@@ -14,9 +15,9 @@ import {showList,addProducts,editProducts,deleteProducts,showDetailProduct} from
  //start xoá sản phẩm theo id
  router.delete('/products/:id' , deleteProducts);
  //start sửa sản phẩm
- router.put('/products' , editProducts);
+ router.put('/products/:id' , editProducts);
 
 
- 
+
  //start xuất router
  module.exports = router;

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose'); 
 
+
+//start tạo ra hàm connect
 const connect = () =>
     mongoose.connect("mongodb://localhost:27017/quyet_buy",
     {
