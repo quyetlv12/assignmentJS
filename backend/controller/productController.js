@@ -32,7 +32,7 @@ export const deleteProducts = async (req, res, next) => {
     const result = await Products.findByIdAndDelete(id);
     res.send(result);
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };
 

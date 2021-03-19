@@ -16,9 +16,5 @@ import {showList,addProducts,editProducts,deleteProducts,showDetailProduct} from
  router.delete('/products/:id' , deleteProducts);
  //start sửa sản phẩm
  router.put('/products/:id' , editProducts);
-
-
-
-
  //start xuất router
  module.exports = router;

@@ -1,9 +1,9 @@
 const mongoose = require('mongoose'); 
-
+const MONGO_URL = "mongodb://localhost:27017/quyet_buy"
 
 //start tạo ra hàm connect
 const connect = () =>
-    mongoose.connect("mongodb://localhost:27017/quyet_buy",
+    mongoose.connect(MONGO_URL,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,

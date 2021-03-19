@@ -11,5 +11,6 @@ const Products = new Schema({
     price : String,
     brand : String,
     date: { type: Date, default: Date.now },
+    timestamp : true
 })
 module.exports = mongoose.model("Products",Products);
