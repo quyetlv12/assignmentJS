@@ -44,24 +44,28 @@ export const showList = async (req, res, next) => {
         const products = await Products.find({}).limit(parseInt(req.query._limit));
         console.log(products);
         res.json({ products });
+        return false
       }
       else if(req.query._sort){
           const products = await Products.find({}).sort(req.query._sort);
           console.log(products);
           res.json({products})
+          return false
       }
       else if(req.query._page){
+          let pageNumber = req.query._page == 0 ? req.query._page = 1 : parseInt(req.query._page)
         const products = await Products.find({})
         .limit(5)
-        .skip(parseInt(req.query._page))
+        .skip(pageNumber)
         .exec((err,product)=>{
             Products.countDocuments((err,count)=>{
                 if(err) throw err
                 else res.json(product)
+                console.log("tổng số trang là :" , count);
             })
 
         })
-        
+        return false
       }
       else{
         Products.find({})
