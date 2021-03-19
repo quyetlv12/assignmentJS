@@ -47,7 +47,7 @@ export const showListUser = (req,res,next) =>{
     User.find({})
     .then(user => {
       user = user.map(user => user.toObject())
-      res.json({user})
+      res.json(user)
     }
     )
     .catch(next)

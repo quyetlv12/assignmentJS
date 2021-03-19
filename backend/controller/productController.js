@@ -44,12 +44,17 @@ export const showList = async (req, res, next) => {
     console.log(products);
     res.json({ products });
     return false;
-  } else if (req.query._sort) {
+  }
+  //start sắp xếp sản phẩm
+  else if (req.query._sort) {
     const products = await Products.find({}).sort(req.query._sort);
     console.log(products);
     res.json({ products });
     return false;
-  } else if (req.query._page) {
+  } 
+  
+  //start phân trang
+  else if (req.query._page) {
     let pageNumber =
       req.query._page == 0 ? (req.query._page = 1) : parseInt(req.query._page);
     const products = await Products.find({})
@@ -67,7 +72,7 @@ export const showList = async (req, res, next) => {
     Products.find({})
       .then((products) => {
         products = products.map((products) => products.toObject());
-        res.json({ products });
+        res.json(products);
       })
       .catch(next);
   }

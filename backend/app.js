@@ -6,6 +6,7 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import CategoryRouter from './routes/cateRouter';
 import bodyParser from 'body-parser';
+import cors from 'cors'
 
 //start gán express == app
 const app = express();
@@ -15,6 +16,9 @@ dotenv.config();
 
 //start sử dụng morgan làm midDleware cho app
 app.use(morgan("dev"));
+
+//start cors
+app.use(cors())
 
 
 

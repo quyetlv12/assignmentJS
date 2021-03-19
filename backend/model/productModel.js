@@ -5,12 +5,16 @@ const Schema = mongoose.Schema;
 
 //start định dạng kiểu dữ liệu cho object
 const Products = new Schema({
-    id : Number,
-    name : String ,
+    name : {
+        type : String,
+        require : true
+    } ,
     image : String ,
-    price : String,
+    price : {
+        type :String,
+        require : true
+    },
     brand : String,
     date: { type: Date, default: Date.now },
-    timestamp : true
 })
 module.exports = mongoose.model("Products",Products);

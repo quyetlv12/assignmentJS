@@ -12,7 +12,7 @@ export const showListCate = (req,res,next) =>{
     Categories.find({})
     .then(categories => {
         categories = categories.map(categories => categories.toObject())
-      res.json({categories})
+      res.json(categories)
     }
     )
     .catch(next)
