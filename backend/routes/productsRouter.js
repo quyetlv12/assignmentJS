@@ -10,6 +10,8 @@ import {showList,addProducts,editProducts,deleteProducts,showDetailProduct} from
  
  //start thiết lập các phương thức cho api 
  router.get('/products', showList)
+ //start limit products
+ router.get('/products?limit=limit', showList)
  //start chi tiết sản phẩm
  router.get('/products/:id' , showDetailProduct);
  //start thêm sản phẩm
