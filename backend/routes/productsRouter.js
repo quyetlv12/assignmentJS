@@ -1,11 +1,13 @@
 //start import fw express
 import express from 'express';
+
 //start lấy phương thức trong products controller
 import {showList,addProducts,editProducts,deleteProducts,showDetailProduct} from '../controller/productController'
 
 //start gán phương thức Router trong express == router
  const router = express.Router();
 
+ 
  //start thiết lập các phương thức cho api 
  router.get('/products', showList)
  //start chi tiết sản phẩm

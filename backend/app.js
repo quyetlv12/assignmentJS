@@ -7,7 +7,11 @@ import dotenv from "dotenv";
 import CategoryRouter from './routes/cateRouter';
 import bodyParser from 'body-parser';
 import cors from 'cors'
+import mongodb from "./config/db";
 
+
+//start kết nối tới mongodb
+mongodb.connect()
 //start gán express == app
 const app = express();
 

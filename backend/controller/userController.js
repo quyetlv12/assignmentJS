@@ -1,11 +1,9 @@
-//start import api
-import mongodb from '../config/API'
+
 
 //start import model user
 import User from '../model/usersModel';
 
-//start connect mongo
-mongodb.connect();
+
 
 //start add user 
 

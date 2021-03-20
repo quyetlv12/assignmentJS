@@ -1,10 +1,5 @@
-import mongodb from "../config/API";
+
 import Products from "../model/productModel";
-
-//start kết nối tới mongodb
-mongodb.connect();
-
-//start tạo phương thức thêm sửa xoá hiển thị sản phẩm
 
 //start add
 export const addProducts = (req, res, next) => {
@@ -77,7 +72,6 @@ export const showList = async (req, res, next) => {
       .catch(next);
   }
 };
-
 //start show detail products
 export const showDetailProduct = (req, res, next) => {
   const id = req.params.id;

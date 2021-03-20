@@ -1,11 +1,8 @@
-//start import api
-import mongodb from '../config/API'
+
 
 //start import model user
 import Categories from '../model/categoryModel';
 
-//start connect mongo
-mongodb.connect();
 
 //start hiển thị danh sách
 export const showListCate = (req,res,next) =>{
