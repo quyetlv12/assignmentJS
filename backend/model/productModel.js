@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 //start lấy schema của mongoose
 const Schema = mongoose.Schema;
 
@@ -17,4 +17,7 @@ const Products = new Schema({
     brand : String,
     date: { type: Date, default: Date.now },
 })
-module.exports = mongoose.model("Products",Products);
+Products.plugin(mongoosePaginate)
+const productModel = mongoose.model("Products",Products);
+
+module.exports = productModel;

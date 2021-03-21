@@ -33,44 +33,45 @@ export const deleteProducts = async (req, res, next) => {
 
 //start hiển thị danh sách
 export const showList = async (req, res, next) => {
- //start giới hạn sản phẩm
- if (req.query._limit) {
-  const products = await Products.find({}).limit(parseInt(req.query._limit));
-  console.log(products);
-  res.json({ products });
-  return false;
-}
-//start sắp xếp sản phẩm
-else if (req.query._sort) {
-  const products = await Products.find({}).sort(req.query._sort);
-  console.log(products);
-  res.json({ products });
-  return false;
-} 
-
-//start phân trang
-else if (req.query._page) {
-  let pageNumber =
-    req.query._page == 0 ? (req.query._page = 1) : parseInt(req.query._page);
-  const products = await Products.find({})
-    .limit(5)
-    .skip(pageNumber)
-    .exec((err, product) => {
-      Products.countDocuments((err, count) => {
-        if (err) throw err;
-        else res.json(product);
-        console.log("tổng số trang là :", count);
-      });
-    });
-  return false;
-} else {
-  Products.find({})
-    .then((products) => {
-      products = products.map((products) => products.toObject());
-      res.json(products);
-    })
-    .catch(next);
-}
+  const myCustomLabels = {
+    totalDocs: 'itemCount',
+    docs: 'products',
+    limit: 'perPage',
+    page: 'currentPage',
+    nextPage: 'next',
+    prevPage: 'prev',
+    totalPages: 'pageCount',
+    pagingCounter: 'slNo',
+    meta: 'paginator',
+  };
+    const options = {
+      page: req.query.page || 1,
+      limit : req.query.limit || 8,
+      customLabels : myCustomLabels,
+      collation: {
+        locale: 'en',
+      },
+      
+    };
+    if(options){
+      Products.paginate({}, options, function (err, db) {
+        if(err) throw err
+        else res.json(db.products)
+        console.log(db.products);
+      })
+    }
+    else{
+      Products.find({})
+          .then(products =>{
+            products = products.map(products => products.toObject())
+            res.json(product)
+          })
+    }
+    
+   
+ 
+  
+ 
 };
 //start show detail products
 export const showDetailProduct = (req, res, next) => {
@@ -81,7 +82,7 @@ export const showDetailProduct = (req, res, next) => {
         message: "sản phẩm không tồn tại",
       });
     } else {
-      res.json(product == null ? "sản phẩm không tồn tại" : { product });
+      res.json(product == null ? "sản phẩm không tồn tại" : product);
     }
   });
 };
