@@ -9,13 +9,28 @@ const Products = new Schema({
         type : String,
         require : true
     } ,
-    image : String ,
+    image : {
+        type : String ,
+    },
     price : {
-        type :String,
+        type : Number,
         require : true
     },
-    brand : String,
-    date: { type: Date, default: Date.now },
+    salePrice : {
+        type : Number
+    },
+    status : {
+        type : Boolean,
+        require: true
+    },
+    cateID : {
+        type : Number,
+        default : 1
+    },
+    date: { 
+        type: Date, 
+        default: Date.now 
+    }
 })
 Products.plugin(mongoosePaginate)
 const productModel = mongoose.model("Products",Products);

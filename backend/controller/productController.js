@@ -1,4 +1,3 @@
-
 import Products from "../model/productModel";
 
 //start add
@@ -33,45 +32,51 @@ export const deleteProducts = async (req, res, next) => {
 
 //start hiển thị danh sách
 export const showList = async (req, res, next) => {
-  const myCustomLabels = {
-    totalDocs: 'itemCount',
-    docs: 'products',
-    limit: 'perPage',
-    page: 'currentPage',
-    nextPage: 'next',
-    prevPage: 'prev',
-    totalPages: 'pageCount',
-    pagingCounter: 'slNo',
-    meta: 'paginator',
-  };
-    const options = {
-      page: req.query.page || 1,
-      limit : req.query.limit || 8,
-      customLabels : myCustomLabels,
-      collation: {
-        locale: 'en',
-      },
-      
+  const sortBy = {}
+  //start  phân trang
+  const { page, limit, sort } = req.query;
+  if (page && limit) {
+    const myCustomLabels = {
+      totalDocs: "itemCount",
+      docs: "products",
+      limit: "perPage",
+      page: "currentPage",
+      nextPage: "next",
+      prevPage: "prev",
+      totalPages: "pageCount",
+      pagingCounter: "slNo",
+      meta: "paginator",
     };
-    if(options){
-      Products.paginate({}, options, function (err, db) {
-        if(err) throw err
-        else res.json(db.products)
-        console.log(db.products);
+    const options = {
+      page: page || 1,
+      limit: limit || 8,
+      customLabels: myCustomLabels,
+      collation: {
+        locale: "en",
+      },
+    };
+    Products.paginate({}, options, function (err, db) {
+      if (err) throw err;
+      else res.json(db.products);
+      console.log(db.products);
+    });
+  }
+
+  //start sort products
+  else if (sort) {
+    const str = req.query.sort.split(':')
+    sortBy[str[0]] = str[1] === 'desc' ? -1:1
+    const products = await Products.find({}).sort(sort);
+    console.log(products);
+    res.json(products);
+  } else {
+    Products.find({})
+      .then((products) => {
+        products = products.map((products) => products.toObject());
+        res.json(products);
       })
-    }
-    else{
-      Products.find({})
-          .then(products =>{
-            products = products.map(products => products.toObject())
-            res.json(product)
-          })
-    }
-    
-   
- 
-  
- 
+      .catch(next);
+  }
 };
 //start show detail products
 export const showDetailProduct = (req, res, next) => {

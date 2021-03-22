@@ -1,0 +1,46 @@
+
+
+//start hiển thị tất cả sản phẩm
+GET http://localhost:6767/api/news/6057154aacdd4575e37cd8f1
+
+###
+
+
+//start chi tiết sản phẩm
+GET http://localhost:6767/api/products/6052dbb085da1161643c2fad
+
+
+###
+//start phân trang
+GET http://localhost:6767/api/products?page=2&limit=10
+
+###
+
+//start add
+POST http://localhost:6767/api/products
+Content-Type: application/json
+
+{
+    "name" : "điện thoại pro",
+    "price" : 15.777,
+    "salePrice" : 1.999
+}
+
+###
+
+//start delete product
+
+DELETE http://localhost:6767/api/products/6052dbb185da1161643c2ff2
+
+//start edit 
+
+###
+
+PUT http://localhost:6767/api/products/6052dbb085da1161643c2fad
+Content-Type: application/json
+
+{
+    "name" : "điện thoại pro",
+    "price" : 15.777,
+    "salePrice" : 3.047
+}
