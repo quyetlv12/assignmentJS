@@ -20,8 +20,9 @@ export const addProducts = (req, res, next) => {
     console.log(fields);
     console.log(files);
     let product = new Products(fields);
+    const sizeImage = form.maxFieldsSize = 1 * 1024 * 1024
     if (files.image) {
-      if (files.image.size > 1000000) {
+      if (files.image.size > sizeImage) {
         res.status(400).json({
           error: "kích thước file vượt quá 1 MB ",
         });
