@@ -42,13 +42,23 @@ export const editUser = (req,res,next) =>{
 
 //start show list user
 export const showListUser = (req,res,next) =>{
-    User.find({})
+  if(req.query.username){
+    User.find({username :req.query.username})
+      .then(user =>{
+        user = user.map(user => user.toObject())
+        res.json(user)
+      })
+      .catch(next)
+  }
+    else{
+      User.find({})
     .then(user => {
       user = user.map(user => user.toObject())
       res.json(user)
     }
     )
     .catch(next)
+    }
         
 }
 

@@ -1,19 +1,55 @@
 import Products from "../model/productModel";
-
+import formidable from "formidable";
+import fs from "fs";
 //start add
 export const addProducts = (req, res, next) => {
-  const data = req.body;
-  Products.create(data, (err, db) => {
-    if (err) throw err;
-    else console.log("thêm thành công", db.name);
-    res.json({ message: "thêm thành công" });
+  let form = new formidable.IncomingForm();
+  form.keepExtensions = true;
+  form.parse(req, (err, fields, files) => {
+    if (err) {
+      return res.status(400).json({
+        message: "Thêm sản phẩm không thành công",
+      });
+    }
+    const { name, price } = fields;
+    if (!name || !price) {
+      res.status(400).json({
+        error: "vui lòng nhập đủ trường",
+      });
+    }
+    console.log(fields);
+    console.log(files);
+    let product = new Products(fields);
+    if (files.image) {
+      if (files.image.size > 1000000) {
+        res.status(400).json({
+          error: "kích thước file vượt quá 1 MB ",
+        });
+      }
+      product.image.data = fs.readFileSync(files.image.path);
+      product.image.contentType = files.image.path;
+    }
+    product.save((err, db) => {
+      if (err) {
+        res.status.json({
+          error: "lỗi",
+        });
+      } else {
+        res.json({ 
+          message : "Thêm sản phẩm thành công"
+         });
+      }
+    });
   });
 };
 
 //start edit
 export const editProducts = (req, res, next) => {
   Products.updateOne(req.body, (err, db) => {
-    if (err) throw err;
+    if (err)
+      res.status(400).json({
+        message: "lỗi rồi !!!",
+      });
     else res.json(req.body);
     console.log(req.body);
   });
@@ -32,7 +68,7 @@ export const deleteProducts = async (req, res, next) => {
 
 //start hiển thị danh sách
 export const showList = async (req, res, next) => {
-  const sortBy = {}
+  const sortBy = {};
   //start  phân trang
   const { page, limit, sort } = req.query;
   if (page && limit) {
@@ -64,8 +100,8 @@ export const showList = async (req, res, next) => {
 
   //start sort products
   else if (sort) {
-    const str = req.query.sort.split(':')
-    sortBy[str[0]] = str[1] === 'desc' ? -1:1
+    const str = req.query.sort.split(":");
+    sortBy[str[0]] = str[1] === "desc" ? -1 : 1;
     const products = await Products.find({}).sort(sort);
     console.log(products);
     res.json(products);

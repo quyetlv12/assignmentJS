@@ -10,7 +10,8 @@ const Products = new Schema({
         require : true
     } ,
     image : {
-        type : String ,
+        data : Buffer,
+        contentType : String
     },
     price : {
         type : Number,
@@ -22,6 +23,10 @@ const Products = new Schema({
     status : {
         type : Boolean,
         require: true
+    },
+    quantity : {
+        type : Number,
+        default : 1,
     },
     cateID : {
         type : Number,

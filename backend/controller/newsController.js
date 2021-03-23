@@ -55,10 +55,7 @@ export const showListNews = (req,res,next) =>{
 //end show list News
 
 
-//start news detail 
-
-
-//start show detail products
+//start show detail 
 export const newsDetail = (req, res, next) => {
   const id = req.params.id;
   News.findById(id, (err, db) => {

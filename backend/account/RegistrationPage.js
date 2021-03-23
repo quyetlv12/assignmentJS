@@ -102,7 +102,7 @@ const RegistrationPage = {
               numberphone: $("#form-registration-numberphone").value,
               role: 1,
             };
-            const data_URL = "http://localhost:3000/account";
+            const data_URL = "http://localhost:6767/api/users";
             const method_SEVER = {
               method: "POST",
               headers: { "content-type": "application/json" },
