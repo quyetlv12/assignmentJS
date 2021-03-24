@@ -1,7 +1,9 @@
 import Products from "../model/productModel";
+//lấy dữ liệu form
 import formidable from "formidable";
+//đọc file buffer
 import fs from "fs";
-//start add
+//add products
 export const addProducts = (req, res, next) => {
   let form = new formidable.IncomingForm();
   form.keepExtensions = true;
@@ -20,7 +22,7 @@ export const addProducts = (req, res, next) => {
     console.log(fields);
     console.log(files);
     let product = new Products(fields);
-    const sizeImage = form.maxFieldsSize = 1 * 1024 * 1024
+    const sizeImage = (form.maxFieldsSize = 1 * 1024 * 1024);
     if (files.image) {
       if (files.image.size > sizeImage) {
         res.status(400).json({
@@ -36,9 +38,9 @@ export const addProducts = (req, res, next) => {
           error: "lỗi",
         });
       } else {
-        res.json({ 
-          message : "Thêm sản phẩm thành công"
-         });
+        res.json({
+          message: "Thêm sản phẩm thành công",
+        });
       }
     });
   });
@@ -95,8 +97,12 @@ export const showList = async (req, res, next) => {
     Products.paginate({}, options, function (err, db) {
       if (err) throw err;
       else res.json(db.products);
-      console.log(db.products);
-    });
+      console.log(`page : ${page} , limit : ${limit}` )});
+  }
+  else if(limit){
+    const products = await Products.find({}).limit(parseInt(limit))
+    console.log(`page : ${limit}`);
+    res.json(products)
   }
 
   //start sort products
