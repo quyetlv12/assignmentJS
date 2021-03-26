@@ -22,6 +22,7 @@ dotenv.config();
 //start sử dụng morgan làm midDleware cho app
 app.use(morgan("dev"));
 
+
 //start cors
 app.use(cors())
 
