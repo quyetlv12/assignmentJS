@@ -8,19 +8,20 @@ const {ObjectId} = mongoose.Schema
 const Products = new Schema({
     name : {
         type : String,
-        required : true
+        // required : true
     } ,
     image : {
-        type : String,
+        data: Buffer,
+        contentType: String
     },
     category : {
       type : ObjectId,
       ref : "Category",
-      required : true  
+    //   required : true  
     },
     price : {
         type : Number,
-        required : true
+        // required : true
     },
     salePrice : {
         type : Number

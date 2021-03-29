@@ -2,7 +2,7 @@
 import express from 'express';
 
 //start lấy phương thức trong products controller
-import {showList,addProducts,deleteProducts,productID,showDetailProduct,update} from '../controller/productController'
+import {showList,addProducts,deleteProducts,productID,showDetailProduct,update , photo} from '../controller/productController'
 
 //start gán phương thức Router trong express == router
  const router = express.Router();
@@ -18,6 +18,8 @@ import {showList,addProducts,deleteProducts,productID,showDetailProduct,update} 
  router.delete('/products/:productID' , deleteProducts);
  //start sửa sản phẩm
 router.put('/products/:productID', update)
+//start router image
+router.get("/products/image/:productID" , photo)
 
 
  //lấy param
