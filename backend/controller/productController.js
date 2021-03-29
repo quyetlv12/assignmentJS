@@ -55,58 +55,28 @@ export const addProducts = (req, res, next) => {
 export const productID = (req,res,next,id) =>{
   Products.findById(id).exec((err,product)=>{
     if(err){
-      res.status(400).json({
+      return res.status(400).json({
         error : "không tìm thấy sản phẩm"
       })
     }
+    //console.log(product)
     req.product = product
     next()
   })
 }
 
-//detail 
-
-
+//detail
 export const showDetailProduct = (req,res) =>{
   return res.json(req.product)
 }
-
-
-
 //start update 
 export const update = (req,res) =>{
-  // return res.json(req.product)
-  let form = new formidable.IncomingForm();
-  form.keepExtensions = true;
-  form.parse(req, (err, fields, files) => {
-    if (err) {
-      return res.status(400).json({
-        message: "Thêm sản phẩm không thành công",
-      });
-    }
-    const { name, price } = fields;
-    if (!name || !price) {
-      res.status(400).json({
-        error: "vui lòng nhập đủ trường",
-      });
-    }
-    console.log(fields);
-    console.log(files);
-    let product = req.product;
-        product = _.assignIn(product , fields)
-    const sizeImage = (form.maxFieldsSize = 1 * 1024 * 1024);
-    if (files.image) {
-      if (files.image.size > sizeImage) {
-        res.status(400).json({
-          error: "kích thước file vượt quá 1 MB ",
-        });
-      }
-      product.image.data = fs.readFileSync(files.image.path);
-      product.image.contentType = files.image.path;
-    }
+  //return res.json(req.product)
+    let product = _.assignIn(req.product,req.body);
     product.save((err, db) => {
       if (err) {
-        res.status.json({
+        console.log(err.message)
+       return res.status(400).json({
           error: "Cập nhật sản phẩm không thành công",
         });
       } else {
@@ -115,13 +85,7 @@ export const update = (req,res) =>{
         });
       }
     });
-  });
 }
-
-
-
-
-
 //start delete
 export const deleteProducts = (req, res) => {
   console.log(req.product);

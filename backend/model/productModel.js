@@ -2,41 +2,43 @@ const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 //start lấy schema của mongoose
 const Schema = mongoose.Schema;
+const {ObjectId} = mongoose.Schema
 
 //start định dạng kiểu dữ liệu cho object
 const Products = new Schema({
     name : {
         type : String,
-        require : true
+        required : true
     } ,
     image : {
-        data : Buffer,
-        contentType : String
+        type : String,
+    },
+    category : {
+      type : ObjectId,
+      ref : "Category",
+      required : true  
     },
     price : {
         type : Number,
-        require : true
+        required : true
     },
     salePrice : {
         type : Number
+
     },
     status : {
         type : Boolean,
-        require: true
+        
     },
     quantity : {
         type : Number,
         default : 1,
     },
-    cateID : {
-        type : Number,
-        default : 1
-    },
     date: { 
         type: Date, 
         default: Date.now 
     }
-})
+},{timeStamp : true})
 Products.plugin(mongoosePaginate)
 const productModel = mongoose.model("Products",Products);
 

@@ -3,12 +3,14 @@ import axios from "axios";
 import firebase from "../firebase";
 import ProductApi from "../../front-end/src/api/ProductApi";
 import SearchBox from "../../front-end/src/pages/component/SearchBox";
-import { checkEmail,checkNumberPhone } from "../validation";
+import { checkEmail, checkNumberPhone } from "../validation";
 const RegistrationPage = {
   render() {
     if (localStorage.getItem("username") != null) {
-      alert("Bạn đang đăng nhập tài khoản , vui lòng đăng xuất để đăng kí tài khoản");
-      window.location.hash ="/";
+      alert(
+        "Bạn đang đăng nhập tài khoản , vui lòng đăng xuất để đăng kí tài khoản"
+      );
+      window.location.hash = "/";
       return false;
     }
     return /*html*/ `
@@ -75,17 +77,16 @@ const RegistrationPage = {
         $(".err-signup").innerHTML = "Vui lòng nhập thông tin tài khoản";
         return false;
       }
-      //start check email 
+      //start check email
       if (!checkEmail(email.value)) {
-        email.style.border = '1px solid red'
-      $(".err-signup").innerHTML = "Vui lòng nhập đúng định dạng email";
-       return false;
+        email.style.border = "1px solid red";
+        $(".err-signup").innerHTML = "Vui lòng nhập đúng định dạng email";
+        return false;
       }
       //start check number phone
       if (!checkNumberPhone(numberphone.value) || numberphone.value <= 10) {
         $(".err-signup").innerHTML = "Số điện thoại yêu cầu bằng số và 10 số";
         return false;
-        
       }
       //start check tài khoản đã tồn tại hay chưa
       if (data.length === 0) {
