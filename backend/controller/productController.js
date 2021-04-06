@@ -27,7 +27,7 @@ export const addProducts = (req, res, next) => {
     console.log(fields);
     console.log(files);
     let product = new Products(fields);
-    const sizeImage = (form.maxFieldsSize = 1 * 1024 * 1024);
+    const sizeImage = (form.maxFieldsSize = 2 * 1024 * 1024);
     if (files.image) {
       if (files.image.size > sizeImage) {
         res.status(400).json({
@@ -72,19 +72,60 @@ export const showDetailProduct = (req,res) =>{
 //start update 
 export const update = (req,res) =>{
   //return res.json(req.product)
-    let product = _.assignIn(req.product,req.body);
+    // let product = _.assignIn(req.product,req.body);
+    // product.save((err, db) => {
+    //   if (err) {
+    //     console.log(err.message)
+    //    return res.status(400).json({
+    //       error: "Cập nhật sản phẩm không thành công",
+    //     });
+    //   } else {
+    //     res.json({
+    //       message: "Sửa sản phẩm thành công",
+    //     });
+    //   }
+    // });
+    let form = new formidable.IncomingForm();
+  form.keepExtensions = true;
+  form.parse(req, (err, fields, files) => {
+    if (err) {
+      return res.status(400).json({
+        message: "Thêm sản phẩm không thành công",
+      });
+    }
+    const { name, price } = fields;
+    if (!name || !price) {
+      res.status(400).json({
+        error: "vui lòng nhập đủ trường",
+      });
+    }
+    console.log(fields);
+    console.log(files);
+    let product = req.product
+    product = _.assignIn(product,fields);
+
+    const sizeImage = (form.maxFieldsSize = 2 * 1024 * 1024);
+    if (files.image) {
+      if (files.image.size > sizeImage) {
+        res.status(400).json({
+          error: "kích thước file vượt quá 1 MB ",
+        });
+      }
+      product.image.data = fs.readFileSync(files.image.path);
+      product.image.contentType = files.image.path;
+    }
     product.save((err, db) => {
       if (err) {
-        console.log(err.message)
-       return res.status(400).json({
-          error: "Cập nhật sản phẩm không thành công",
+        res.status.json({
+          error: "lỗi",
         });
       } else {
         res.json({
-          message: "Sửa sản phẩm thành công",
+          message: "sửa sản phẩm thành công",
         });
       }
     });
+  });
 }
 //start delete
 export const deleteProducts = (req, res) => {
@@ -149,7 +190,8 @@ export const showList = async (req, res, next) => {
   } else {
     Products.find({})
       .then((products) => {
-        products = products.map((products) => products.toObject());
+        products = products.map((products) => products.toObject() );
+       
         res.json(products);
       })
       .catch(next);
