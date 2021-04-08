@@ -1,7 +1,18 @@
-import { showListUser , addUser} from '../controller/userController';
+import { showListUser , addUser ,deleteUser , userById , editUser,detailUser} from '../controller/userController';
 import express from 'express'
 const UsersRouter = express.Router();
-UsersRouter.get('/users' , showListUser);
+import {requireSignin, isAdmin, isAuth} from '../controller/authController'
+UsersRouter.get('/secret/:UserId',requireSignin,isAuth,isAdmin, (req, res) => {
+    res.json({
+        user: req.profile
+    })
+});
+
+UsersRouter.get('/users',showListUser);
+UsersRouter.get('/users/:UserId',requireSignin,isAuth,detailUser);
 UsersRouter.post('/users' , addUser)
+UsersRouter.put('/users/:UserId', requireSignin,isAuth,editUser)
+
+UsersRouter.param('UserId', userById)
 
 module.exports = UsersRouter;

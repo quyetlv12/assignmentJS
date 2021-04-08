@@ -11,10 +11,11 @@ const Products = new Schema({
         // required : true
     } ,
     image : {
-        data: Buffer,
-        contentType: String
+        // data: Buffer,
+        // contentType: String
+        type : String,
     },
-    category : {
+    cateID : {
       type : ObjectId,
       ref : "Category",
     //   required : true  
@@ -42,5 +43,4 @@ const Products = new Schema({
 },{timeStamp : true})
 Products.plugin(mongoosePaginate)
 const productModel = mongoose.model("Products",Products);
-
 module.exports = productModel;

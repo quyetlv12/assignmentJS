@@ -23,7 +23,7 @@ const Login = {
       <div class="container">
         <div class="mb-3">
           <label for="" class="form-label text-white">User name</label>
-          <input type="text" class="form-control" id="form-login-username">
+          <input type="text" class="form-control" id="form-login-email">
         
         </div>
         <div class="mb-3">
@@ -59,29 +59,27 @@ const Login = {
   async afterRender() {
     $("#btn-login").addEventListener("click", async function (e) {
       e.preventDefault();
-      const username = $("#form-login-username").value;
+      const email = $("#form-login-email").value;
       const password = $("#form-login-password").value;
       //start valite đăng nhập 
 
-      if(username == "" || password == ""){
+      if(email == "" || password == ""){
         $(".errorLogin").innerHTML =
           "Vui lòng nhập thông tin tài khoản"
           return false;
       }
-      const { data } = await ProductApi.getAccount(username, password);
+      const { data } = await ProductApi.getAccount(email, password);
       if (data.length === 0)
         return ($(".errorLogin").innerHTML =
           "Thông tin tài khoản hoặc mật khẩu không chính xác");
       else {
-        data.map(({ id, username,image, email, password,numberphone, role }) => {
+        data.map(({ _id, name,image, email, role , token}) => {
           (window.location.hash = "/"),
-          localStorage.setItem("id", id);
-          localStorage.setItem("username", username);
-          localStorage.setItem("password", password);
+          localStorage.setItem("username", name);
           localStorage.setItem("email", email);
           localStorage.setItem("role", role);
           localStorage.setItem("image", image);
-          localStorage.setItem("numberphone",numberphone);
+          localStorage.setItem("token", token);
           if (role == 0) {
             $("#dashboard-link").classList.add("show");
           } else {
