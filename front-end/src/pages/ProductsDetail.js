@@ -80,7 +80,7 @@ const ProductDetail = {
         let price = parseFloat(product.price).toFixed(3);
         for (let i = 0; i < products.length; i++) {
           let idProduct = products[i];
-          if (idProduct.id == product.id) {
+          if (idProduct.id == product._id) {
             console.log(typeof(products[i].quantity));
             const quantity = parseInt($('#quantity-product-add').value);
             products[i].quantity += parseInt($('#quantity-product-add').value); 
@@ -93,7 +93,7 @@ const ProductDetail = {
         if (hashProduct == false) {
           let price = parseFloat(product.price).toFixed(3);
           products.push({
-            id: product.id,
+            id: product._id,
               name : product.name , 
               image : product.image,
               price : parseFloat(product.price).toFixed(3),
@@ -103,7 +103,7 @@ const ProductDetail = {
           localStorage.setItem('products', JSON.stringify(products));
           reRender(Header , "#nav-header")
           
-          $("#nav-header").style.marginLeft = "40px"
+          $("#nav-header").style.marginLeft = "10px"
           $("#navbar-header").style.height = "76px"
           alert("Thêm vào giỏ hàng thành công") 
         }

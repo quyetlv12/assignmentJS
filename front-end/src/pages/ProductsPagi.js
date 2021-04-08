@@ -24,7 +24,7 @@ const ProductsPagi = {
       .map((item) => {
         return /*html*/ `
         <div class="card col-3 mt-2" >
-        <a href="#/products/${item.id}">
+        <a href="#/products/${item._id}">
         ${
           parseInt((item.salePrice / item.price) * 100) == 0
             ? ""
@@ -38,7 +38,7 @@ const ProductsPagi = {
     <h3 class="card-text text-danger mt-2">${item.price} <small><del>${
           item.salePrice
         }</del></del></small></h3>
-    <a href="/#/products/${item.id}" class="btn btn-primary">Xem chi tiết</a>
+    <a href="/#/products/${item._id}" class="btn btn-primary">Xem chi tiết</a>
         </a>
   </div>
 </div>  
@@ -190,7 +190,7 @@ const ProductsPagi = {
             .map((item) => {
               return /*html*/ `
                 <div class="card col-3 mt-2" >
-                <a href="#/products/${item.id}">
+                <a href="#/products/${item._id}">
                 ${
                   parseInt((item.salePrice / item.price) * 100) == 0
                     ? ""
@@ -207,7 +207,7 @@ const ProductsPagi = {
                     item.salePrice
                   }</del></del></small></h3>
                 <a href="/#/products/${
-                  item.id
+                  item._id
                 }" class="btn btn-primary">Xem chi tiết</a>
                     </a>
           </div>
@@ -243,7 +243,7 @@ const ProductsPagi = {
           .map((item) => {
             return /*html*/ `
               <div class="card col-3 mt-2" >
-              <a href="#/products/${item.id}">
+              <a href="#/products/${item._id}">
               ${
                 parseInt((item.salePrice / item.price) * 100) == 0
                   ? ""
@@ -260,7 +260,7 @@ const ProductsPagi = {
                   item.salePrice
                 }</del></del></small></h3>
               <a href="/#/products/${
-                item.id
+                item._id
               }" class="btn btn-primary">Xem chi tiết</a>
                   </a>
         </div>

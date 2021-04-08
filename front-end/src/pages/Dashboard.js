@@ -4,14 +4,14 @@ import Header from "./component/header.js";
 import ListProduct from "./component/ListProduct.js";
 const Dashboard = {
   async render() {
-    if (localStorage.getItem("username")  == null) {
-      window.location.hash = "/login";
-      return false;
-    }
-    if (localStorage.getItem("role") == 1) {
-      window.location.hash = "/404";
-      return false;
-    }
+    // if (localStorage.getItem("username")  == null) {
+    //   window.location.hash = "/login";
+    //   return false;
+    // }
+    // if (localStorage.getItem("role") == 1) {
+    //   window.location.hash = "/404";
+    //   return false;
+    // }
     const { data: product } = await ProductApi.getAll();
     const { id, name } = product;
     const { data: cate } = await ProductApi.getAllCate();
@@ -116,72 +116,66 @@ const Dashboard = {
             <main>
                 <div class="container-fluid">
                     <h1 class="mt-4">Dashboard</h1>
-
-
-                    
                     <div class="accordion accordion-flush" id="accordionFlushExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingOne">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"> <i class="fab fa-product-hunt"></i> &nbsp
-        THÊM SẢN PHẨM
-      </button>
-    </h2>
-    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">
-      <form action="" id="form-reload">
-      <div class="row g-3">
-  <div class="col">
-    <input type="text" class="form-control" id="form-add-id" disabled placeholder="Auto ID" aria-label="First name">
-  </div>
-  <div class="col">
-    <input type="text" class="form-control" id="form-add-name" placeholder="NAME" aria-label="Last name">
-  </div>
-  <div class="col">
-    <input type="file" class="form-control" id="form-add-image">
-  </div>
-  <div class="col">
-    <input type="text" class="form-control" id="form-add-price" placeholder="PRICE" aria-label="Last name">
-  </div>
-  <div class="col">
-  <select class="form-select" id="form-add-status" aria-label="Default select example">
-  <option selected>Chọn trạng thái</option>
-  <option value="đã bán">Đã bán</option>
-  <option value="chưa bán">Chưa bán</option>
-  <option value="đang xử lý">Đang xử lý</option>
-</select>
-  </div>
-  <div class="col">
-  <select class="form-select" id="form-add-cateid" aria-label="Default select example">
-  <option selected>Chọn danh mục</option>
-  ${cate.map((cate) => {
-    return `<option value="${cate.id}">${cate.name}</option>`;
-  })}
-</select>
-  </div>
-  <div class="col">
-    <input type="text" class="form-control" id="form-add-quantity" placeholder="QUANTITY" aria-label="Last name">
-  </div>
-  <div class="row mt-2">
-  <div class="col-12">
-  <div class="form-floating">
-  <textarea class="form-control" id="form-add-description" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-  <label for="floatingTextarea2">DESCRIPTION</label>
-</div>
-  </div>
-  </div>
-</div>
-<div class="row mt-3">
-<button class="btn btn-primary" type="button" id="add-product"><i class="fas fa-plus-square"></i> THÊM SẢN PHẨM</button></div>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"> <i class="fab fa-product-hunt"></i> &nbsp
+                            THÊM SẢN PHẨM
+                          </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                          <div class="accordion-body">
+                          <form action="" id="form-reload">
+                          <div class="row g-3">
+                      <div class="col">
+                        <input type="text" class="form-control" id="form-add-id" disabled placeholder="Auto ID" aria-label="First name">
+                      </div>
+                      <div class="col">
+                        <input type="text" class="form-control" id="form-add-name" placeholder="NAME" aria-label="Last name">
+                      </div>
+                      <div class="col">
+                        <input type="file" class="form-control" id="form-add-image">
+                      </div>
+                      <div class="col">
+                        <input type="text" class="form-control" id="form-add-price" placeholder="PRICE" aria-label="Last name">
+                      </div>
+                      <div class="col">
+                      <select class="form-select" id="form-add-status" aria-label="Default select example">
+                      <option selected>Chọn trạng thái</option>
+                      <option value="true">Đã bán</option>
+                      <option value="false">Chưa bán</option>
+                    </select>
+                      </div>
+                      <div class="col">
+                      <select class="form-select" id="form-add-cateid" aria-label="Default select example">
+                      <option selected>Chọn danh mục</option>
+                      ${cate.map((cate) => {
+                        return `<option value="${cate._id}">${cate.name}</option>`;
+                      })}
+                    </select>
+                      </div>
+                      <div class="col">
+                        <input type="text" class="form-control" id="form-add-quantity" placeholder="QUANTITY" aria-label="Last name">
+                      </div>
+                      <div class="row mt-2">
+                      <div class="col-12">
+                      <div class="form-floating">
+                      <textarea class="form-control" id="form-add-description" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                      <label for="floatingTextarea2">DESCRIPTION</label>
+                    </div>
+                      </div>
+                      </div>
+                    </div>
+                    <div class="row mt-3">
+                    <button class="btn btn-primary" type="button" id="add-product"><i class="fas fa-plus-square"></i> THÊM SẢN PHẨM</button></div>
+                          </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
-                    
                     ${await CountProduct.render()}
                     <div class="row">
                     <div class="input-group mb-3">
@@ -190,7 +184,6 @@ const Dashboard = {
                   <div>
                   </div>
                     <div class="card mb-4">
-                    
                         <div class="card-header">
                             <i class="fas fa-table mr-1"></i>
                             DataTable Example
@@ -201,7 +194,6 @@ const Dashboard = {
                             <div id="dataList">
                             ${await ListProduct.render()}
                             </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -223,6 +215,7 @@ const Dashboard = {
     </div>`;
   },
   async afterRender() {
+    //start gọi phương thức afterRender
     return `${await ListProduct.afterRender()}
     ${await Header.afterRender()}
     `;

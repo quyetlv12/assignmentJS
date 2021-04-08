@@ -6,7 +6,7 @@ const ProductApi = {
         return axiosClient.get(url);
     },
     getAllCate(){
-        const url = `/category`;
+        const url = `/categories`;
         return axiosClient.get(url);
     },
     getAllContact(){
@@ -14,7 +14,7 @@ const ProductApi = {
         return axiosClient.get(url);
     },
     getAllAccount(){
-        const url = `/account`;
+        const url = `/users`;
         return axiosClient.get(url);
     },
     getAllNews(){
@@ -37,24 +37,26 @@ const ProductApi = {
         const url = `/account`;
         return axiosClient.get(url);
     },
-    getAccount(username,password){
-        const  url  =  `/account?username=${username}&password=${password}`;
-        return axiosClient.get(url);
-        
+    getAccount(email,password){
+        const  url  =  `/signin?email=${email}&password=${password}`;
+        return axiosClient.post(url);
     },
     checkHashAccount(username){
-        const  url  =  `/account?username=${username}`;
+        const  url  =  `/users?username=${username}`;
         return axiosClient.get(url);
     },
     Paginate(_pages,_limit){
-        const  url  =  `/products?_page=${_pages}&_limit=${_limit}`;
+        const  url  =  `/products?page=${_pages}&limit=${_limit}`;
         return axiosClient.get(url);
     },
     getAllOrder(){
         const url = `/cart`;
         return axiosClient.get(url);
+    },
+    update(id,data){
+        const url = `/products/${id}`;
+        return axiosClient.put(url,data);
     }
-    
 
 }
 export default ProductApi;

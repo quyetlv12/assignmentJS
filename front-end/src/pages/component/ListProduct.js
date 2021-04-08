@@ -7,31 +7,31 @@ const ListProduct = {
   async render() {
     const { data: product } = await ProductApi.getAll();
     const List = product
-      .map((product) => {
+      .map((product,index) => {
         return /*html*/ `<tr class="trContent">
-            <td>${product.id}</td>
+            <td>${index + 1}</td>
             <td>${product.name}</td>
             <td><img src="${product.image}" width="200"/></td>
             <td>${product.price}</td>
-            <td>${product.status}</td>
+            <td>${product.status == true ? "đã bán" : "chưa bán"}</td>
             <td>${product.quantity}</td>
             <td class="p-4 action-product">
             
             <div class="row">
-              <a href="#/products/${product.id}"> <button class="btn btn-primary"><div class="">
+              <a href="#/products/${product._id}"> <button class="btn btn-primary"><div class="">
                 <i class="fas fa-info-circle"></i>
               </div> Detail</button></a>
             </div>
              
             <div class="row mt-2">
               <div class="">
-                <button class="btn btn-danger btn-remove text-white" id="btn-remove-product" data-id="${product.id}"><div class="">
+                <button class="btn btn-danger btn-remove text-white" id="btn-remove-product" data-id="${product._id}"><div class="">
                   <i class="fas fa-trash-alt"></i>
                 </div> Remove</button>
               </div>
             </div>
              <div class="row mt-2">
-               <a href="#/update/${product.id}"> <button class="btn btn-success"><div class="">
+               <a href="#/update/${product._id}"> <button class="btn btn-success"><div class="">
                  <i class="fas fa-edit"></i>
                </div> Update</button></a>
              </div>
@@ -55,14 +55,11 @@ const ListProduct = {
         <!--show product!-->
         <tbody id="listPproducts">
              ${List}
-        </tbody>
-    
-        
-       
+        </tbody>  
     </table>`;
   },
   async afterRender() {
-    // THÊM SẢN PHẨM
+    // start THÊM SẢN PHẨM
     document
       .querySelector("#add-product")
       .addEventListener("click", async function (e) {
@@ -72,8 +69,7 @@ const ListProduct = {
           $("#form-add-image").value == ""
         ) {
           alert("vui lòng nhập sản phẩm");
-        } else {
-         
+        } else {  
           const productImage = $("#form-add-image").files[0];
           let storageRef = firebase
             .storage()
@@ -88,14 +84,14 @@ const ListProduct = {
                 price: parseFloat($("#form-add-price").value).toFixed(3),
                 status: $("#form-add-status").value,
                 quantity: $("#form-add-quantity").value,
-                cateID: parseInt($("#form-add-cateid").value),
+                cateID: $("#form-add-cateid").value,
                 description: $("#form-add-description").value,
                 createdAt: Date.now(),
               };
-              const data_URL = "http://localhost:3000/products";
+              const data_URL = "http://localhost:6767/api/products";
               const method_SEVER = {
                 method: "POST",
-                headers: { "content-type": "application/json" },
+                headers: { "content-type": "application/json"  },
                 data: JSON.stringify(product),
                 url: data_URL,
               };
@@ -120,7 +116,7 @@ const ListProduct = {
 
     //start XOÁ SẢN PHẨM
     const buttons = document.querySelectorAll(".btn-remove");
-    const data_URL = "http://localhost:3000/products/";
+    const data_URL = "http://localhost:6767/api/products/";
     buttons.forEach((buttons) => {
       buttons.addEventListener("click", async function (e) {
         e.preventDefault();

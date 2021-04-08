@@ -26,7 +26,7 @@ const Header = {
                 <ul id="cate_item">
                 ${cate
                   .map((cate) => {
-                    return `<a href="#/category/${cate.id}"><li>${cate.name}</li></a>`;
+                    return `<a href="#/category/${cate._id}"><li>${cate.name}</li></a>`;
                   })
                   .join("")}
                 </ul>
@@ -36,26 +36,16 @@ const Header = {
                 <a class="nav-link" href="http://localhost:6868/#/news">News</a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="http://localhost:6868/#/about" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="http://localhost:6868/#/about">
                   About
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                  <a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
-                  <a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
-                  <a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
-                  <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
-                  <a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>
-                </div>
+                
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="http://localhost:6868/#/contact" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="http://localhost:6868/#/contact">
                 Contact
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                  <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
-                  <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
-                  <a class="dropdown-item" href="blog-post.html">Blog Post</a>
-                </div>
+              
               </li>
               <li class="nav-item shopping-cart">
                 <a class="nav-link" href="http://localhost:6868/#/cart" id="navbarDropdownBlog" >
@@ -118,8 +108,10 @@ const Header = {
     $("#btn-logout").addEventListener("click",function () {
       (window.location.hash = "/login");
       localStorage.removeItem("username");
+      localStorage.removeItem("token");
       localStorage.removeItem("email");
       localStorage.removeItem("password");
+      localStorage.removeItem("numberphone");
       localStorage.removeItem("image");
       localStorage.removeItem("role");
     });

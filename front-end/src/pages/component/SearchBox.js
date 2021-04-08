@@ -36,7 +36,7 @@ const SearchBox = {
                 const search_form = search.map(search => {
                     return `<ul class="list-item">
                    
-                   <a href="/#/products/${search.id}"><li class="items"><img src="${search.image}" width="100"/> &#160${search.name}</li></a>
+                   <a href="/#/products/${search._id}"><li class="items"><img src="${search.image}" width="100"/> &#160${search.name}</li></a>
                    </ul>`;
                 }).join("");
                 $('#show-search-products').style.display = "block";

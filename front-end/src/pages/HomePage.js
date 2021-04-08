@@ -9,7 +9,7 @@ import News from "./News.js";
 const HomePages = {
  
   async render() {
-    const { data: product } = await ProductApi.Paginate(2,8);
+    const { data: product } = await ProductApi.getAll();
     return /*html */ `
     <head>
     <title>Trang chủ</title></head>
@@ -51,14 +51,14 @@ const HomePages = {
                           (item) => `
                        
                          <div class="card-product col-3 mt-2 p-3">
-                         <a href="/#/products/${item.id}" class="text-decoration-none">
+                         <a href="/#/products/${item._id}" class="text-decoration-none">
                          ${parseInt(item.salePrice/item.price * 100 )== 0 ? "" : ` <div class="sale text-width">${parseInt(item.salePrice/item.price * 100 )}%</div>`}
                              <img class="card-img-top" src="${item.image}" height="250" alt="Card image cap">
                              </a>
                              <div class="card-body">
-                               <h5 class="card-title"><a href="/#/products/${item.id}" class="text-decoration-none">${item.name}</a></h5>
+                               <h5 class="card-title"><a href="/#/products/${item._id}" class="text-decoration-none">${item.name}</a></h5>
                                <h4 class="card-text text-danger">${item.price} VNĐ <small><del>${item.salePrice}VNĐ</del></small></h4>
-                               <button class="btn btn-primary btn-view"><a href="/#/products/${item.id}" class="text-decoration-none text-white"><i class="fas fa-info-circle"></i> &nbsp;XEM CHI TIẾT</a></button>
+                               <button class="btn btn-primary btn-view"><a href="/#/products/${item._id}" class="text-decoration-none text-white"><i class="fas fa-info-circle"></i> &nbsp;XEM CHI TIẾT</a></button>
                                
                              </div>
                          </div>
@@ -93,8 +93,9 @@ const HomePages = {
     
     <div class="space-elm"></div>
     </div>
+    ${await News.render()}
     
-    ${await News.render()}`;
+   `;
   },
  async afterRender() {
     return `${await Header.afterRender()}
