@@ -8,22 +8,24 @@ const ProductsPagi = {
     let _limit = 8;
     const { data: product } = await ProductApi.Paginate(_page, _limit);
     const { data: cate } = await ProductApi.getAllCate();
-    const resultCate = cate.map((cate) => {
-      return /*html*/ `
+    const resultCate = cate
+      .map((cate) => {
+        return /*html*/ `
       <div class="form-check">
       
-          <input class="form-check-input" type="radio" value="${cate.id}" name="flexRadioDefault1" id="flexRadioDefault1">
+          <input class="form-check-input" type="radio" value="${cate._id}" name="flexRadioDefault1" id="flexRadioDefault1">
           <label class="form-check-label" for="flexRadioDefault1">
             ${cate.name}
           </label>
         </div>
        
       `;
-    }).join("");
+      })
+      .join("");
     const cateResult_Product = product
       .map((item) => {
         return /*html*/ `
-        <div class="card col-3 mt-2" >
+        <div class="card col-sm-6 col-md-6 col-lg-3 mt-2" >
         <a href="#/products/${item._id}">
         ${
           parseInt((item.salePrice / item.price) * 100) == 0
@@ -119,11 +121,6 @@ const ProductsPagi = {
         </div>
         <div id="show-filer" class="row"></div>
         </div>
-        
-
-
-
-       
         </div>
          
         </div>
@@ -199,13 +196,13 @@ const ProductsPagi = {
                       )}%</div>`
                 }
                 <img src="${
-                      item.image
-                    }" height="200" class="card-img-top" alt="...">
+                  item.image
+                }" height="200" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">${item.name}</h5>
-                <h3 class="card-text text-danger mt-2">${item.price} <small><del>${
-                    item.salePrice
-                  }</del></del></small></h3>
+                <h3 class="card-text text-danger mt-2">${
+                  item.price
+                } <small><del>${item.salePrice}</del></del></small></h3>
                 <a href="/#/products/${
                   item._id
                 }" class="btn btn-primary">Xem chi tiết</a>
@@ -228,20 +225,19 @@ const ProductsPagi = {
       });
     }
 
-
-    //start filter cate 
+    //start filter cate
 
     const btn_filterCate = document.filterCate.flexRadioDefault1;
     for (let i = 0; i < btn_filterCate.length; i++) {
-      btn_filterCate[i].addEventListener('click',async(e)=>{
-        const {data : products } =await ProductApi.getAll();
-       const filterCate = products.filter(products =>{
-         return products.cateID == btn_filterCate[i].value;
-       })
-       if (btn_filterCate[i] != btn_filterCate[0]) {
-        const cateResult_Product = filterCate
-          .map((item) => {
-            return /*html*/ `
+      btn_filterCate[i].addEventListener("click", async (e) => {
+        const { data: products } = await ProductApi.getAll();
+        const filterCate = products.filter((products) => {
+          return products.cateID == btn_filterCate[i].value;
+        });
+        if (btn_filterCate[i] != btn_filterCate[0]) {
+          const cateResult_Product = filterCate
+            .map((item) => {
+              return /*html*/ `
               <div class="card col-3 mt-2" >
               <a href="#/products/${item._id}">
               ${
@@ -252,13 +248,13 @@ const ProductsPagi = {
                     )}%</div>`
               }
               <img src="${
-                    item.image
-                  }" height="200" class="card-img-top" alt="...">
+                item.image
+              }" height="200" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">${item.name}</h5>
-              <h3 class="card-text text-danger mt-2">${item.price} <small><del>${
-                  item.salePrice
-                }</del></del></small></h3>
+              <h3 class="card-text text-danger mt-2">${
+                item.price
+              } <small><del>${item.salePrice}</del></del></small></h3>
               <a href="/#/products/${
                 item._id
               }" class="btn btn-primary">Xem chi tiết</a>
@@ -266,20 +262,18 @@ const ProductsPagi = {
         </div>
       </div>  
               `;
-          })
-          .join("");
-        document.querySelector("#product-pagi").style.display = "none";
-        document.querySelector("#show-filer").style.display = "";
-        $("#show-filer").innerHTML = cateResult_Product;
-        return false;
-      } else {
-        document.querySelector("#product-pagi").style.display = "block";
-        document.querySelector("#show-filer").style.display = "none";
-        return false;
-      }
-
-      })
-      
+            })
+            .join("");
+          document.querySelector("#product-pagi").style.display = "none";
+          document.querySelector("#show-filer").style.display = "";
+          $("#show-filer").innerHTML = cateResult_Product;
+          return false;
+        } else {
+          document.querySelector("#product-pagi").style.display = "block";
+          document.querySelector("#show-filer").style.display = "none";
+          return false;
+        }
+      });
     }
     return `${await Header.afterRender()}`;
   },

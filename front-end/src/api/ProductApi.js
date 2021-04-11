@@ -38,8 +38,8 @@ const ProductApi = {
         return axiosClient.get(url);
     },
     getAccount(email,password){
-        const  url  =  `/signin?email=${email}&password=${password}`;
-        return axiosClient.post(url);
+        const  url  =  `/signin?_email=${email}&_password=${password}`;
+        return axiosClient.get(url);
     },
     checkHashAccount(username){
         const  url  =  `/users?username=${username}`;

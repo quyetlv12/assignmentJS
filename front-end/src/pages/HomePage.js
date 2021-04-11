@@ -1,5 +1,6 @@
 // import data from "../data.js";
 import ProductApi from "../api/ProductApi.js";
+import BrandSlider from "./component/Hero.js";
 import CateProduct from "./component/CateProduct1.js";
 import CateProduct2 from "./component/CateProduct2.js";
 import CateProduct3 from "./component/CateProduct3.js";
@@ -7,7 +8,6 @@ import Header from "./component/header.js";
 import SearchBox from "./component/SearchBox.js";
 import News from "./News.js";
 const HomePages = {
- 
   async render() {
     const { data: product } = await ProductApi.getAll();
     return /*html */ `
@@ -41,29 +41,60 @@ const HomePages = {
     <span class="visually-hidden">Next</span>
   </a>
 </div>
-    
+<div class="row ">
+<div class="col-md-4 col-sm-4 mt-3">
+<img src="https://tainghe.com.vn/media/banner/01_Apra8520c1ff98c117296b85dddb6c3357e.png" class="img-fluid" alt="">
+</div>
+<div class="col-md-4 col-sm-4 mt-3">
+<img src="https://tainghe.com.vn/media/banner/14_Jan3aa87eb1ebfc3c990600da85219dc698.png" class="img-fluid" alt=""></div>
+<div class="col-md-4 col-sm-4 mt-3">
+<img src="https://tainghe.com.vn/media/banner/30_Jane06d061a77a7bde916b8a91163029d41.jpg" class="img-fluid" alt=""></div>
+</div>
     <div class="container">
-      <ul> <div class="card-group">
-      <div class="row mt-2">
+      <ul> <div class="card-group bg-white p-3">
+      <div class="row mt-2 ">
       <h2>Sản phẩm nổi bật</h2>
                       ${product
                         .map(
-                          (item) => `
-                       
-                         <div class="card-product col-3 mt-2 p-3">
-                         <a href="/#/products/${item._id}" class="text-decoration-none">
-                         ${parseInt(item.salePrice/item.price * 100 )== 0 ? "" : ` <div class="sale text-width">${parseInt(item.salePrice/item.price * 100 )}%</div>`}
-                             <img class="card-img-top" src="${item.image}" height="250" alt="Card image cap">
+                          (item) => /*html*/ `
+                         <div class="card-product col-md-3 col-sm-6 mt-2">
+                         <a href="/#/products/${
+                           item._id
+                         }" class="text-decoration-none">
+                         ${
+                           parseInt((item.salePrice / item.price) * 100) == 0
+                             ? ""
+                             : ` <div class="sale text-width">${parseInt(
+                                 (item.salePrice / item.price) * 100
+                               )}%</div>`
+                         }
+                             <img class="card-img-top img-fluid p-4" src="${
+                               item.image
+                             }" height="250" alt="Card image cap">
                              </a>
                              <div class="card-body">
-                               <h5 class="card-title"><a href="/#/products/${item._id}" class="text-decoration-none">${item.name}</a></h5>
-                               <h4 class="card-text text-danger">${item.price} VNĐ <small><del>${item.salePrice}VNĐ</del></small></h4>
-                               <button class="btn btn-primary btn-view"><a href="/#/products/${item._id}" class="text-decoration-none text-white"><i class="fas fa-info-circle"></i> &nbsp;XEM CHI TIẾT</a></button>
+                               <h5 class="card-title"><a href="/#/products/${
+                                 item._id
+                               }" class="text-decoration-none fs-6">${
+                            item.name
+                          }</a></h5>
+                               <div class="row">
+                               <div class="col-md-8"><h5 class="card-text text-danger">${
+                                 item.price
+                               } VNĐ</h5></div>
+                               <div class="col-md-4">
+                               <h5> <small><del>${
+                                 item.salePrice
+                               }VNĐ</del></small></h5>
+                               </div>
+                               </div>
+                               
+                               <button class="btn btn-primary btn-view"><a href="/#/products/${
+                                 item._id
+                               }" class="text-decoration-none text-white"><i class="fas fa-info-circle"></i> &nbsp;XEM CHI TIẾT</a></button>
                                
                              </div>
                          </div>
-                      
-                         
                       `
                         )
                         .join("")}
@@ -73,23 +104,38 @@ const HomePages = {
     </div>
 
     <div class="container">
-    <div class="space-elm"></div>
+
     <div class="row">
     <h3>Tai nghe bluetooth</h3>
       ${await CateProduct.render()}
     </div>
-    <div class="space-elm"></div>
+    <div class="col-xxl-8 px-4 py-5 bg-white">
+  <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+    <div class="col-10 col-sm-8 col-lg-6">
+      <img src="https://tainghe.com.vn/media/product/3210_1.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" loading="lazy">
+    </div>
+    <div class="col-lg-6">
+      <h1 class="display-5 fw-bold lh-1 mb-3">Responsive left-aligned hero with image</h1>
+      <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
     <div class="row">
     <h3>Tai nghe Chống ồn</h3>
       ${await CateProduct2.render()}
     </div>
-    <div class="space-elm"></div>
-
     <div class="row">
     <h3>Tai nghe phòng thu</h3>
       ${await CateProduct3.render()}
     </div>
-      
+    <div>
+    ${await BrandSlider.render()}
+    </div>
     
     <div class="space-elm"></div>
     </div>
@@ -97,9 +143,9 @@ const HomePages = {
     
    `;
   },
- async afterRender() {
+  async afterRender() {
     return `${await Header.afterRender()}
-    `
+    `;
   },
 };
 

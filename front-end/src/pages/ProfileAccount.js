@@ -7,13 +7,13 @@ import Header from "./component/header";
 
 const ProfileAccount = {
   async render() {
-    const username = localStorage.getItem("username");
+    const email = localStorage.getItem("email");
     const password = localStorage.getItem("password");
-    if (username == null) {
+    if (email == null) {
       alert("vui lòng đăng nhập");
       window.location.hash = "/";
     }
-    const { data: account } = await ProductApi.getAccount(username, password);
+    const { data: account } = await ProductApi.getAccount(email, password);
     const showAccount = account.map((account) => {
       return /*html*/ `
          <div class="container">
@@ -28,7 +28,7 @@ const ProfileAccount = {
            </div>
            <div class="d-flex justify-content-center mb-2 mt-2"><input type="file" id="account-image-update" disabled></div>
            <input type="text" id="account-name" class="form-control" disabled value="${
-             account.username
+             account.name
            }">
            <input type="text" id="account-email" class="form-control mt-2" disabled value="${
              account.email
@@ -84,7 +84,7 @@ const ProfileAccount = {
         if ($("#account-image-update").value == "") {
           const data = {
             id: localStorage.getItem("id"),
-            username: usernameForm.value,
+            name: usernameForm.value,
             image: $("#account-image-old").value,
             email: emailForm.value,
             password: passwordForm.value,

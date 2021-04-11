@@ -11,16 +11,16 @@ const Header = {
     const reducer = (accumulator, currentValue) => {
       return accumulator + +currentValue.quantity;
     };
-    return /*html*/ ` <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbar-header">
+    return /*html*/ ` <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" id="navbar-header d-block w-100">
         <div class="container" id="nav-header">
           <a class="navbar-brand" href="http://localhost:6868/"><img src="../../../src/public/images/logo.png" width="50" alt="">&nbsp; HeadPhone</a>
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+          <div class="w-100">${await SearchBox.render()}</div>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto" >
-            <li>
-            ${await SearchBox.render()}</li>
+            
               <li class="nav-item nav-product">
                 <a class="nav-link" href="http://localhost:6868/#/product/1">Product</a>
                 <ul id="cate_item">

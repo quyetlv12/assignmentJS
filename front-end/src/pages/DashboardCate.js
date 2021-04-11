@@ -15,7 +15,7 @@ const DashboardCate = {
     const reducer_cate = (accumulator, currentValue) => {
       return accumulator + +currentValue.cateID;
     };
-    return /*html*/ `
+    return /*html*/`
     <head>
     <title>Quản lý danh mục sản phẩm</title></head>
     <div id="layoutSidenav">

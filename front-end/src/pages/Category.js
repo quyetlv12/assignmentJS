@@ -35,7 +35,7 @@ const Category = {
             </h2>
            
             <p>${product.description}</p>
-            <a href="#/products/${product.id}"> <button class="btn btn-primary">Xem chi tiết</button></a>
+            <a href="#/products/${product._id}"> <button class="btn btn-primary">Xem chi tiết</button></a>
            
             </div>
         </div>

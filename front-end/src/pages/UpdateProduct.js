@@ -47,7 +47,11 @@ const UpdateProduct = {
       <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" id="update-price" value="${product.price}">
     </div>
     <div class="col-6">
-      <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" id="update-status" value="${product.status}">
+      <select name="" id="update-status" class="form-control" value="${product.status}">
+      <option value="true">Đã bán</option>
+      <option value="false">Chưa bán</option>
+      
+      </select>
     </div>
     </div>
     <div class="row mt-2">
@@ -55,7 +59,7 @@ const UpdateProduct = {
     <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" id="update-quantity" value="${product.quantity}">
     </div>
     <div class="col-6">
-    <select class="form-select" id="update-cateid" aria-label="Default select example">
+    <select class="form-select" value="${product.cateID}" id="update-cateid" aria-label="Default select example">
     ${cateItem}
     </select>
     </div>

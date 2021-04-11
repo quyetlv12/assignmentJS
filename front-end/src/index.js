@@ -23,7 +23,6 @@ import ProductsPagi from './pages/ProductsPagi.js';
 import DashboardOrder from './pages/DashboardOrder.js';
 import ProfileAccount from './pages/ProfileAccount.js';
 import CartProduct from './pages/component/CartProduct.js';
-
 const routes = {
     '/': HomePages,
     '/products/:id': ProductDetailPage,

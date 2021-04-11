@@ -4,14 +4,14 @@ import Header from "./component/header.js";
 import ListProduct from "./component/ListProduct.js";
 const Dashboard = {
   async render() {
-    // if (localStorage.getItem("username")  == null) {
-    //   window.location.hash = "/login";
-    //   return false;
-    // }
-    // if (localStorage.getItem("role") == 1) {
-    //   window.location.hash = "/404";
-    //   return false;
-    // }
+    if (localStorage.getItem("username")  == null) {
+      window.location.hash = "/login";
+      return false;
+    }
+    if (localStorage.getItem("role") == 1) {
+      window.location.hash = "/404";
+      return false;
+    }
     const { data: product } = await ProductApi.getAll();
     const { id, name } = product;
     const { data: cate } = await ProductApi.getAllCate();
