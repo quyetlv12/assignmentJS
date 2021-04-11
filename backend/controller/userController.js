@@ -21,45 +21,54 @@ export const userById = (req, res, next, id) => {
 //start add user
 
 export const addUser = (req, res, next) => {
-  let form = new formidable.IncomingForm();
-  form.keepExtensions = true;
-  form.parse(req, (err, fields, files) => {
-    if (err) {
+  // let form = new formidable.IncomingForm();
+  // form.keepExtensions = true;
+  // form.parse(req, (err, fields, files) => {
+  //   if (err) {
+  //     return res.status(400).json({
+  //       message: "Thêm sản phẩm không thành công",
+  //     });
+  //   }
+  //   const { username, password } = fields;
+  //   if (!username || !password) {
+  //     res.status(400).json({
+  //       error: "vui lòng nhập đủ trường",
+  //     });
+  //   }
+  //   console.log(fields);
+  //   console.log(files);
+  //   let user = new User(fields);
+  //   const sizeImage = (form.maxFieldsSize = 1 * 1024 * 1024);
+  //   if (files.image) {
+  //     if (files.image.size > sizeImage) {
+  //       res.status(400).json({
+  //         error: "kích thước file vượt quá 1 MB ",
+  //       });
+  //     }
+  //     user.image.data = fs.readFileSync(files.image.path);
+  //     user.image.contentType = files.image.path;
+  //   }
+  //   user.save((err, db) => {
+  //     if (err) {
+  //       res.status.json({
+  //         error: "lỗi",
+  //       });
+  //     } else {
+  //       res.json({
+  //         message: "Thêm sản phẩm thành công",
+  //       });
+  //     }
+  //   });
+  // });
+  let user = new User(req.body)
+  user.save((err,user)=>{
+    if(err || !user){
       return res.status(400).json({
-        message: "Thêm sản phẩm không thành công",
-      });
+        error : " đăng kí tài khoản thất bại"
+      })
     }
-    const { username, password } = fields;
-    if (!username || !password) {
-      res.status(400).json({
-        error: "vui lòng nhập đủ trường",
-      });
-    }
-    console.log(fields);
-    console.log(files);
-    let user = new User(fields);
-    const sizeImage = (form.maxFieldsSize = 1 * 1024 * 1024);
-    if (files.image) {
-      if (files.image.size > sizeImage) {
-        res.status(400).json({
-          error: "kích thước file vượt quá 1 MB ",
-        });
-      }
-      user.image.data = fs.readFileSync(files.image.path);
-      user.image.contentType = files.image.path;
-    }
-    user.save((err, db) => {
-      if (err) {
-        res.status.json({
-          error: "lỗi",
-        });
-      } else {
-        res.json({
-          message: "Thêm sản phẩm thành công",
-        });
-      }
-    });
-  });
+    res.status(200).json(user)
+  })
 };
 
 //end add user

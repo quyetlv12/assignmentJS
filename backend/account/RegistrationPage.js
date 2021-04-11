@@ -43,10 +43,6 @@ const RegistrationPage = {
     <label for="inputAddress2" class="form-label text-white">Image</label>
     <input type="file" class="form-control" id="form-registration-image">
   </div>
-  <div class="col-md-12">
-    <label for="inputCity" class="form-label text-white">NumberPhone</label>
-    <input type="text" class="form-control" id="form-registration-numberphone" placeholder="Your number phone">
-  </div>
   <div class="col-12">
   </div>
   <div class="col-12 mb-5">
@@ -65,14 +61,13 @@ const RegistrationPage = {
       const password = $("#form-registration-password").value;
       const email = $("#form-registration-email");
       const numberphone = $("#form-registration-numberphone");
-      const { data } = await ProductApi.checkHashAccount(username);
+      // const { data } = await ProductApi.checkHashAccount(username);
       const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       //start check input trống
       if (
         username == "" ||
         image == "" ||
-        (password == "") | (email == "") ||
-        numberphone == ""
+        (password == "") | (email == "")
       ) {
         $(".err-signup").innerHTML = "Vui lòng nhập thông tin tài khoản";
         return false;
@@ -84,26 +79,23 @@ const RegistrationPage = {
         return false;
       }
       //start check number phone
-      if (!checkNumberPhone(numberphone.value) || numberphone.value <= 10) {
-        $(".err-signup").innerHTML = "Số điện thoại yêu cầu bằng số và 10 số";
-        return false;
-      }
+      // if (!checkNumberPhone(numberphone.value) || numberphone.value <= 10) {
+      //   $(".err-signup").innerHTML = "Số điện thoại yêu cầu bằng số và 10 số";
+      //   return false;
+      // }
       //start check tài khoản đã tồn tại hay chưa
-      if (data.length === 0) {
-        const usersImage = $("#form-registration-image").files[0];
+      const usersImage = $("#form-registration-image").files[0];
         let storageRef = firebase.storage().ref(`users/${usersImage.name}`);
         storageRef.put(usersImage).then(function () {
           storageRef.getDownloadURL().then(async (url) => {
             const product = {
-              id: "",
-              username: $("#form-registration-username").value,
+              name: $("#form-registration-username").value,
               image: url,
               password: $("#form-registration-password").value,
               email: $("#form-registration-email").value,
-              numberphone: $("#form-registration-numberphone").value,
               role: 1,
             };
-            const data_URL = "http://localhost:6767/api/users";
+            const data_URL = "http://localhost:6767/api/signup";
             const method_SEVER = {
               method: "POST",
               headers: { "content-type": "application/json" },
@@ -114,10 +106,12 @@ const RegistrationPage = {
             $(".err-signup").innerHTML = "Đăng kí thành công";
           });
         });
-      } else {
-        $(".err-signup").innerHTML = "Tài khoản đã tồn tại";
-        return false;
-      }
+      // if (data.length === 0) {
+        
+      // } else {
+      //   $(".err-signup").innerHTML = "Tài khoản đã tồn tại";
+      //   return false;
+      // }
     });
     return `${await SearchBox.afterRender()}`;
   },

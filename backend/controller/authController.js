@@ -23,26 +23,54 @@ export const signup = (req, res) => {
 
 //start đăng nhập
 export const signin = (req, res) => {
-  const { email, password } = req.body;
-  User.findOne({ email }, (error, user) => {
-    if (error || !user) {
-      return res.status(400).json({
-        error: "User with that email does not exist. Please signup",
-      });
-    }
-    if (!user.authenticate(password)) {
-      return res.status(401).json({
-        error: "Email and password not match",
-      });
-    }
-    const token = jwt.sign({_id :user._id} , process.env.JWT_SECRET);
-    res.cookie("tokenAccess", token, { expire: new Date() + 9999 });
-    const { _id, name, email, role } = user;
-    return res.json({
-      token,
-      user: { _id, email, name, role },
+  const {_email,_password} = req.query
+
+  if (_email && _password) {
+    // const { email, password } = req.body;
+    User.findOne({ email : _email }, (error, user) => {
+      if (error || !user) {
+        return res.status(400).json({
+          error: "User with that email does not exist. Please signup",
+        });
+      }
+      if (!user.authenticate(_password)) {
+        return res.status(401).json({
+          error: "Email and password not match",
+        });
+      }
+      const token = jwt.sign({_id :user._id} , process.env.JWT_SECRET);
+      res.cookie("tokenAccess", token, { expire: new Date() + 9999 });
+      const { _id, name, email, role } = user;
+      return res.json([
+        {token,id:_id,name  : name,email:email,role:role}
+      ]);
     });
-  });
+  }
+  else{
+    const { email, password } = req.body;
+    User.findOne({ email }, (error, user) => {
+      if (error || !user) {
+        return res.status(400).json({
+          error: "User with that email does not exist. Please signup",
+        });
+      }
+      if (!user.authenticate(password)) {
+        return res.status(401).json({
+          error: "Email and password not match",
+        });
+      }
+      const token = jwt.sign({_id :user._id} , process.env.JWT_SECRET);
+      res.cookie("tokenAccess", token, { expire: new Date() + 9999 });
+      const { _id, name, email, role } = user;
+      return res.json({
+        token,
+        user: { _id, email, name, role },
+      });
+    });
+  }
+
+
+
 };
 
 //start đăng xuất

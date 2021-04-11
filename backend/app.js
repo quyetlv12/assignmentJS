@@ -12,14 +12,17 @@ import mongodb from "./config/db";
 import authRouter from './routes/authRouter'
 import expressValidator from 'express-validator'
 
+//start yêu cầu hình env trong file app
+dotenv.config();
+// const authRouter = require('./routes/authRouter')
+
 
 //start kết nối tới mongodb
 mongodb.connect()
 //start gán express == app
 const app = express();
 
-//start yêu cầu hình env trong file app
-dotenv.config();
+
 
 //start sử dụng morgan làm midDleware cho app
 app.use(morgan("dev"));

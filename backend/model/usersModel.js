@@ -16,6 +16,9 @@ const User = new Schema(
       required: true,
       unique: 32
   },
+  image : {
+      type : String,
+  },
   hashed_password: {
       type: String,
       required: true,
@@ -26,6 +29,9 @@ const User = new Schema(
   },
   salt: {
       type: String
+  },
+  description : {
+      type : String
   },
 //   password : {
 //       type : String,
