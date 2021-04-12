@@ -38,7 +38,7 @@ export const signin = (req, res) => {
           error: "Email and password not match",
         });
       }
-      const token = jwt.sign({_id :user._id} , process.env.JWT_SECRET);
+      const token = jwt.sign({_id :user._id,role :user.role} , process.env.JWT_SECRET);
       res.cookie("tokenAccess", token, { expire: new Date() + 9999 });
       const { _id, name, email, role } = user;
       return res.json([
@@ -59,7 +59,7 @@ export const signin = (req, res) => {
           error: "Email and password not match",
         });
       }
-      const token = jwt.sign({_id :user._id} , process.env.JWT_SECRET);
+      const token = jwt.sign({_id :user._id,role :user.role} , process.env.JWT_SECRET);
       res.cookie("tokenAccess", token, { expire: new Date() + 9999 });
       const { _id, name, email, role } = user;
       return res.json({
@@ -105,6 +105,7 @@ export const isAuth = (req, res, next) => {
 
 //start kiểm tra có phải là admin (role == 0)
 export const isAdmin = (req, res, next) => {
+  console.log(req.profile.role);
   if (req.profile.role != 0) {
     return res.status(403).json({
       error: "you are not admin , please back to homepage",
@@ -112,3 +113,15 @@ export const isAdmin = (req, res, next) => {
   }
   next();
 };
+
+
+//kiểm tra có phải là admin trong router products
+export const checkAdmin = (req,res,next) =>{
+  console.log(req.auth.role);
+  if (req.auth.role != 0) {
+    return res.status(403).json({
+      error: "you are not admin , please back to homepage",
+    });
+  }
+  next();
+}

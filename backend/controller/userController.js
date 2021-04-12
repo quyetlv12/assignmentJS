@@ -64,7 +64,7 @@ export const addUser = (req, res, next) => {
   user.save((err,user)=>{
     if(err || !user){
       return res.status(400).json({
-        error : " đăng kí tài khoản thất bại"
+        error : " thêm tài khoản thất bại"
       })
     }
     res.status(200).json(user)
@@ -73,13 +73,19 @@ export const addUser = (req, res, next) => {
 
 //end add user
 
-//start show detail userr
+
 //start delete user
 
 export const deleteUser = (req, res, next) => {
-  res.json({
-    name: "that is delete user",
-  });
+  let user = req.profile
+  user.remove((err,user)=>{
+    if (err) {
+      res.status(400).json({
+        err : "không xoá được người dùng"
+      })
+    }
+    res.status(200).json(user)
+  })
 };
 
 //end delete user

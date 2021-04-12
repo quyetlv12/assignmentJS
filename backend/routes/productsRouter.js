@@ -3,6 +3,7 @@ import express from 'express';
 
 //start lấy phương thức trong products controller
 import {showList,addProducts,deleteProducts,productID,showDetailProduct,update , photo} from '../controller/productController'
+import {requireSignin, isAdmin, isAuth,checkAdmin} from '../controller/authController'
 
 //start gán phương thức Router trong express == router
  const router = express.Router();
@@ -13,11 +14,11 @@ import {showList,addProducts,deleteProducts,productID,showDetailProduct,update ,
  //start chi tiết sản phẩm
  router.get('/products/:productID' , showDetailProduct)
  //start thêm sản phẩm
- router.post('/products', addProducts)
+ router.post('/products',requireSignin,checkAdmin, addProducts)
  //start xoá sản phẩm theo id
- router.delete('/products/:productID' , deleteProducts);
+ router.delete('/products/:productID' ,requireSignin, checkAdmin, deleteProducts);
  //start sửa sản phẩm
-router.put('/products/:productID', update)
+router.put('/products/:productID',requireSignin, checkAdmin, update)
 //start router image
 router.get("/products/image/:productID" , photo)
 
