@@ -55,7 +55,11 @@ const ProductApi = {
     },
     update(id,data){
         const url = `/products/${id}`;
-        return axiosClient.put(url,data);
+        return axiosClient.put(url,data,{
+            headers:{
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
     }
 
 }

@@ -131,8 +131,7 @@ const UpdateProduct = {
                   document.querySelector("#update-quantity").value
                 ),
                 cateID: document.querySelector("#update-cateid").value,
-                description: document.querySelector("#update-description")
-                  .value,
+                description: document.querySelector("#update-description").value,
               };
               ProductApi.update(id, data).then((data) => console.log(data));
               window.location.hash = "/dashboard";

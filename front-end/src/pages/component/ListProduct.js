@@ -91,7 +91,7 @@ const ListProduct = {
               const data_URL = "http://localhost:6767/api/products";
               const method_SEVER = {
                 method: "POST",
-                headers: { "content-type": "application/json"  },
+                headers: { "content-type": "application/json" ,'Authorization': 'Bearer ' + localStorage.getItem('token') },
                 data: JSON.stringify(product),
                 url: data_URL,
               };
@@ -124,7 +124,11 @@ const ListProduct = {
 
         if (question) {
           const { id } = this.dataset;
-          await axios.delete(data_URL + id);
+          await axios.delete(data_URL + id , {
+            headers:{
+              'Authorization': 'Bearer ' + localStorage.getItem('token') 
+            }
+          });
           await reRender(ListProduct, "#dataTable");
         }
       });
