@@ -40,9 +40,9 @@ export const signin = (req, res) => {
       }
       const token = jwt.sign({_id :user._id,role :user.role} , process.env.JWT_SECRET);
       res.cookie("tokenAccess", token, { expire: new Date() + 9999 });
-      const { _id, name, email, role } = user;
+      const { _id, name, email,image, role } = user;
       return res.json([
-        {token,id:_id,name  : name,email:email,role:role}
+        {token,id:_id,name  : name,email:email,image:image,role:role}
       ]);
     });
   }
@@ -61,10 +61,10 @@ export const signin = (req, res) => {
       }
       const token = jwt.sign({_id :user._id,role :user.role} , process.env.JWT_SECRET);
       res.cookie("tokenAccess", token, { expire: new Date() + 9999 });
-      const { _id, name, email, role } = user;
+      const { _id, name, email,image, role } = user;
       return res.json({
         token,
-        user: { _id, email, name, role },
+        user: { _id, email, name,image, role },
       });
     });
   }

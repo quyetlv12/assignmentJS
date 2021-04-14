@@ -73,8 +73,9 @@ const Login = {
         return ($(".errorLogin").innerHTML =
           "Thông tin tài khoản hoặc mật khẩu không chính xác");
       else {
-        data.map(({ _id, name,image, email, role , token}) => {
+        data.map(({ id, name,image, email, role , token}) => {
           (window.location.hash = "/"),
+          localStorage.setItem("id",id)
           localStorage.setItem("username", name);
           localStorage.setItem("email", email);
           localStorage.setItem("role", role);

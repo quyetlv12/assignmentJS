@@ -3,6 +3,7 @@ import User from "../model/usersModel";
 import formidable from "formidable";
 //đọc file buffer
 import fs from "fs";
+import { ppid } from "process";
 
 //start get param id
 
@@ -139,5 +140,8 @@ export const showListUser = async (req, res, next) => {
 export const detailUser = (req, res, next) => {
   req.profile.hashed_password = undefined;
   req.profile.salt = undefined;
-  return res.json(req.profile);
+
+  const user = req.profile
+  return res.json([user]);
 };
+
