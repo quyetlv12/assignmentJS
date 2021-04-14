@@ -6,7 +6,7 @@ const News = {
     return /*html*/ `
     <head>
     <title>Tin tức</title></head>
-    <div class="container">
+    <div class="container-fluid">
       <ul> <div class="card-group">
       <div class="row mt-2">
       <h2>Tin tức nổi bật</h2>

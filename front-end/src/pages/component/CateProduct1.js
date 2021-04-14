@@ -10,10 +10,10 @@ const CateProduct = {
         const cateResult_Product = cateResult.map(product =>{
             return `
             
-            <div class="card-product col-md-3 col-sm-12 mt-2 p-3 bg-white">
+            <div class="card-product col-md-3 col-sm-6 mt-2 bg-white">
             <a href="/#/products/${product._id}" class="text-decoration-none">
             ${parseInt(product.salePrice/product.price * 100 )== 0 ? "" : ` <div class="sale text-width">${parseInt(product.salePrice/product.price * 100 )}%</div>`}
-                <img class="card-img-top" src="${product.image}" height="250" alt="Card image cap">
+                <img class="card-img-top" src="${product.image}" width="250" alt="Card image cap">
                 </a>
                 <div class="card-body">
                   <h5 class="card-title"><a href="/#/products/${product._id}" class="text-decoration-none">${product.name}</a></h5>

@@ -1,5 +1,5 @@
 import ProductApi from "../api/ProductApi";
-import { $ } from "../utils";
+import { $, parseRequestUrl } from "../utils";
 import axios from "axios";
 import firebase from "firebase";
 import SearchBox from "./component/SearchBox";
@@ -7,13 +7,13 @@ import Header from "./component/header";
 
 const ProfileAccount = {
   async render() {
-    const email = localStorage.getItem("email");
-    const password = localStorage.getItem("password");
-    if (email == null) {
-      alert("vui lòng đăng nhập");
-      window.location.hash = "/";
+    if (localStorage.getItem('token') == null) {
+      window.location.hash = '/login'
+      alert("Vui lòng đăng nhập")
     }
-    const { data: account } = await ProductApi.getAccount(email, password);
+    const {id} = parseRequestUrl();
+    const { data: account } = await ProductApi.getInfo(id);
+    console.log(account);
     const showAccount = account.map((account) => {
       return /*html*/ `
          <div class="container">
@@ -35,9 +35,6 @@ const ProfileAccount = {
            }">
            <input type="password" id="account-password" class="form-control mt-2" disabled value="${
              account.password
-           }">
-           <input type="text" id="account-numberphone" class="form-control mt-2" disabled value="${
-             account.numberphone
            }">
            <input type="text" id="account-role" class="form-control mt-2" disabled value="${
              account.role == 0 ? "Quản trị " : "Khách hàng"
@@ -83,20 +80,22 @@ const ProfileAccount = {
         $("#btn-update-account").innerHTML = `Update`;
         if ($("#account-image-update").value == "") {
           const data = {
-            id: localStorage.getItem("id"),
             name: usernameForm.value,
             image: $("#account-image-old").value,
             email: emailForm.value,
             password: passwordForm.value,
-            numberphone: numberphoneForm.value,
             role: parseInt(localStorage.getItem("role")),
           };
-          const data_URL = "http://localhost:3000/account/";
+          const data_URL = "http://localhost:6767/api/users/";
           localStorage.setItem("username", usernameForm.value);
           localStorage.setItem("password", passwordForm.value);
           localStorage.setItem("numberphone", numberphoneForm.value);
           localStorage.setItem("role" , data.role);
-          axios.put(data_URL + id, data);
+          axios.put(data_URL + id, data,{
+            headers:{
+              'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+          });
           alert("Update thành công");
           location.reload();
         } else {
@@ -105,15 +104,18 @@ const ProfileAccount = {
           storageRef.put(productImage).then(function () {
             storageRef.getDownloadURL().then((url) => {
               const data = {
-                username: usernameForm.value,
+                name: usernameForm.value,
                 image: url,
                 password: passwordForm.value,
                 email: emailForm.value,
-                numberphone: numberphoneForm.value,
                 role: parseInt(localStorage.getItem("role")),
               };
-              const data_URL = "http://localhost:3000/account/";
-              axios.put(data_URL + id, data);
+              const data_URL = "http://localhost:6767/api/users/";
+              axios.put(data_URL + id, data,{
+                headers:{
+                  'Authorization': 'Bearer ' + localStorage.getItem('token')
+                }
+              });
               localStorage.setItem("username", usernameForm.value);
               localStorage.setItem("password", passwordForm.value);
               localStorage.setItem("image", data.image);

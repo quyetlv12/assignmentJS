@@ -44,7 +44,7 @@ const routes = {
     '/registration' : RegistrationPage,
     '/dashboarduser' : DashboardUser,
     '/dashboardcontact' : DashboardContact,
-    '/info' : ProfileAccount,
+    '/info/:id' : ProfileAccount,
     '/404' : Error404Page,
  }
 

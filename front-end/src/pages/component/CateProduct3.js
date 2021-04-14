@@ -5,7 +5,7 @@ const CateProduct = {
 
         const {data : product} = await ProductApi.getAll();
         const cateResult = product.filter(product =>{
-            return product.cateID == "605f3c361fe8d71860febff8";
+            return product.cateID == "6057005facdd4575e37ccfab";
         })
         const cateResult_Product = cateResult.map(product =>{
             return `

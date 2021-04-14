@@ -7,6 +7,7 @@ const Header = {
   async render() {
     const { data: cate } = await ProductApi.getAllCate();
     let products = [];
+    let id = localStorage.getItem('id')
     products = JSON.parse(localStorage.getItem('products'));
     const reducer = (accumulator, currentValue) => {
       return accumulator + +currentValue.quantity;
@@ -78,7 +79,7 @@ const Header = {
                    </ul>`
                     : /*html*/ `
                 <ul class="list-user-tools text-center">
-                <li ><a class="text-dark" href="http://localhost:6868/#/info">${localStorage.getItem("username")}</a>
+                <li ><a class="text-dark" href="http://localhost:6868/#/info/${id}">${localStorage.getItem("username")}</a>
                 </li>
                 <li class="nav-item nav-dashboard hide" id="dashboard-link">
                 <a class="nav-link text-dark" href="http://localhost:6868/#/dashboard">Dashboard</a>

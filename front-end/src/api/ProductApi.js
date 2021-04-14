@@ -60,7 +60,14 @@ const ProductApi = {
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             }
         });
+    },
+    getInfo(id){
+        const url  = `/users/${id}`
+        return axiosClient.get(url,{
+            headers:{
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        })
     }
-
 }
 export default ProductApi;

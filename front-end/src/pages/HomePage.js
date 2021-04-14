@@ -7,6 +7,7 @@ import CateProduct3 from "./component/CateProduct3.js";
 import Header from "./component/header.js";
 import SearchBox from "./component/SearchBox.js";
 import News from "./News.js";
+import Allcatgory from "./component/Allcatgory.js";
 const HomePages = {
   async render() {
     const { data: product } = await ProductApi.getAll();
@@ -50,10 +51,17 @@ const HomePages = {
 <div class="col-md-4 col-sm-4 mt-3">
 <img src="https://tainghe.com.vn/media/banner/30_Jane06d061a77a7bde916b8a91163029d41.jpg" class="img-fluid" alt=""></div>
 </div>
-    <div class="container">
-      <ul> <div class="card-group bg-white p-3">
+    <div class="container-fluid mt-2">
+      <ul> <div class="card-group bg-white">
       <div class="row mt-2 ">
-      <h2>Sản phẩm nổi bật</h2>
+      <div class="row ">
+        <div class="d-flex justify-content-between">
+          <div>
+            <h2>Sản phẩm nổi bật</h2>
+          </div>
+          <div><a href="/#/product/1"><button class="btn btn-primary">Xem tất cả</button></a></div>
+        </div>
+      </div>
                       ${product
                         .map(
                           (item) => /*html*/ `
@@ -79,13 +87,15 @@ const HomePages = {
                             item.name
                           }</a></h5>
                                <div class="row">
-                               <div class="col-md-8"><h5 class="card-text text-danger">${
+                               <div class="col-md-6"><h5 class="card-text text-danger fs-6">${
                                  item.price
                                } VNĐ</h5></div>
-                               <div class="col-md-4">
-                               <h5> <small><del>${
-                                 item.salePrice
-                               }VNĐ</del></small></h5>
+                               <div class="col-md-6">
+                               <h5> <small >${
+                                 item.salePrice == undefined
+                                   ? ""
+                                   : `<del class="fs-6">${item.salePrice}</del> VNĐ`
+                               }</small></h5>
                                </div>
                                </div>
                                
@@ -102,42 +112,44 @@ const HomePages = {
                         </div>
                  </ul>
     </div>
-
-    <div class="container">
-
-    <div class="row">
-    <h3>Tai nghe bluetooth</h3>
-      ${await CateProduct.render()}
-    </div>
-    <div class="col-xxl-8 px-4 py-5 bg-white">
+    <div class=" p-3">
+    <div class="container-fluid col-xxl-8 px-4 py-5 bg-white">
   <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
     <div class="col-10 col-sm-8 col-lg-6">
       <img src="https://tainghe.com.vn/media/product/3210_1.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" loading="lazy">
     </div>
     <div class="col-lg-6">
-      <h1 class="display-5 fw-bold lh-1 mb-3">Responsive left-aligned hero with image</h1>
-      <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+      <h1 class="display-5 fw-bold lh-1 mb-3">Tai nghe True Wireless đáng mua nhất tầm giá 2 triệu đồng</p>
       <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
-        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+        <a href="http://localhost:6868/#/products/6052dbb185da1161643c2fce"><button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Xem chi tiết</button></a>
+        <a href="http://localhost:6868/#/product/1"><button type="button" class="btn btn-outline-secondary btn-lg px-4">Xem tất cả</button></a>
       </div>
     </div>
   </div>
 </div>
     
-    <div class="row">
+    <div class="row p-3 bg-white m-2">
     <h3>Tai nghe Chống ồn</h3>
       ${await CateProduct2.render()}
     </div>
-    <div class="row">
+    <div class="row p-3 bg-white m-2">
     <h3>Tai nghe phòng thu</h3>
       ${await CateProduct3.render()}
     </div>
     <div>
     ${await BrandSlider.render()}
     </div>
+    </div>
+    <div class="row">
+    <div>
     
-    <div class="space-elm"></div>
+    <div class="row bg-white">
+    <div class="container-fluid ml-3">
+      <h3>Tất cả danh mục</h3>
+    </div>
+    ${await Allcatgory.render()}
+    </div>
+    </div>
     </div>
     ${await News.render()}
     

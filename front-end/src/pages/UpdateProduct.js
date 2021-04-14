@@ -112,6 +112,7 @@ const UpdateProduct = {
           };
           console.log("ok");
           ProductApi.update(id, data).then((data) => console.log(data));
+          alert("cập nhật thành công sản phẩm" + data.name)
           window.location.hash = "/dashboard";
         } else {
           const productImage = $("#update-image").files[0];
@@ -134,6 +135,7 @@ const UpdateProduct = {
                 description: document.querySelector("#update-description").value,
               };
               ProductApi.update(id, data).then((data) => console.log(data));
+              alert("cập nhật thành công sản phẩm" + data.name)
               window.location.hash = "/dashboard";
             });
           });

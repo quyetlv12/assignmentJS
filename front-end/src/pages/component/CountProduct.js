@@ -8,13 +8,13 @@ const CountProduct = {
       return accumulator + +currentValue.quantity;
     };
     const cateResultProduct1 = product.filter(product =>{
-        return product.cateID == 1;
+        return product.cateID == "6057005facdd4575e37ccfa8";
     })
     const cateResultProduct2 = product.filter(product =>{
-        return product.cateID == 2;
+        return product.cateID == "6057005facdd4575e37ccfab";
     })
     const cateResultProduct3 = product.filter(product =>{
-        return product.cateID == 3;
+        return product.cateID == "606142e88f694d2940a94bf3";
     })
     const reducer_cate = (accumulator, currentValue) => {
       return accumulator + +currentValue.cateID;
