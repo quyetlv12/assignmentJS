@@ -2,14 +2,34 @@
 
 //start import model News
 import News from '../model/newsModel';
+import _ from 'lodash';
 
 
 
 //start add News 
+export const newById = (req,res,next,id) =>{
+  News.findById(id).exec((err,news)=>{
+    if(err || !news) {
+      res.status(400).json({
+        error : 'error'
+      })
+    }
+    req.news = news
+    next()
+  })
+}
 
 export const addNews = (req,res,next) =>{
-  res.json({
-    name : "that is add News"
+  const news = new News(req.body)
+  news.save((err,news)=>{
+    if(err){
+      res.status(400).json({
+        err : "thêm bài viết không thành công"
+      })
+    }
+    res.status(200).json(
+      news
+    )
   })
 }
 
@@ -23,8 +43,17 @@ export const addNews = (req,res,next) =>{
 //start delete News 
 
 export const deleteNews = (req,res,next) =>{
-  res.json({
-    name : "that is delete News"
+  let news = req.news
+  news.remove((err,db)=>{
+    if(err){
+      res.json({
+        error : "xoá không thành công"
+      })
+    }
+    res.json({
+      db,
+      message : `xoá thành công sản phẩm ${db.name}`
+    })
   })
 }
 
@@ -32,9 +61,19 @@ export const deleteNews = (req,res,next) =>{
 
 //start edit News
 export const editNews = (req,res,next) =>{
-  res.json({
-    name : "that is edit News"
-  })
+  let news = _.assignIn(req.news,req.body);
+  news.save((err, db) => {
+    if (err) {
+      console.log(err.message)
+     return res.status(400).json({
+        error: "Cập nhật sản phẩm không thành công",
+      });
+    } else {
+      res.json({
+        message: "Sửa sản phẩm thành công",
+      });
+    }
+  });
 }
 //end edit News
 

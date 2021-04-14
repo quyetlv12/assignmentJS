@@ -115,7 +115,7 @@ export const isAdmin = (req, res, next) => {
 };
 
 
-//kiểm tra có phải là admin trong router products
+//kiểm tra có phải là admin trong router products , catgory , news 
 export const checkAdmin = (req,res,next) =>{
   console.log(req.auth.role);
   if (req.auth.role != 0) {
