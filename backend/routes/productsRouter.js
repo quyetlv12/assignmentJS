@@ -3,7 +3,7 @@ import express, { Router } from 'express';
 
 //start lấy phương thức trong products controller
 import {showList,addProducts,deleteProducts,productID,showDetailProduct,update , photo} from '../controller/productController'
-import {requireSignin, isAdmin, isAuth,checkAdmin} from '../controller/authController'
+import {requireSignin, isAdmin, isAuth} from '../controller/authController'
 import {userById} from '../controller/userController'
 
 //start gán phương thức Router trong express == router
@@ -23,10 +23,12 @@ router.put('/products/:productID/:userById',requireSignin,isAuth,isAdmin, update
 //start router image
 router.get("/products/image/:productID" , photo)
 
+
+//lấy param user
 router.param('userById', userById)
 
 
- //lấy param
+ //lấy param product
 router.param('productID',productID)
 
  //start xuất router

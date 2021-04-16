@@ -113,14 +113,3 @@ export const isAdmin = (req, res, next) => {
 };
 
 
-
-//kiểm tra có phải là admin trong router products , catgory , news
-export const checkAdmin = (req, res, next) => {
-  console.log(req.auth.role);
-  if (req.auth.role != 0) {
-    return res.status(403).json({
-      error: "you are not admin , please back to homepage",
-    });
-  }
-  next();
-};
