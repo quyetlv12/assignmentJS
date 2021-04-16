@@ -19,7 +19,9 @@ export const userById = (req, res, next, id) => {
   });
 };
 
-//start add user
+//kiểm tra tài khoản đã tồn tại khi đăng kí
+
+// export const checkEmail = (res)
 
 export const addUser = (req, res, next) => {
   // let form = new formidable.IncomingForm();

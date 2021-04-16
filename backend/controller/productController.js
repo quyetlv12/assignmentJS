@@ -10,7 +10,6 @@ import _ from 'lodash';
 
 //add products
 export const addProducts = (req, res, next) => {
-  const product = new Products(req.body)
   // let form = new formidable.IncomingForm();
   // form.keepExtensions = true;
   // form.parse(req, (err, fields, files) => {
@@ -40,7 +39,7 @@ export const addProducts = (req, res, next) => {
   //   // }
    
   // });
-
+  const product = new Products(req.body)
   product.save((err, db) => {
     if (err) {
       res.status(400).json({

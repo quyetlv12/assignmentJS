@@ -18,7 +18,6 @@ export const newById = (req,res,next,id) =>{
     next()
   })
 }
-
 export const addNews = (req,res,next) =>{
   const news = new News(req.body)
   news.save((err,news)=>{

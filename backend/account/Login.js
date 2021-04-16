@@ -64,15 +64,17 @@ const Login = {
       //start valite đăng nhập 
 
       if(email == "" || password == ""){
-        $(".errorLogin").innerHTML =
+        document.querySelector(".errorLogin").innerHTML =
           "Vui lòng nhập thông tin tài khoản"
           return false;
       }
       const { data } = await ProductApi.getAccount(email, password);
-      if (data.length === 0)
-        return ($(".errorLogin").innerHTML =
-          "Thông tin tài khoản hoặc mật khẩu không chính xác");
+      console.log(data.length);
+      if (data.length === 0){
+        $(".errorLogin").innerHTML = "Thông tin tài khoản hoặc mật khẩu không chính xác";
+      }
       else {
+        console.log(data.length);
         data.map(({ id, name,image, email, role , token}) => {
           (window.location.hash = "/"),
           localStorage.setItem("id",id)

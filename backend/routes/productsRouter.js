@@ -1,9 +1,10 @@
 //start import fw express
-import express from 'express';
+import express, { Router } from 'express';
 
 //start lấy phương thức trong products controller
 import {showList,addProducts,deleteProducts,productID,showDetailProduct,update , photo} from '../controller/productController'
 import {requireSignin, isAdmin, isAuth,checkAdmin} from '../controller/authController'
+import {userById} from '../controller/userController'
 
 //start gán phương thức Router trong express == router
  const router = express.Router();
@@ -14,13 +15,15 @@ import {requireSignin, isAdmin, isAuth,checkAdmin} from '../controller/authContr
  //start chi tiết sản phẩm
  router.get('/products/:productID' , showDetailProduct)
  //start thêm sản phẩm
- router.post('/products',requireSignin,checkAdmin, addProducts)
+ router.post('/products/:userById',requireSignin,isAuth,isAdmin, addProducts)
  //start xoá sản phẩm theo id
- router.delete('/products/:productID' ,requireSignin, checkAdmin, deleteProducts);
+ router.delete('/products/:productID/:userById' ,requireSignin,isAuth ,isAdmin ,deleteProducts);
  //start sửa sản phẩm
-router.put('/products/:productID',requireSignin, checkAdmin, update)
+router.put('/products/:productID/:userById',requireSignin,isAuth,isAdmin, update)
 //start router image
 router.get("/products/image/:productID" , photo)
+
+router.param('userById', userById)
 
 
  //lấy param

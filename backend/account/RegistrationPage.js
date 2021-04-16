@@ -6,13 +6,13 @@ import SearchBox from "../../front-end/src/pages/component/SearchBox";
 import { checkEmail, checkNumberPhone } from "../validation";
 const RegistrationPage = {
   render() {
-    if (localStorage.getItem("username") != null) {
-      alert(
-        "Bạn đang đăng nhập tài khoản , vui lòng đăng xuất để đăng kí tài khoản"
-      );
-      window.location.hash = "/";
-      return false;
-    }
+    // if (localStorage.getItem("username") != null) {
+    //   alert(
+    //     "Bạn đang đăng nhập tài khoản , vui lòng đăng xuất để đăng kí tài khoản"
+    //   );
+    //   window.location.hash = "/";
+    //   return false;
+    // }
     return /*html*/ `
     <head>
     <title>Đăng kí</title>
@@ -27,21 +27,21 @@ const RegistrationPage = {
         <div class='text-center '>
         <span class="err-signup text-danger"></span>
         </div>
-  <div class="col-md-6">
+  <div class="col-md-12">
     <label for="inputEmail4" class="form-label text-white">Username</label>
     <input type="email" class="form-control" id="form-registration-username" placeholder="Your name">
   </div>
-  <div class="col-md-6">
+  <div class="col-md-12">
     <label for="inputPassword4" class="form-label text-white">Password</label>
     <input type="password" class="form-control" id="form-registration-password" placeholder="Your password">
+  </div>
+  <div class="col-md-12">
+  <label for="inputPassword4" class="form-label text-white">Enter the password</label>
+  <input type="password" class="form-control" id="form-registration-re-password" placeholder="Your password">
   </div>
   <div class="col-12">
     <label for="inputAddress" class="form-label text-white">Email</label>
     <input type="text" class="form-control" id="form-registration-email" placeholder="your email">
-  </div>
-  <div class="col-12">
-    <label for="inputAddress2" class="form-label text-white">Image</label>
-    <input type="file" class="form-control" id="form-registration-image">
   </div>
   <div class="col-12">
   </div>
@@ -61,6 +61,9 @@ const RegistrationPage = {
       const password = $("#form-registration-password").value;
       const email = $("#form-registration-email");
       const numberphone = $("#form-registration-numberphone");
+      const re_password = $("#form-registration-re-password").value
+      console.log(password);
+      console.log(re_password);
       // const { data } = await ProductApi.checkHashAccount(username);
       const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       //start check input trống
@@ -78,34 +81,38 @@ const RegistrationPage = {
         $(".err-signup").innerHTML = "Vui lòng nhập đúng định dạng email";
         return false;
       }
+      if (password != re_password) {
+        $(".err-signup").innerHTML = "Mật khẩu không trùng khớp";
+        return false;
+      }
+      else{
+        const product = {
+          name: $("#form-registration-username").value,
+          password: $("#form-registration-password").value,
+          email: $("#form-registration-email").value,
+          role: 1,
+        };
+        const data_URL = "http://localhost:6767/api/signup";
+        const method_SEVER = {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          data: JSON.stringify(product),
+          url: data_URL,
+        };
+        axios(method_SEVER, product);
+        $(".err-signup").innerHTML = "Đăng kí thành công";
+        setTimeout(()=>{
+          window.location.hash = "/login"
+        },3000)
+      }
+      
       //start check number phone
       // if (!checkNumberPhone(numberphone.value) || numberphone.value <= 10) {
       //   $(".err-signup").innerHTML = "Số điện thoại yêu cầu bằng số và 10 số";
       //   return false;
       // }
       //start check tài khoản đã tồn tại hay chưa
-      const usersImage = $("#form-registration-image").files[0];
-        let storageRef = firebase.storage().ref(`users/${usersImage.name}`);
-        storageRef.put(usersImage).then(function () {
-          storageRef.getDownloadURL().then(async (url) => {
-            const product = {
-              name: $("#form-registration-username").value,
-              image: url,
-              password: $("#form-registration-password").value,
-              email: $("#form-registration-email").value,
-              role: 1,
-            };
-            const data_URL = "http://localhost:6767/api/signup";
-            const method_SEVER = {
-              method: "POST",
-              headers: { "content-type": "application/json" },
-              data: JSON.stringify(product),
-              url: data_URL,
-            };
-            axios(method_SEVER, product);
-            $(".err-signup").innerHTML = "Đăng kí thành công";
-          });
-        });
+     
       // if (data.length === 0) {
         
       // } else {

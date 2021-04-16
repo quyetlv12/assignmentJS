@@ -23,30 +23,28 @@ export const signup = (req, res) => {
 
 //start đăng nhập
 export const signin = (req, res) => {
-  const {_email,_password} = req.query
+  const { _email, _password } = req.query;
 
   if (_email && _password) {
     // const { email, password } = req.body;
-    User.findOne({ email : _email }, (error, user) => {
+    User.findOne({ email: _email }, (error, user) => {
       if (error || !user) {
-        return res.status(400).json({
-          error: "User with that email does not exist. Please signup",
-        });
+        return res.status(202).json([]);
       }
       if (!user.authenticate(_password)) {
-        return res.status(401).json({
-          error: "Email and password not match",
-        });
+        return res.status(202).json([]);
       }
-      const token = jwt.sign({_id :user._id,role :user.role} , process.env.JWT_SECRET);
+      const token = jwt.sign(
+        { _id: user._id, role: user.role },
+        process.env.JWT_SECRET
+      );
       res.cookie("tokenAccess", token, { expire: new Date() + 9999 });
-      const { _id, name, email,image, role } = user;
+      const { _id, name, email, image, role } = user;
       return res.json([
-        {token,id:_id,name  : name,email:email,image:image,role:role}
+        { token, id: _id, name: name, email: email, image: image, role: role },
       ]);
     });
-  }
-  else{
+  } else {
     const { email, password } = req.body;
     User.findOne({ email }, (error, user) => {
       if (error || !user) {
@@ -59,18 +57,18 @@ export const signin = (req, res) => {
           error: "Email and password not match",
         });
       }
-      const token = jwt.sign({_id :user._id,role :user.role} , process.env.JWT_SECRET);
+      const token = jwt.sign(
+        { _id: user._id, role: user.role },
+        process.env.JWT_SECRET
+      );
       res.cookie("tokenAccess", token, { expire: new Date() + 9999 });
-      const { _id, name, email,image, role } = user;
+      const { _id, name, email, image, role } = user;
       return res.json({
         token,
-        user: { _id, email, name,image, role },
+        user: { _id, email, name, image, role },
       });
     });
   }
-
-
-
 };
 
 //start đăng xuất
@@ -115,8 +113,9 @@ export const isAdmin = (req, res, next) => {
 };
 
 
-//kiểm tra có phải là admin trong router products , catgory , news 
-export const checkAdmin = (req,res,next) =>{
+
+//kiểm tra có phải là admin trong router products , catgory , news
+export const checkAdmin = (req, res, next) => {
   console.log(req.auth.role);
   if (req.auth.role != 0) {
     return res.status(403).json({
@@ -124,4 +123,4 @@ export const checkAdmin = (req,res,next) =>{
     });
   }
   next();
-}
+};
