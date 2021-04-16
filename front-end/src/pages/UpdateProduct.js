@@ -6,6 +6,9 @@ import Header from "./component/header";
 
 const UpdateProduct = {
   async render() {
+    if (localStorage.getItem("token") == null) {
+      window.location.hash = "/404";
+    }
     const request = parseRequestUrl();
     const { data: product } = await ProductApi.getAll();
     const { data: cate } = await ProductApi.getAllCate();
@@ -47,18 +50,19 @@ const UpdateProduct = {
       <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" id="update-price" value="${product.price}">
     </div>
     <div class="col-6">
+      <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" id="update-sale-price" value="${product.salePrice}">
+    </div>
+    <div class="col-6 mt-2">
       <select name="" id="update-status" class="form-control" value="${product.status}">
       <option value="true">Đã bán</option>
       <option value="false">Chưa bán</option>
       
       </select>
     </div>
-    </div>
-    <div class="row mt-2">
-    <div class="col-6">
+    <div class="col-6 mt-2">
     <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" id="update-quantity" value="${product.quantity}">
     </div>
-    <div class="col-6">
+    <div class="col-6 mt-2">
     <select class="form-select" value="${product.cateID}" id="update-cateid" aria-label="Default select example">
     ${cateItem}
     </select>
@@ -90,6 +94,7 @@ const UpdateProduct = {
       .addEventListener("click", async function () {
         const request = parseRequestUrl();
         const id = request.id;
+
         const { data: product } = await ProductApi.getAll();
         const { data: detail } = await ProductApi.get(id);
         const idResult = product.filter((product) => {
@@ -111,8 +116,15 @@ const UpdateProduct = {
             description: document.querySelector("#update-description").value,
           };
           console.log("ok");
-          ProductApi.update(id, data).then((data) => console.log(data));
-          alert("cập nhật thành công sản phẩm" + data.name)
+          const userId = localStorage.getItem("id");
+          console.log(userId);
+          const data_URL = "http://localhost:6767/api/products";
+          axios.put(`${data_URL}/${id}/${userId}`, data, {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          });
+          alert("cập nhật thành công sản phẩm" + data.name);
           window.location.hash = "/dashboard";
         } else {
           const productImage = $("#update-image").files[0];
@@ -132,10 +144,18 @@ const UpdateProduct = {
                   document.querySelector("#update-quantity").value
                 ),
                 cateID: document.querySelector("#update-cateid").value,
-                description: document.querySelector("#update-description").value,
+                description: document.querySelector("#update-description")
+                  .value,
               };
-              ProductApi.update(id, data).then((data) => console.log(data));
-              alert("cập nhật thành công sản phẩm" + data.name)
+              const userId = localStorage.getItem("id");
+              console.log(userId);
+              const data_URL = "http://localhost:6767/api/products";
+              axios.put(`${data_URL}/${id}/${userId}`, data, {
+                headers: {
+                  Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+              });
+              alert("cập nhật thành công sản phẩm" + data.name);
               window.location.hash = "/dashboard";
             });
           });

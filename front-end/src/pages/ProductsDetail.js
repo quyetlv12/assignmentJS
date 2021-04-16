@@ -1,3 +1,4 @@
+import axios from "axios";
 import ProductApi from "../api/ProductApi";
 import { parseRequestUrl, $, reRender } from "../utils";
 import Header from "./component/header";
@@ -87,6 +88,8 @@ const ProductDetail = {
 
       products = JSON.parse(localStorage.getItem("products"));
       let hashProduct = false;
+      // const id = localStorage.getItem('id')
+      // const data_URL = "http://localhost:6767/api/users/"
       let price = parseFloat(product.price).toFixed(3);
       for (let i = 0; i < products.length; i++) {
         let idProduct = products[i];
@@ -100,6 +103,12 @@ const ProductDetail = {
             "Số lượng giỏ hàng đã được thay đổi thành " + products[i].quantity
           );
           hashProduct = true;
+          
+        //   axios.put(data_URL  + id ,{
+        //     headers:{
+        //         'Authorization': 'Bearer ' + localStorage.getItem('token')
+        //     }
+        // })
         }
       }
       if (hashProduct == false) {

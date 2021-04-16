@@ -1,3 +1,4 @@
+import axios from "axios";
 import Logout from "../../../../backend/account/Logout";
 import ProductApi from "../../api/ProductApi";
 import { $ } from "../../utils";
@@ -107,7 +108,10 @@ const Header = {
     }
    
     $("#btn-logout").addEventListener("click",function () {
-      (window.location.hash = "/login");
+      const data_URL = "http://localhost:6767/api/signout"
+      axios.get(data_URL);
+      
+      localStorage.removeItem("id");
       localStorage.removeItem("username");
       localStorage.removeItem("token");
       localStorage.removeItem("email");
@@ -115,6 +119,7 @@ const Header = {
       localStorage.removeItem("numberphone");
       localStorage.removeItem("image");
       localStorage.removeItem("role");
+      (window.location.hash = "/login");
     });
     return `${await SearchBox.afterRender()}`;
   },

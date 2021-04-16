@@ -39,7 +39,7 @@ const ProductApi = {
     },
     getAccount(email,password){
         const  url  =  `/signin?_email=${email}&_password=${password}`;
-        return axiosClient.get(url);
+        return axiosClient.post(url);
     },
     checkHashAccount(username){
         const  url  =  `/users?username=${username}`;
@@ -53,8 +53,8 @@ const ProductApi = {
         const url = `/cart`;
         return axiosClient.get(url);
     },
-    update(id,data){
-        const url = `/products/${id}`;
+    update(id,userId,data){
+        const url = `/products/${id}/${userId}`;
         return axiosClient.put(url,data,{
             headers:{
                 'Authorization': 'Bearer ' + localStorage.getItem('token')

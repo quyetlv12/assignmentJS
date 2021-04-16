@@ -13,7 +13,7 @@ const ListProduct = {
             <td>${product.name}</td>
             <td><img src="${product.image}" width="200"/></td>
             <td>${product.price}</td>
-            <td>${product.status == true ? "đã bán" : "chưa bán"}</td>
+            <td>${product.status == true ? "<i class='fas fa-dot-circle'></i> Còn hàng" : "<i class='far fa-dot-circle'></i> Hết hàng"}</td>
             <td>${product.quantity}</td>
             <td class="p-4 action-product">
             
@@ -66,10 +66,16 @@ const ListProduct = {
         const $ = document.querySelector.bind(document);
         if (
           $("#form-add-name").value == "" ||
-          $("#form-add-image").value == ""
+          $("#form-add-image").value == "" ||$("#form-add-quantity").value == ""
         ) {
           alert("vui lòng nhập sản phẩm");
-        } else {  
+        } 
+        else if($("#form-add-sale-price").value > $("#form-add-price").value){
+          alert("Giá sale không được lớn hơn giá gốc")
+          return false
+        }
+        
+        else {  
           const productImage = $("#form-add-image").files[0];
           let storageRef = firebase
             .storage()
@@ -82,18 +88,20 @@ const ListProduct = {
                 name: $("#form-add-name").value,
                 image: url,
                 price: parseFloat($("#form-add-price").value).toFixed(3),
+                salePrice: parseFloat($("#form-add-sale-price").value).toFixed(3),
                 status: $("#form-add-status").value,
                 quantity: $("#form-add-quantity").value,
                 cateID: $("#form-add-cateid").value,
                 description: $("#form-add-description").value,
                 createdAt: Date.now(),
               };
-              const data_URL = "http://localhost:6767/api/products";
+              const userId = localStorage.getItem('id')
+              const data_URL = "http://localhost:6767/api/products/";
               const method_SEVER = {
                 method: "POST",
                 headers: { "content-type": "application/json" ,'Authorization': 'Bearer ' + localStorage.getItem('token') },
                 data: JSON.stringify(product),
-                url: data_URL,
+                url: data_URL + userId,
               };
               alert("Thêm sản phẩm thành công " + product.name)
               await axios(method_SEVER, product);
@@ -116,7 +124,8 @@ const ListProduct = {
 
     //start XOÁ SẢN PHẨM
     const buttons = document.querySelectorAll(".btn-remove");
-    const data_URL = "http://localhost:6767/api/products/";
+    const userId = localStorage.getItem('id')
+    const data_URL = "http://localhost:6767/api/products";
     buttons.forEach((buttons) => {
       buttons.addEventListener("click", async function (e) {
         e.preventDefault();
@@ -124,7 +133,7 @@ const ListProduct = {
 
         if (question) {
           const { id } = this.dataset;
-          await axios.delete(data_URL + id , {
+          await axios.delete(`${data_URL}/${id}/${userId}` , {
             headers:{
               'Authorization': 'Bearer ' + localStorage.getItem('token') 
             }

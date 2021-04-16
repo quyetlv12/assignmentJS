@@ -49,7 +49,11 @@ const ProductsPagi = {
       .join("");
     return /*html*/ `
     <title>Sảm phẩm</title>
-        <div class="container">
+    <div class="row">
+        
+    <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotioncategory/ss_a32_12.4.png" alt="" class="img-fluid"></div>
+        <div class="container-fluid ml-2 mr-2">
+       
         <div class="row">
         <div class="col-2">
         <h5>Bộ lọc sản phẩm </h5>

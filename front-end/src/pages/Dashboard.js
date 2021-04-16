@@ -127,34 +127,37 @@ const Dashboard = {
                           <div class="accordion-body">
                           <form action="" id="form-reload">
                           <div class="row g-3">
-                      <div class="col">
+                      <div class="col-6">
                         <input type="text" class="form-control" id="form-add-id" disabled placeholder="Auto ID" aria-label="First name">
                       </div>
-                      <div class="col">
+                      <div class="col-6">
                         <input type="text" class="form-control" id="form-add-name" placeholder="NAME" aria-label="Last name">
                       </div>
-                      <div class="col">
+                      <div class="col-6">
                         <input type="file" class="form-control" id="form-add-image">
                       </div>
-                      <div class="col">
+                      <div class="col-6">
                         <input type="text" class="form-control" id="form-add-price" placeholder="PRICE" aria-label="Last name">
                       </div>
-                      <div class="col">
+                      <div class="col-6">
+                        <input type="text" class="form-control" id="form-add-sale-price" placeholder="SALE PRICE" aria-label="Last name">
+                      </div>
+                      <div class="col-6">
                       <select class="form-select" id="form-add-status" aria-label="Default select example">
-                      <option selected>Chọn trạng thái</option>
-                      <option value="true">Đã bán</option>
-                      <option value="false">Chưa bán</option>
+                   
+                      <option value="true">Còn hàng</option>
+                      <option value="false">Hết hàng</option>
                     </select>
                       </div>
-                      <div class="col">
+                      <div class="col-6">
                       <select class="form-select" id="form-add-cateid" aria-label="Default select example">
-                      <option selected>Chọn danh mục</option>
+                    
                       ${cate.map((cate) => {
                         return `<option value="${cate._id}">${cate.name}</option>`;
                       })}
                     </select>
                       </div>
-                      <div class="col">
+                      <div class="col-6">
                         <input type="text" class="form-control" id="form-add-quantity" placeholder="QUANTITY" aria-label="Last name">
                       </div>
                       <div class="row mt-2">
