@@ -7,7 +7,7 @@ const UpdateNews = {
     const { data: news } = await ProductApi.getAllNews();
     const { data: cate } = await ProductApi.getAllCate();
     const idResult = news.filter((news) => {
-      return news.id == request.id;
+      return news._id == request.id;
     });
 
     const printProduct = idResult.map((news) => {
@@ -21,7 +21,7 @@ const UpdateNews = {
             <div class="row mt-2">
                 <div class="col-12">
                 <label for="">ID</label>
-                <input type="text" class="form-control" placeholder="First name" aria-label="First name" id="update-id" value="${news.id
+                <input type="text" class="form-control" placeholder="First name" aria-label="First name" id="update-id" value="${news._id
         }" disabled>
                 </div>
             </div>
@@ -63,17 +63,23 @@ const UpdateNews = {
   async afterRender() {
     document
       .querySelector("#btn-update-product")
-      .addEventListener("click", function () {
+      .addEventListener("click", async function () {
         const request = parseRequestUrl();
         const id = request.id;
+        const userId = localStorage.getItem("id")
         const data = {
           id: document.querySelector("#update-id").value,
           title: document.querySelector("#update-title").value,
           image: document.querySelector("#update-image").value,
           content: document.querySelector("#update-content").value,
         };
-        const data_URL = "http://localhost:3000/news/";
-        axios.put(data_URL + id, data);
+        const data_URL = `http://localhost:6767/api/news/${id}/${userId}`;
+        await axios.put(data_URL, data,{
+          headers: { "content-type": "application/json" ,'Authorization': 'Bearer ' + localStorage.getItem('token') }
+        });
+
+
+        window.location.hash = "/dashboardnew"
       });
 
   }

@@ -20,28 +20,28 @@ const ListCate = {
         </thead>
         <tbody id="list-products">
         ${cate
-        .map((cate) => {
+        .map((cate,index) => {
           return `<tr class="trContent">
-            <td>${cate.id}</td>
+            <td>${index + 1}</td>
             <td>${cate.name}</td>
           
             <td class="p-4 action-product">
             
             <div class="row">
-              <a href="#/category/${cate.id}"> <button class="btn btn-primary"><div class="">
+              <a href="#/category/${cate._id}"> <button class="btn btn-primary"><div class="">
                 <i class="fas fa-info-circle"></i>
               </div> Detail</button></a>
             </div>
              
             <div class="row mt-2">
               <div class="">
-                <button class="btn btn-danger btn-remove-cate text-white" id="btn-remove-cate" data-id="${cate.id}"><div class="">
+                <button class="btn btn-danger btn-remove-cate text-white" id="btn-remove-cate" data-id="${cate._id}"><div class="">
                   <i class="fas fa-trash-alt"></i>
                 </div> Remove</button>
               </div>
             </div>
              <div class="row mt-2">
-               <a href="#/updatecate/${cate.id}"> <button class="btn btn-success"><div class="">
+               <a href="#/updatecate/${cate._id}"> <button class="btn btn-success"><div class="">
                  <i class="fas fa-edit"></i>
                </div> Update</button></a>
              </div>
@@ -55,6 +55,7 @@ const ListCate = {
     </table>`;
   },
   async afterRender() {
+    const userId = localStorage.getItem("id")
     document
       .querySelector("#add-cate")
       .addEventListener("click",async function (e) {
@@ -67,12 +68,13 @@ const ListCate = {
             id: $("#cate-add-id").value,
             name: $("#cate-add-name").value,
           };
-          const data_URL = "http://localhost:3000/category";
+          
+          const data_URL = "http://localhost:6767/api/categories/";
           const method_SEVER = {
             method: "POST",
-            headers: { "content-type": "application/json" },
+            headers: { "content-type": "application/json",'Authorization': 'Bearer ' + localStorage.getItem('token') },
             data: JSON.stringify(product),
-            url: data_URL,
+            url: data_URL + userId,
           };
           alert("Thêm thành công danh mục " + $("#cate-add-name").value)
           axios(method_SEVER, product);
@@ -84,7 +86,7 @@ const ListCate = {
        
       });
     const buttons = document.querySelectorAll(".btn-remove-cate");
-    const data_URL = "http://localhost:3000/category/";
+    const data_URL = "http://localhost:6767/api/categories/";
     buttons.forEach((buttons) => {
       buttons.addEventListener("click",async function (e) {
         e.preventDefault();
@@ -93,7 +95,7 @@ const ListCate = {
         if (question) {
           const { id } = this.dataset;
           
-          await axios.delete(data_URL + id);
+          await axios.delete(`${data_URL}${id}/${userId}`,{headers: { "content-type": "application/json" ,'Authorization': 'Bearer ' + localStorage.getItem('token') }});
           await reRender(ListCate, "#dataTable");  
 
          }

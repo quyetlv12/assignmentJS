@@ -106,11 +106,9 @@ const Header = {
     } else {
       $("#dashboard-link").classList.add("hide");
     }
-   
     $("#btn-logout").addEventListener("click",function () {
       const data_URL = "http://localhost:6767/api/signout"
       axios.get(data_URL);
-      
       localStorage.removeItem("id");
       localStorage.removeItem("username");
       localStorage.removeItem("token");

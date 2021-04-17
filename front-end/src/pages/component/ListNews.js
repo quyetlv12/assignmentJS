@@ -17,9 +17,9 @@ const ListNews = {
         </thead>
         <tbody id="list-newss">
         ${news
-          .map((news) => {
+          .map((news,index) => {
             return `<tr>
-            <td>${news.id}</td>
+            <td>${index + 1}</td>
             <td>${news.title}</td>
             <td><img src="${news.image} "width="200"/></td>
          
@@ -34,13 +34,13 @@ const ListNews = {
              
             <div class="row mt-2">
               <div class="">
-                <button class="btn btn-warning btn-remove text-white" id="btn-remove-product" data-id="${news.id}"><div class="">
+                <button class="btn btn-warning btn-remove text-white" id="btn-remove-product" data-id="${news._id}"><div class="">
                   <i class="fas fa-trash-alt"></i>
                 </div> Remove</button>
               </div>
             </div>
              <div class="row mt-2">
-               <a href="#/updatenews/${news.id}"> <button class="btn btn-primary"><div class="">
+               <a href="#/updatenews/${news._id}"> <button class="btn btn-primary"><div class="">
                  <i class="fas fa-edit"></i>
                </div> Update</button></a>
              </div>
@@ -57,35 +57,40 @@ const ListNews = {
     async afterRender() {
         document
           .querySelector("#btn-add-new")
-          .addEventListener("click", function (e) {
+          .addEventListener("click",async function (e) {
             e.preventDefault()
             const $ = document.querySelector.bind(document);
+            const userId = localStorage.getItem("id")
             const news = {
-              id: $("#form-new-id").value,
               title: $("#form-new-title").value,
               image: $("#form-new-image").value,
               content: $("#form-new-content").value,
             };
-            const data_URL = "http://localhost:3000/news";
+            const data_URL = "http://localhost:6767/api/news/";
             const method_SEVER = {
               method: "POST",
-              headers: { "content-type": "application/json" },
+              headers: { "content-type": "application/json" ,'Authorization': 'Bearer ' + localStorage.getItem('token') },
               data: JSON.stringify(news),
-              url: data_URL,
+              url: data_URL + userId,
             };
-            axios(method_SEVER, news);
-            reRender(ListNews, "#dataTableNew");
+            await axios(method_SEVER, news);
+            alert("Thêm bài viết thành công !")
+            await reRender(ListNews, "#dataTableNew");
             
           });
         const buttons = document.querySelectorAll(".btn-remove");
-        const data_URL = "http://localhost:3000/news/";
+       
         buttons.forEach((buttons) => {
-          buttons.addEventListener("click", function () {
+          buttons.addEventListener("click", async function () {
               const question = confirm("Are you sure delete ? ")
               if(question){
                 const { id } = this.dataset;
-                axios.delete(data_URL + id);
-                reRender(ListNews, "#dataTableNew");
+                const userId = localStorage.getItem("id")
+                const data_URL = `http://localhost:6767/api/news/${id}/${userId}`;
+               await axios.delete(data_URL,{
+                  headers: { "content-type": "application/json" ,'Authorization': 'Bearer ' + localStorage.getItem('token') }
+                });
+               await reRender(ListNews, "#dataTableNew");
               }
             
             

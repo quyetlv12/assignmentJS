@@ -85,7 +85,6 @@ const ProductDetail = {
         let products = [];
         localStorage.setItem("products", products);
       }
-
       products = JSON.parse(localStorage.getItem("products"));
       let hashProduct = false;
       // const id = localStorage.getItem('id')

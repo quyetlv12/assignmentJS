@@ -140,7 +140,7 @@ const DashboardNews = {
       <div class="col-4">
       <div class="col-12">
       <label for="inputAddress" class="form-label">ID</label>
-      <input type="text" class="form-control"  placeholder="ID" id="form-new-id">
+      <input type="text" class="form-control" disabled placeholder="Auto Id" id="form-new-id">
     </div>
       <div class="col-12">
       <label for="inputAddress" class="form-label">Image</label>
