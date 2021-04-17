@@ -8,11 +8,11 @@ dotenv.config();
 //start đăng kí
 export const signup = (req, res) => {
   console.log(req.body);
-  const user = new User(req.body);
+  const user = new User(req.body); 
   user.save((err, db) => {
     if (err) {
       res.status(400).json({
-        error: "signup error",
+        error: "Tài khoản đã tồn tại",
       });
     }
     user.salt = undefined;
@@ -29,10 +29,14 @@ export const signin = (req, res) => {
     // const { email, password } = req.body;
     User.findOne({ email: _email }, (error, user) => {
       if (error || !user) {
-        return res.status(202).json([]);
+        return res.status(400).json({
+          error : "Tài khoản không tồn tại ! vui lòng đăng kí tài khoản"
+        });
       }
       if (!user.authenticate(_password)) {
-        return res.status(202).json([]);
+        return res.status(400).json({
+          error : "Email hoặc tài khoản không chính xác"
+        });
       }
       const token = jwt.sign(
         { _id: user._id, role: user.role },

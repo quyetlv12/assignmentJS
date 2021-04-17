@@ -26,7 +26,6 @@ const Products = new Schema({
     },
     salePrice : {
         type : Number
-
     },
     status : {
         type : Boolean,

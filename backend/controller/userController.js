@@ -142,7 +142,6 @@ export const showListUser = async (req, res, next) => {
 export const detailUser = (req, res, next) => {
   req.profile.hashed_password = undefined;
   req.profile.salt = undefined;
-
   const user = req.profile
   return res.json([user]);
 };

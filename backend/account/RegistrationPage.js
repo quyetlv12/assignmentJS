@@ -64,8 +64,6 @@ const RegistrationPage = {
       const re_password = $("#form-registration-re-password").value
       console.log(password);
       console.log(re_password);
-      // const { data } = await ProductApi.checkHashAccount(username);
-      const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       //start check input trống
       if (
         username == "" ||
@@ -99,26 +97,21 @@ const RegistrationPage = {
           data: JSON.stringify(product),
           url: data_URL,
         };
-        axios(method_SEVER, product);
+       await axios(method_SEVER, product)
+       .then(()=>{
         $(".err-signup").innerHTML = "Đăng kí thành công";
         setTimeout(()=>{
           window.location.hash = "/login"
         },3000)
+       })
+       .catch(function (error) {
+        if (error.response) {
+         $('.err-signup').innerHTML = error.response.data.error
+        }
+    
+      });
+    
       }
-      
-      //start check number phone
-      // if (!checkNumberPhone(numberphone.value) || numberphone.value <= 10) {
-      //   $(".err-signup").innerHTML = "Số điện thoại yêu cầu bằng số và 10 số";
-      //   return false;
-      // }
-      //start check tài khoản đã tồn tại hay chưa
-     
-      // if (data.length === 0) {
-        
-      // } else {
-      //   $(".err-signup").innerHTML = "Tài khoản đã tồn tại";
-      //   return false;
-      // }
     });
     return `${await SearchBox.afterRender()}`;
   },

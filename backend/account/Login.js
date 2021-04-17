@@ -2,6 +2,7 @@ import ProductApi from "../../front-end/src/api/ProductApi";
 import { $ } from "../../front-end/src/utils";
 import axios from "axios";
 import SearchBox from "../../front-end/src/pages/component/SearchBox";
+import { checkEmail } from "../validation";
 
 const Login = {
   async render() {
@@ -22,7 +23,7 @@ const Login = {
     <form>
       <div class="container">
         <div class="mb-3">
-          <label for="" class="form-label text-white">User name</label>
+          <label for="" class="form-label text-white">Email</label>
           <input type="text" class="form-control" id="form-login-email">
         
         </div>
@@ -61,35 +62,38 @@ const Login = {
       e.preventDefault();
       const email = $("#form-login-email").value;
       const password = $("#form-login-password").value;
-      //start valite đăng nhập 
+      //start valite đăng nhập
 
-      if(email == "" || password == ""){
+      if (email == "" || password == "") {
         document.querySelector(".errorLogin").innerHTML =
-          "Vui lòng nhập thông tin tài khoản"
-          return false;
+          "Vui lòng nhập thông tin tài khoản";
+        return false;
       }
-      const { data } = await ProductApi.getAccount(email, password);
+      if(!checkEmail(email)){
+        $(".errorLogin").innerHTML ="Vui lòng nhập đúng định dạng email";
+      }
+      const { data } = await ProductApi.getAccount(email, password)
+        .catch(
+        function (error) {
+          if (error.response) {
+            $(".errorLogin").innerHTML = error.response.data.error;
+          } 
+        }
+      );
       console.log(data.length);
-      if (data.length === 0){
-        $(".errorLogin").innerHTML = "Thông tin tài khoản hoặc mật khẩu không chính xác";
-      }
-      else {
-        console.log(data.length);
-        data.map(({ id, name,image, email, role , token}) => {
-          (window.location.hash = "/"),
-          localStorage.setItem("id",id)
-          localStorage.setItem("username", name);
-          localStorage.setItem("email", email);
-          localStorage.setItem("role", role);
-          localStorage.setItem("image", image);
-          localStorage.setItem("token", token);
-          if (role == 0) {
-            $("#dashboard-link").classList.add("show");
-          } else {
-            $("#dashboard-link").classList.add("hide");
-          }
-        });
-      }
+      data.map(({ id, name, image, email, role, token }) => {
+        (window.location.hash = "/"), localStorage.setItem("id", id);
+        localStorage.setItem("username", name);
+        localStorage.setItem("email", email);
+        localStorage.setItem("role", role);
+        localStorage.setItem("image", image);
+        localStorage.setItem("token", token);
+        if (role == 0) {
+          $("#dashboard-link").classList.add("show");
+        } else {
+          $("#dashboard-link").classList.add("hide");
+        }
+      });
     });
     return `${await SearchBox.afterRender()}`;
   },

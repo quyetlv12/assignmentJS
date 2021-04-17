@@ -22,12 +22,8 @@ import {userById} from '../controller/userController'
 router.put('/products/:productID/:userById',requireSignin,isAuth,isAdmin, update)
 //start router image
 router.get("/products/image/:productID" , photo)
-
-
 //lấy param user
 router.param('userById', userById)
-
-
  //lấy param product
 router.param('productID',productID)
 

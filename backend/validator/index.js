@@ -12,7 +12,7 @@ export const  userSignupValidator = (req,res,next) =>{
         .isLength(
             { min: 6 }
         )
-        .withMessage('Password must contain at least 6 characters')
+        .withMessage('Mật khẩu phải trên 6 kí tự')
         .matches(/\d/)
         .withMessage('Password must contain a number');
 
