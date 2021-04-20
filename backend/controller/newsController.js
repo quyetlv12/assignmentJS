@@ -95,14 +95,5 @@ export const showListNews = (req,res,next) =>{
 
 //start show detail 
 export const newsDetail = (req, res, next) => {
-  const id = req.params.id;
-  News.findById(id, (err, db) => {
-    if (err) {
-      res.json({
-        message: "sản phẩm không tồn tại",
-      });
-    } else {
-      res.json(db == null ? "sản phẩm không tồn tại" : db);
-    }
-  });
+ return res.json(req.news)
 };

@@ -47,7 +47,11 @@ const RegistrationPage = {
   </div>
   <div class="col-12 mb-5">
     <button type="submit" id="btn-registration" class="btn btn-success w-100">Sign Up</button>
+    <div class="d-flex justify-content-center mt-4">
+    <p class="text-white">Bạn đã có tài khoản <a href="http://localhost:6868/#/login">Đăng nhập ngay !</a></p>
+    </div>
   </div>
+ 
 </form>
         </div>
         `;
@@ -61,15 +65,11 @@ const RegistrationPage = {
       const password = $("#form-registration-password").value;
       const email = $("#form-registration-email");
       const numberphone = $("#form-registration-numberphone");
-      const re_password = $("#form-registration-re-password").value
+      const re_password = $("#form-registration-re-password").value;
       console.log(password);
       console.log(re_password);
       //start check input trống
-      if (
-        username == "" ||
-        image == "" ||
-        (password == "") | (email == "")
-      ) {
+      if (username == "" ||  (password == "") || (email == "")) {
         $(".err-signup").innerHTML = "Vui lòng nhập thông tin tài khoản";
         return false;
       }
@@ -82,8 +82,7 @@ const RegistrationPage = {
       if (password != re_password) {
         $(".err-signup").innerHTML = "Mật khẩu không trùng khớp";
         return false;
-      }
-      else{
+      } else {
         const product = {
           name: $("#form-registration-username").value,
           password: $("#form-registration-password").value,
@@ -97,20 +96,18 @@ const RegistrationPage = {
           data: JSON.stringify(product),
           url: data_URL,
         };
-       await axios(method_SEVER, product)
-       .then(()=>{
-        $(".err-signup").innerHTML = "Đăng kí thành công";
-        setTimeout(()=>{
-          window.location.hash = "/login"
-        },3000)
-       })
-       .catch(function (error) {
-        if (error.response) {
-         $('.err-signup').innerHTML = error.response.data.error
-        }
-    
-      });
-    
+        await axios(method_SEVER, product)
+          .then(() => {
+            $(".err-signup").innerHTML = "Đăng kí thành công";
+            setTimeout(() => {
+              window.location.hash = "/login";
+            }, 3000);
+          })
+          .catch(function (error) {
+            if (error.response) {
+              $(".err-signup").innerHTML = error.response.data.error;
+            }
+          });
       }
     });
     return `${await SearchBox.afterRender()}`;

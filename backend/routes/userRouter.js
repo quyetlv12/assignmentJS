@@ -2,6 +2,8 @@ import { showListUser , addUser ,deleteUser , userById , editUser,detailUser} fr
 import express from 'express'
 const UsersRouter = express.Router();
 import {requireSignin, isAdmin, isAuth} from '../controller/authController'
+
+
 UsersRouter.get('/secret/:UserId',requireSignin,isAuth,isAdmin, (req, res) => {
     res.json({
         user: req.profile

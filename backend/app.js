@@ -3,6 +3,7 @@ import express from "express";
 import productRouter from "./routes/productsRouter";
 import userRouter from "./routes/userRouter";
 import NewsRouter from './routes/newsRouter';
+import ContactRouter from './routes/ContactRouter';
 import morgan from "morgan";
 import dotenv from "dotenv";
 import CategoryRouter from './routes/cateRouter';
@@ -53,6 +54,8 @@ app.use("/api", userRouter);
 app.use("/api", CategoryRouter);
 app.use("/api" , NewsRouter);
 app.use("/api", authRouter)
+app.use("/api", ContactRouter)
+
 
 // start lắng nghe cổng 4000 
 app.listen(port, () => {

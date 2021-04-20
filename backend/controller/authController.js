@@ -35,7 +35,7 @@ export const signin = (req, res) => {
       }
       if (!user.authenticate(_password)) {
         return res.status(400).json({
-          error : "Email hoặc tài khoản không chính xác"
+          error : "Email hoặc mật khẩu không chính xác"
         });
       }
       const token = jwt.sign(
@@ -48,31 +48,7 @@ export const signin = (req, res) => {
         { token, id: _id, name: name, email: email, image: image, role: role },
       ]);
     });
-  } else {
-    const { email, password } = req.body;
-    User.findOne({ email }, (error, user) => {
-      if (error || !user) {
-        return res.status(400).json({
-          error: "User with that email does not exist. Please signup",
-        });
-      }
-      if (!user.authenticate(password)) {
-        return res.status(401).json({
-          error: "Email and password not match",
-        });
-      }
-      const token = jwt.sign(
-        { _id: user._id, role: user.role },
-        process.env.JWT_SECRET
-      );
-      res.cookie("tokenAccess", token, { expire: new Date() + 9999 });
-      const { _id, name, email, image, role } = user;
-      return res.json({
-        token,
-        user: { _id, email, name, image, role },
-      });
-    });
-  }
+  } 
 };
 
 //start đăng xuất

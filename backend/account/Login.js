@@ -82,7 +82,8 @@ const Login = {
       );
       console.log(data.length);
       data.map(({ id, name, image, email, role, token }) => {
-        (window.location.hash = "/"), localStorage.setItem("id", id);
+        (window.location.hash = "/"),
+         localStorage.setItem("id", id);
         localStorage.setItem("username", name);
         localStorage.setItem("email", email);
         localStorage.setItem("role", role);
