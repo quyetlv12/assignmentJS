@@ -30,7 +30,7 @@ const CartProduct = {
        `;
   },
   async afterRender() {
-      return await ListItemCart.afterRender();
+      return await ListItemCart.afterRender() 
   },
 };
 export default CartProduct;

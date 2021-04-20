@@ -7,19 +7,21 @@ const ListContact = {
   async render() {
     const { data: product } = await ProductApi.getAllContact();
     const List = product
-      .map((product) => {
+      .map((product, index) => {
         return /*html*/ `<tr class="trContent">
-            <td>${product.id}</td>
+            <td>${index + 1}</td>
             <td>${product.name}</td>
             <td>${product.email}</td>
-            <td>${product.phone}</td>
-            <td>${product.content}</td>
+            <td>${product.numberphone}</td>
+            <td>${product.message}</td>
             <td class="p-4 action-product">
             <div class="row mt-2">
               <div class="">
-                <button class="btn btn-danger btn-remove text-white" id="btn-remove-product" data-id="${product.id}"><div class="">
+                <button class="btn btn-danger btn-remove text-white" id="btn-remove-product" data-id="${
+                  product._id
+                }"><div class="">
                   <i class="fas fa-trash-alt"></i>
-                </div> Remove</button>
+                </div>Remove</button>
               </div>
             </div>
            </td>
@@ -60,14 +62,12 @@ const ListContact = {
         ) {
           alert("vui lòng nhập sản phẩm");
         } else {
-         
           const productImage = $("#form-add-image").files[0];
           let storageRef = firebase
             .storage()
             .ref(`images/${productImage.name}`);
           storageRef.put(productImage).then(function (e) {
-            storageRef.getDownloadURL().then(async (url,e) => {
-              
+            storageRef.getDownloadURL().then(async (url, e) => {
               const product = {
                 id: $("#form-add-id").value,
                 name: $("#form-add-name").value,
@@ -86,7 +86,7 @@ const ListContact = {
                 data: JSON.stringify(product),
                 url: data_URL,
               };
-              alert("Thêm sản phẩm thành công " + product.name)
+              alert("Thêm sản phẩm thành công " + product.name);
               await axios(method_SEVER, product);
               await reRender(ListProduct, "#listPproducts");
               $("#form-add-name").value = "";
@@ -100,14 +100,13 @@ const ListContact = {
         }
         e.preventDefault();
         return false;
-        
       });
 
     //END THÊM SẢN PHẨM
 
     //start XOÁ SẢN PHẨM
     const buttons = document.querySelectorAll(".btn-remove");
-    const data_URL = "http://localhost:3000/contact/";
+
     buttons.forEach((buttons) => {
       buttons.addEventListener("click", async function (e) {
         e.preventDefault();
@@ -115,7 +114,14 @@ const ListContact = {
 
         if (question) {
           const { id } = this.dataset;
-          await axios.delete(data_URL + id);
+          const userId = localStorage.getItem("id");
+          const data_URL = `http://localhost:6767/api/contact/${id}/${userId}`;
+          await axios.delete(data_URL, {
+            headers: {
+              "content-type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          });
           await reRender(ListContact, "#dataTable");
         }
       });

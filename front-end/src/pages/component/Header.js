@@ -8,8 +8,8 @@ const Header = {
   async render() {
     const { data: cate } = await ProductApi.getAllCate();
     let products = [];
-    let id = localStorage.getItem('id')
-    products = JSON.parse(localStorage.getItem('products'));
+    let id = localStorage.getItem("id");
+    products = JSON.parse(localStorage.getItem("products"));
     const reducer = (accumulator, currentValue) => {
       return accumulator + +currentValue.quantity;
     };
@@ -60,14 +60,19 @@ const Header = {
               </li>
               <div class="dropdown ml-3">
               <button class="btn btn-account-tools dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">
-              ${localStorage.getItem("image") == null ?`<i class="fas fa-user-shield text-white"></i>` :     
-              /*html*/`<img class=" border border-primary rounded-circle" src="${localStorage.getItem("image")}" width="30" alt="">`}
+              ${
+                localStorage.getItem("image") == undefined
+                  ? /*html*/`<i class="fas fa-user-shield text-white"></i>`
+                  : /*html*/ `<img class=" border border-primary rounded-circle" src="${localStorage.getItem(
+                      "image"
+                    )}" width="30" alt="">`
+              }
               
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li>${
                   localStorage.getItem("username") == null
-                    ? /*html*/`<ul class='list-user'><li>
+                    ? /*html*/ `<ul class='list-user'><li>
                       <a  href='http://localhost:6868/#/login'>
                       <button class="btn btn-primary w-100">ĐĂNG NHẬP</button>
                       </a>
@@ -80,7 +85,9 @@ const Header = {
                    </ul>`
                     : /*html*/ `
                 <ul class="list-user-tools text-center">
-                <li ><a class="text-dark" href="http://localhost:6868/#/info/${id}">${localStorage.getItem("username")}</a>
+                <li ><a class="text-dark" href="http://localhost:6868/#/info/${id}">${localStorage.getItem(
+                        "username"
+                      )}</a>
                 </li>
                 <li class="nav-item nav-dashboard hide" id="dashboard-link">
                 <a class="nav-link text-dark" href="http://localhost:6868/#/dashboard">Dashboard</a>
@@ -98,7 +105,7 @@ const Header = {
       </nav>`;
   },
   async afterRender() {
-    if(localStorage.getItem('username') == null){
+    if (localStorage.getItem("username") == null) {
       return `${await SearchBox.afterRender()}`;
     }
     if (localStorage.getItem("role") == 0) {
@@ -106,8 +113,8 @@ const Header = {
     } else {
       $("#dashboard-link").classList.add("hide");
     }
-    $("#btn-logout").addEventListener("click",function () {
-      const data_URL = "http://localhost:6767/api/signout"
+    $("#btn-logout").addEventListener("click", function () {
+      const data_URL = "http://localhost:6767/api/signout";
       axios.get(data_URL);
       localStorage.removeItem("id");
       localStorage.removeItem("username");
@@ -117,7 +124,7 @@ const Header = {
       localStorage.removeItem("numberphone");
       localStorage.removeItem("image");
       localStorage.removeItem("role");
-      (window.location.hash = "/login");
+      window.location.hash = "/login";
     });
     return `${await SearchBox.afterRender()}`;
   },

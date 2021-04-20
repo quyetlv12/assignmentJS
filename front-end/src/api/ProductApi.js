@@ -1,5 +1,4 @@
 import { axiosClient } from './axiosClient';
-
 const ProductApi = {
     getAll(){
         const url = `/products`;
@@ -66,6 +65,15 @@ const ProductApi = {
         const url  = `/users/${id}`
         return axiosClient.get(url,{
             headers:{
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+    },
+    updateUser(id,user){
+        const url  = `/users/${id}}`
+        return axiosClient.put(url,user,{
+            headers:{
+                "content-type": "application/json",
                 'Authorization': 'Bearer ' + localStorage.getItem('token')
             }
         })

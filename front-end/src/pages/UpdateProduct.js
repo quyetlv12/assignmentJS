@@ -19,7 +19,7 @@ const UpdateProduct = {
     // start in danh mục
     const cateItem = cate.map((cate) => {
       return /*html*/ `
-      <option value="${cate._id}">${cate.name}</option>
+      <option value="${cate._id}" >${cate.name}</option>
       `;
     });
 
@@ -54,8 +54,8 @@ const UpdateProduct = {
     </div>
     <div class="col-6 mt-2">
       <select name="" id="update-status" class="form-control" value="${product.status}">
-      <option value="true">Đã bán</option>
-      <option value="false">Chưa bán</option>
+      <option value="true">Còn hàng</option>
+      <option value="false">Hết hàng</option>
       
       </select>
     </div>
@@ -70,7 +70,7 @@ const UpdateProduct = {
     </div>
     <div class="form-floating mt-2">
     <textarea class="form-control" placeholder="Leave a comment here" style="height: 100px" id="update-description">${product.description}</textarea>
-    <label for="floatingTextarea2">Comments</label>
+    <label for="floatingTextarea2">Description</label>
   </div>
     </div>
     <div class="col-4">

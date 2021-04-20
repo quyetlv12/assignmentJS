@@ -6,6 +6,7 @@ import SearchBox from "./component/SearchBox";
 import Top10Product from "./component/Top5Product";
 const ProductDetail = {
   async render() {
+    
     const { id } = parseRequestUrl();
     const { data: product } = await ProductApi.get(id);
     return /*html*/ `
@@ -62,6 +63,7 @@ const ProductDetail = {
             `;
   },
   async afterRender() {
+    window.scrollTo(0, 0);
     let products = [];
     $("#btn-minus").addEventListener("click", function () {
       let quantity_product = $("#quantity-product-add");

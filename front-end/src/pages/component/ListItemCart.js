@@ -3,6 +3,7 @@ import SearchBox from "./SearchBox";
 import CartProduct from "./CartProduct";
 import Header from "./header";
 import ProductApi from "../../api/ProductApi";
+import axios from "axios";
 
 const ListItemCart = {
   render() {
@@ -35,10 +36,9 @@ const ListItemCart = {
       })
       .join("")}
         <thead>
-        <th class="fs-3" colspan="4">Total : ${parseFloat(products.reduce(
-          sumTotal,
-          0
-        )).toFixed(3)} VNĐ</th>
+        <th class="fs-3" colspan="4">Total : ${parseFloat(
+          products.reduce(sumTotal, 0)
+        ).toFixed(3)} VNĐ</th>
         <th class="text-center"><button class="btn btn-danger" id="btn-clear-cart">Clear Cart</button>
         
         
@@ -56,23 +56,23 @@ const ListItemCart = {
   },
   async afterRender() {
     await SearchBox.afterRender();
-    let btnMinus = document.querySelectorAll('.btn-minus-cart');
+    let btnMinus = document.querySelectorAll(".btn-minus-cart");
     let quantity_product = document.querySelectorAll(".quantity-product");
-    let btnPlus = document.querySelectorAll('.btn-plus-cart');
-    let products = []
-    products = JSON.parse(localStorage.getItem('products'));
+    let btnPlus = document.querySelectorAll(".btn-plus-cart");
+    let products = [];
+    products = JSON.parse(localStorage.getItem("products"));
     let sumTotal = (accumulator, currentValue) => {
       return accumulator + +currentValue.price;
     };
-    btnMinus.forEach(btn=>{
-      btn.addEventListener('click' ,async ()=>{
-        const {id : btnId} = btn.dataset;
+    btnMinus.forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const { id: btnId } = btn.dataset;
         const id = btnId;
-        const {data : product} = await ProductApi.get(id);
-        quantity_product.forEach(input=>{
-          const {id} = input.dataset;
+        const { data: product } = await ProductApi.get(id);
+        quantity_product.forEach((input) => {
+          const { id } = input.dataset;
           if (id == btnId) {
-            --input.value
+            --input.value;
             if (input.value < 1) {
               alert("vui lòng nhập số lượng lớn hơn 1");
               input.value = 1;
@@ -81,48 +81,46 @@ const ListItemCart = {
             for (let i = 0; i < products.length; i++) {
               let idProduct = products[i];
               if (idProduct.id == id) {
-                console.log(typeof(products[i].quantity));
-                products[i].quantity --;
-                products[i].price =  parseFloat(product.price * products[i].quantity ).toFixed(3)
-                localStorage.setItem('products', JSON.stringify(products));
+                console.log(typeof products[i].quantity);
+                products[i].quantity--;
+                products[i].price = parseFloat(
+                  product.price * products[i].quantity
+                ).toFixed(3);
+                localStorage.setItem("products", JSON.stringify(products));
                 reRender(CartProduct, "#table");
-                
               }
             }
-          
           }
-        })
-        
-      })
-    })
-   
-    btnPlus.forEach(btn=>{
-      btn.addEventListener('click' ,async ()=>{
-        const {id : btnId} = btn.dataset;
+        });
+      });
+    });
+
+    btnPlus.forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const { id: btnId } = btn.dataset;
         const id = btnId;
-        const {data : product} = await ProductApi.get(id);
-        quantity_product.forEach(input=>{
-          const {id} = input.dataset;
+        const { data: product } = await ProductApi.get(id);
+        quantity_product.forEach((input) => {
+          const { id } = input.dataset;
           if (id == btnId) {
-            ++input.value
+            ++input.value;
             for (let i = 0; i < products.length; i++) {
               let idProduct = products[i];
               if (idProduct.id == id) {
-                console.log(typeof(products[i].quantity));
-                products[i].quantity ++ 
-                products[i].price =  parseFloat(product.price * products[i].quantity ).toFixed(3)
-                localStorage.setItem('products', JSON.stringify(products));
+                console.log(typeof products[i].quantity);
+                products[i].quantity++;
+                products[i].price = parseFloat(
+                  product.price * products[i].quantity
+                ).toFixed(3);
+                localStorage.setItem("products", JSON.stringify(products));
                 reRender(CartProduct, "#table");
               }
             }
           }
-        })
-        
-      })
-    })
-   
-    
-    
+        });
+      });
+    });
+
     let btn = document.querySelectorAll(".btn-remove-to-cart");
     btn.forEach((btn) => {
       btn.addEventListener("click", async function (e) {
@@ -149,126 +147,64 @@ const ListItemCart = {
       });
     });
     //start clear cart
-    $('#btn-clear-cart').addEventListener('click', async (e)=>{
-      const question = confirm("bạn chắc chắn muốn xoá tất cả sản phẩm trong giỏ hàng ? ")
-      if(question){
-        let products = []
-        products = JSON.parse(localStorage.getItem('products'));
+    $("#btn-clear-cart").addEventListener("click", async (e) => {
+      const question = confirm(
+        "bạn chắc chắn muốn xoá tất cả sản phẩm trong giỏ hàng ? "
+      );
+      if (question) {
+        let products = [];
+        products = JSON.parse(localStorage.getItem("products"));
         products.length = 0;
         console.log(products.length);
-        localStorage.setItem('products', JSON.stringify(products));
+        localStorage.setItem("products", JSON.stringify(products));
         await reRender(CartProduct, "#table");
         await reRender(Header, "#nav-header");
       }
-    })
-
+    });
 
     //start checkout cart
-    $('#btn-checkout').addEventListener('click', (e)=>{
+    $("#btn-checkout").addEventListener("click", async (e) => {
+      let products = [];
+      products = JSON.parse(localStorage.getItem("products"));
+      let sumTotal = (accumulator, currentValue) => {
+        return accumulator + +currentValue.price;
+      };
       e.preventDefault();
-     
-      if(localStorage.getItem("username") == null){
-        $('#showModal').innerHTML = /*html*/`<!-- The Modal -->
-        <div class="modal" id="myModal" >
-          <div class="modal-dialog">
-            <div class="modal-content" style="margin-top:100px">
-            
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h4 class="modal-title">Thanh thoán</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-              
-              <!-- Modal body -->
-              <div class="modal-body">
-              <form class="row g-3">
-              <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">Name</label>
-                <input type="email" class="form-control" id="inputEmail4">
-              </div>
-              <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Number phone</label>
-                <input type="password" class="form-control" id="inputPassword4">
-              </div>
-              <div class="col-12">
-                <label for="inputAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-              </div>
-              <div class="col-md-6">
-                <label for="inputCity" class="form-label">City</label>
-                <input type="text" class="form-control" id="inputCity">
-              </div>
-              <div class="col-md-2">
-                <label for="inputZip" class="form-label">Zip</label>
-                <input type="text" class="form-control" id="inputZip">
-              </div>
-              <div class="col-12">
-                <button type="submit" class="btn btn-primary">THANH TOÁN</button>
-              </div>
-              <div>
-              <h4>-----HOẶC ĐĂNG NHẬP ! <a href="http://localhost:6868/#/login">TẠI ĐÂY</a> ----</h4>
-              </div>
-            </form>
-              </div>
-              
-              <!-- Modal footer -->
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              </div>
-              
-            </div>
-          </div>
-        </div>`
+      const token = localStorage.getItem("token");
+      if (token == null) {
+        window.location.hash = "/login";
+      } else {
+        const question = confirm(
+          `Bạn có chắc muốn thanh toán ${parseFloat(
+            products.reduce(sumTotal, 0)
+          ).toFixed(3)} VNĐ`
+        );
+        if (question) {
+          const id = localStorage.getItem("id");
+          let { data: user } = await ProductApi.getInfo(id);
+          // console.log(user);
+          let products = [];
+          products = JSON.parse(localStorage.getItem("products"));
+          user[0].products = [...user[0].products, ...products];
+          console.log(user[0]);
+          const data_URL = "http://localhost:6767/api/users/";
+          axios.put(data_URL + id, user[0], {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          });
+
+          alert("Thanh toán thàng công");
+  
+          products.length = 0;
+          console.log(products.length);
+          localStorage.setItem("products", JSON.stringify(products));
+          await reRender(CartProduct, "#table");
+          await reRender(Header, "#nav-header");
+          location.reload();
+        }
       }
-      else{
-        $('#showModal').innerHTML = /*html*/`<!-- The Modal -->
-        <div class="modal" id="myModal" >
-          <div class="modal-dialog">
-            <div class="modal-content" style="margin-top:100px">
-            
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h4 class="modal-title">Thanh thoán</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-              
-              <!-- Modal body -->
-              <div class="modal-body">
-              <form class="row g-3">
-              <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">Name</label>
-                <input type="email" class="form-control" id="inputEmail4" value="${localStorage.getItem('username')}">
-              </div>
-              <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Email</label>
-                <input type="Email" class="form-control" id="inputPassword4" value="${localStorage.getItem('email')}">
-              </div>
-              <div class="col-12">
-                <label for="inputAddress" class="form-label">Number phone</label>
-                <input type="text" class="form-control" placeholder="1234 Main St"value="${localStorage.getItem('numberphone')}">
-              </div>
-              <div class="col-12">
-                <button class="btn btn-primary" id="bcheckout-cart">THANH TOÁN</button>
-              </div>
-            </form>
-              </div>
-              
-              <!-- Modal footer -->
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              </div>
-              
-            </div>
-          </div>
-        </div>`
-      }
-    })
-   
-
-
-
-
-    
+    });
     return `${await SearchBox.afterRender()}${await Header.afterRender()}`;
   },
 };

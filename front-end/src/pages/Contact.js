@@ -62,18 +62,19 @@ const Contact = {
             id : $("#contact-id").value , 
               name: $("#contact-name").value,
               email: $("#contact-email").value,
-              phone: $("#contact-number-phone").value,
-              content: $("#contact-content").value,
+              numberphone: $("#contact-number-phone").value,
+              message: $("#contact-content").value,
             };
-            const data_URL = "http://localhost:3000/contact";
+            const id = localStorage.getItem("id")
+            const data_URL = `http://localhost:6767/api/contact/${id}`;
             const method_SEVER = {
               method: "POST",
-              headers: { "content-type": "application/json" },
+              headers: { "content-type": "application/json",'Authorization': 'Bearer ' + localStorage.getItem('token')},
               data: JSON.stringify(contact),
               url: data_URL,
             };
             alert("Gửi liên hệ thành công");
-            axios(method_SEVER, contact);
+            axios(method_SEVER, contact)
             
           });
         return `${await Header.afterRender()}`

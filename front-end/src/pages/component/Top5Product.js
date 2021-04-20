@@ -17,8 +17,7 @@ const Top10Product ={
     }
     return result
     },
-    async afterRender(){
-     
+    async afterRender(){    
     }
 }
 export default Top10Product
